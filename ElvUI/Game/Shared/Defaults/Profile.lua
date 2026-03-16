@@ -1630,6 +1630,7 @@ local UF_AuraBars = {
 	tooltipAnchorType = 'ANCHOR_BOTTOMRIGHT',
 	tooltipAnchorX = 5,
 	tooltipAnchorY = -5,
+	useMidnight = false,
 	clickThrough = false,
 	reverseFill = false,
 	abbrevName = false,
