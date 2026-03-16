@@ -67,10 +67,15 @@ G.unitframe.aurafilters.Blocklist = {
 		[264689]	= List(), -- Hunter Pet Fatigued
 		[2823]		= List(nil, false), -- Deadly Poison
 		[315584]	= List(nil, false), -- Instant Poison
+		[319773]	= List(nil, false), -- Windfury Weapon
+		[319778]	= List(nil, false), -- Flametongue Weapon
 		[3408]		= List(nil, false), -- Crippling Poison
 		[377234]	= List(), -- Thrill of the Skies
 		[381637]	= List(nil, false), -- Atrophic Poison
 		[381664]	= List(nil, false), -- Amplifying Poison
+		[382021]	= List(nil, false), -- Earthliving Weapon
+		[382022]	= List(nil, false), -- Earthliving Weapon
+		[382024]	= List(nil, false), -- Earthliving Weapon
 		[390435]	= List(), -- Exhaustion
 		[404464]	= List(), -- Flight Style: Skyriding
 		[404468]	= List(), -- Flight Style: Steady
@@ -81,6 +86,7 @@ G.unitframe.aurafilters.Blocklist = {
 		[57724]		= List(), -- Sated
 		[71041]		= List(), -- Dungeon Deserter
 		[80354]		= List(), -- Temporal Displacement
+		[8679]		= List(nil, false), -- Wound Poison
 		[95809]		= List(), -- Hunter Pet Insanity
 	}
 }
