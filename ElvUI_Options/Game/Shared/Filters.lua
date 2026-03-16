@@ -17,6 +17,8 @@ local GetSpellSubtext = GetSpellSubtext
 
 local quickSearchText, selectedSpell, selectedFilter, filterList, spellList = '', nil, nil, {}, {}
 local auraBarDefaults = { enable = true, color = { r = 1, g = 1, b = 1, a = 1 } }
+local includeFilters = { Blacklist = true }
+
 local defaultFilterList = {
 	['Aura Highlight'] = L["Aura Highlight"],
 	['Aura Indicator (Global)'] = L["Aura Indicator (Global)"],
@@ -86,10 +88,12 @@ local function SetFilterList()
 
 	E:CopyTable(filterList, defaultFilterList)
 
-	local list = not E.Retail and E.global.unitframe.aurafilters
+	local list = E.global.unitframe.aurafilters
 	if list then
 		for filter in pairs(list) do
-			filterList[filter] = filter
+			if not E.Retail or includeFilters[filter] then
+				filterList[filter] = filter
+			end
 		end
 	end
 
@@ -101,10 +105,12 @@ local function ResetFilterList()
 
 	E:CopyTable(filterList, defaultFilterList)
 
-	local list = not E.Retail and G.unitframe.aurafilters
+	local list = G.unitframe.aurafilters
 	if list then
 		for filter in pairs(list) do
-			filterList[filter] = filter
+			if not E.Retail or includeFilters[filter] then
+				filterList[filter] = filter
+			end
 		end
 	end
 
@@ -114,11 +120,11 @@ end
 local function DeleteFilterList()
 	wipe(filterList)
 
-	local list = not E.Retail and E.global.unitframe.aurafilters
+	local list = E.global.unitframe.aurafilters
 	if list then
 		local defaultList = G.unitframe.aurafilters
 		for filter in pairs(list) do
-			if not defaultList[filter] then
+			if (not E.Retail or includeFilters[filter]) and not defaultList[filter] then
 				filterList[filter] = filter
 			end
 		end
@@ -128,11 +134,11 @@ local function DeleteFilterList()
 end
 
 local function DeleteFilterListDisable()
-	local list = not E.Retail and E.global.unitframe.aurafilters
+	local list = E.global.unitframe.aurafilters
 	if list then
 		local defaultList = G.unitframe.aurafilters
 		for filter in pairs(list) do
-			if not defaultList[filter] then
+			if (not E.Retail or includeFilters[filter]) and not defaultList[filter] then
 				return false
 			end
 		end
@@ -397,7 +403,7 @@ Filters.mainOptions.args.deleteFilter = ACH:Select(L["Delete Filter"], L["Delete
 Filters.mainOptions.args.resetGroup = ACH:Select(L["Reset Filter"], L["This will reset the contents of this filter back to default. Any spell you have added to this filter will be removed."], 4, ResetFilterList, ConfirmResetFilter, nil, nil, ResetFilter)
 Filters.mainOptions.args.resetFilters = ACH:Execute(L["Reset All"], L["This reset excludes AuraBar Colors, Aura Highlight, and Aura Indicators."], 5, function() E:StaticPopup_Show('RESET_ALL_FILTERS') ResetSelectedFilter() end, nil, nil, 100, nil, nil, nil, E.Retail)
 
-Filters.mainOptions.args.filterGroup = ACH:Group(function() return defaultFilterList[selectedFilter] or G.unitframe.aurafilters[selectedFilter] end, nil, 10, nil, nil, nil, nil, function() return not selectedFilter end)
+Filters.mainOptions.args.filterGroup = ACH:Group(function() return defaultFilterList[selectedFilter] or selectedFilter end, nil, 10, nil, nil, nil, nil, function() return not selectedFilter end)
 Filters.mainOptions.args.filterGroup.inline = true
 Filters.mainOptions.args.filterGroup.args.selectSpellheader = ACH:Description(L["|cffFF3333Warning:|r Click the arrow on the dropdown box to see a list of spells."], 0, 'medium')
 Filters.mainOptions.args.filterGroup.args.selectSpell = ACH:Select(L["Select Aura"], nil, 1, SetSpellList, nil, 350, function(_) return selectedSpell or '' end, function(_, value) selectedSpell = (value ~= '' and value) end, nil, nil, true)
