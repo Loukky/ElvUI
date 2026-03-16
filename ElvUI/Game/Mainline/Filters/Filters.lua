@@ -62,21 +62,21 @@ G.unitframe.aurafilters.Blocklist = {
 	type = 'Blacklist',
 	desc = L["Non-Secret Auras you don't want to see on your frames."],
 	spells = {
+		[26013] = List(), -- Deserter
 		[57723] = List(), -- Exhaustion
 		[57724] = List(), -- Sated
+		[71041] = List(), -- Dungeon Deserter
 		[80354] = List(), -- Temporal Displacement
 		[95809] = List(), -- Hunter Pet Insanity
 		[160455] = List(), -- Hunter Pet Fatigued
 		[264689] = List(), -- Hunter Pet Fatigued
+		[377234] = List(), -- Thrill of the Skies
 		[390435] = List(), -- Exhaustion
-		[26013] = List(), -- Deserter
-		[71041] = List(), -- Dungeon Deserter
 		[404464] = List(), -- Flight Style: Skyriding
 		[404468] = List(), -- Flight Style: Steady
 		[427490] = List(), -- Ride Along
 		[447959] = List(), -- Ride Along - Enabled
 		[447960] = List(), -- Ride Along - Inactive
-		[377234] = List(), -- Thrill of the Skies
 	}
 }
 
