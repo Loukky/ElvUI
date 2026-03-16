@@ -9,7 +9,7 @@ E.Filters.Included = {}
 E.Filters.List = function(priority, enable, stackThreshold)
 	return {
 		priority = priority or 0,
-		enable = (enable == nil and true) or enable,
+		enable = enable == nil or enable,
 		stackThreshold = stackThreshold or 0
 	}
 end
