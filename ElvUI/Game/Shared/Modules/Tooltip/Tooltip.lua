@@ -87,9 +87,6 @@ local LINETYPE_SELLPRICE = TooltipDataLineType.SellPrice
 
 local HIGHLIGHT_FONT_COLOR = HIGHLIGHT_FONT_COLOR
 local PRIEST_COLOR = RAID_CLASS_COLORS.PRIEST
-local SELL_PRICE = SELL_PRICE
-local MINIMUM = MINIMUM
-local MAXIMUM = MAXIMUM
 local UNKNOWN = UNKNOWN
 
 -- Custom to find LEVEL string on tooltip
@@ -1142,11 +1139,11 @@ function TT:AddMoneyInfo(lineData)
 	local r, g, b = HIGHLIGHT_FONT_COLOR:GetRGB()
 	local maxPrice = lineData.maxPrice
 	if maxPrice and maxPrice >= 1 then
-		self:AddLine(format('%s', SELL_PRICE), r, g, b)
-		self:AddLine(format('    %s: %s', MINIMUM, GetCoinTextureString(price)), r, g, b)
-		self:AddLine(format('    %s: %s', MAXIMUM, GetCoinTextureString(maxPrice)), r, g, b)
+		self:AddLine(format('%s', _G.SELL_PRICE), r, g, b)
+		self:AddLine(format('    %s: %s', _G.MINIMUM, GetCoinTextureString(price)), r, g, b)
+		self:AddLine(format('    %s: %s', _G.MAXIMUM, GetCoinTextureString(maxPrice)), r, g, b)
 	else
-		self:AddLine(format('%s: %s', SELL_PRICE, GetCoinTextureString(price)), r, g, b)
+		self:AddLine(format('%s: %s', _G.SELL_PRICE, GetCoinTextureString(price)), r, g, b)
 	end
 
 	return true
