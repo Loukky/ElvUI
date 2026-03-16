@@ -8,6 +8,7 @@ P.hideTutorial = true
 P.dbConverted = nil -- use this to let DBConversions run once per profile
 
 E.AuraDefaults = {
+	useBlacklist = false,
 	isAuraImportant = false,
 	isAuraImportantPlayer = false,
 	isAuraCrowdControl = false,
@@ -25,7 +26,7 @@ E.AuraDefaults = {
 	notAuraCancelablePlayer = false,
 	isAuraPlayer = false,
 	isAuraRaid = false,
-	isAuraRaidPlayer = false,
+	isAuraRaidPlayer = false
 }
 
 --Core

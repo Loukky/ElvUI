@@ -155,8 +155,9 @@ local function GetOptionsTable_AuraBars(updateFunc, groupName)
 	config.args.filtersGroup = ACH:Group(L["Filters"], nil, 20)
 
 	if E.Retail then
-		config.args.filtersGroup.args.isAuraPlayer = ACH:Toggle(L["Player"], L["All of your auras."], 1)
-		config.args.filtersGroup.args.isAuraRaidPlayerDispellable = ACH:Toggle(L["Player Dispellable"], L["Auras you can dispel."], 2)
+		config.args.filtersGroup.args.useBlacklist = ACH:Toggle(L["Blacklist"], L["Activate the blacklist filter."], 1)
+		config.args.filtersGroup.args.isAuraPlayer = ACH:Toggle(L["Player"], L["All of your auras."], 2)
+		config.args.filtersGroup.args.isAuraRaidPlayerDispellable = ACH:Toggle(L["Player Dispellable"], L["Auras you can dispel."], 3)
 
 		config.args.filtersGroup.args.player = ACH:Group(L["Player"], nil, 10)
 		config.args.filtersGroup.args.player.args.isAuraImportantPlayer = ACH:Toggle(L["Important"], nil, 1)
@@ -293,8 +294,9 @@ local function GetOptionsTable_Auras(auraType, updateFunc, groupName, numUnits)
 
 	config.args.midnightGroup = ACH:Group(E.Retail and L["Filters"] or L["Filters: Midnight"], nil, 50, nil, nil, nil, nil, function() return not E.Retail and not E.db.unitframe.units[groupName][auraType].useMidnight end)
 
-	config.args.midnightGroup.args.isAuraPlayer = ACH:Toggle(L["Player"], L["All of your auras."], 1)
-	config.args.midnightGroup.args.isAuraRaidPlayerDispellable = ACH:Toggle(L["Player Dispellable"], L["Auras you can dispel."], 2)
+	config.args.midnightGroup.args.useBlacklist = ACH:Toggle(E.NewSign..L["Blacklist"], L["Activate the blacklist filter."], 1)
+	config.args.midnightGroup.args.isAuraPlayer = ACH:Toggle(L["Player"], L["All of your auras."], 2)
+	config.args.midnightGroup.args.isAuraRaidPlayerDispellable = ACH:Toggle(L["Player Dispellable"], L["Auras you can dispel."], 3)
 
 	config.args.midnightGroup.args.player = ACH:Group(L["Player"], nil, 10)
 	config.args.midnightGroup.args.player.args.isAuraImportantPlayer = ACH:Toggle(L["Important"], nil, 1)
