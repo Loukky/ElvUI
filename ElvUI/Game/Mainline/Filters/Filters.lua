@@ -69,6 +69,14 @@ G.unitframe.aurafilters.Blocklist = {
 		[160455] = List(), -- Hunter Pet Fatigued
 		[264689] = List(), -- Hunter Pet Fatigued
 		[390435] = List(), -- Exhaustion
+		[26013] = List(), -- Deserter
+		[71041] = List(), -- Dungeon Deserter
+		[404464] = List(), -- Flight Style: Skyriding
+		[404468] = List(), -- Flight Style: Steady
+		[427490] = List(), -- Ride Along
+		[447959] = List(), -- Ride Along - Enabled
+		[447960] = List(), -- Ride Along - Inactive
+		[377234] = List(), -- Thrill of the Skies
 	}
 }
 
