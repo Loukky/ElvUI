@@ -62,31 +62,35 @@ G.unitframe.aurafilters.Blocklist = {
 	type = 'Blacklist',
 	desc = L["Non-Secret Auras you don't want to see on your frames."],
 	spells = {
-		[160455]	= List(), -- Hunter Pet Fatigued
-		[26013]		= List(), -- Deserter
-		[264689]	= List(), -- Hunter Pet Fatigued
+		-- Rogue Poisons
 		[2823]		= List(nil, false), -- Deadly Poison
 		[315584]	= List(nil, false), -- Instant Poison
-		[319773]	= List(nil, false), -- Windfury Weapon
-		[319778]	= List(nil, false), -- Flametongue Weapon
 		[3408]		= List(nil, false), -- Crippling Poison
-		[377234]	= List(), -- Thrill of the Skies
 		[381637]	= List(nil, false), -- Atrophic Poison
 		[381664]	= List(nil, false), -- Amplifying Poison
+		[8679]		= List(nil, false), -- Wound Poison
+		-- Shaman Enchants
+		[319773]	= List(nil, false), -- Windfury Weapon
+		[319778]	= List(nil, false), -- Flametongue Weapon
 		[382021]	= List(nil, false), -- Earthliving Weapon
 		[382022]	= List(nil, false), -- Earthliving Weapon
 		[382024]	= List(nil, false), -- Earthliving Weapon
-		[390435]	= List(), -- Exhaustion
+		-- Skyriding
 		[404464]	= List(), -- Flight Style: Skyriding
 		[404468]	= List(), -- Flight Style: Steady
 		[427490]	= List(), -- Ride Along
 		[447959]	= List(), -- Ride Along - Enabled
 		[447960]	= List(), -- Ride Along - Inactive
+		-- The rest
+		[160455]	= List(), -- Hunter Pet Fatigued
+		[26013]		= List(), -- Deserter
+		[264689]	= List(), -- Hunter Pet Fatigued
+		[377234]	= List(), -- Thrill of the Skies
+		[390435]	= List(), -- Exhaustion
 		[57723]		= List(), -- Exhaustion
 		[57724]		= List(), -- Sated
 		[71041]		= List(), -- Dungeon Deserter
 		[80354]		= List(), -- Temporal Displacement
-		[8679]		= List(nil, false), -- Wound Poison
 		[95809]		= List(), -- Hunter Pet Insanity
 	}
 }
