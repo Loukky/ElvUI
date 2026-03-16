@@ -52,6 +52,12 @@ G.unitframe.aurafilters.TurtleBuffs = {
 	spells = {}
 }
 
+G.unitframe.aurafilters.Blacklist = {
+	type = 'Blacklist',
+	desc = L["Auras you don't want to see on your frames."],
+	spells = {}
+}
+
 G.unitframe.aurafilters.Blocklist = {
 	type = 'Blacklist',
 	desc = L["Non-Secret Auras you don't want to see on your frames."],

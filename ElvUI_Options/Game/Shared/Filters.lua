@@ -17,7 +17,7 @@ local GetSpellSubtext = GetSpellSubtext
 
 local quickSearchText, selectedSpell, selectedFilter, filterList, spellList = '', nil, nil, {}, {}
 local auraBarDefaults = { enable = true, color = { r = 1, g = 1, b = 1, a = 1 } }
-local includeFilters = { Blacklist = true }
+local includeFilters = { Blocklist = true }
 
 local defaultFilterList = {
 	['Aura Highlight'] = L["Aura Highlight"],
