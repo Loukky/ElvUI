@@ -1508,6 +1508,7 @@ P.tooltip = {
 	includeWarband = true,
 	modifierCount = true,
 	moneyLines = true,
+	moneyHide = false,
 	showMount = true,
 	modifierID = 'SHOW',
 	role = true,

@@ -1134,6 +1134,8 @@ end
 function TT:AddMoneyInfo(lineData)
 	if self:IsForbidden() or self.isShopping or (lineData.type ~= LINETYPE_SELLPRICE) or not TT.db.moneyLines then return end
 
+	if TT.db.moneyHide then return true end
+
 	local price = lineData.price
 	if not price then return end
 
