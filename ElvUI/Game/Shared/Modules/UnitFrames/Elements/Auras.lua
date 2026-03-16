@@ -288,8 +288,8 @@ function UF:UpdateFilters(button)
 	local isRaidPlayer = db and db.isAuraRaidPlayer
 
 	local filters = button.auraFilters
-	local filterList = (db and db.useBlacklist) and E.global.unitframe.aurafilters
-	filters.Blacklist = filterList and filterList.Blacklist and filterList.Blacklist.spells or nil
+	local filterList = (db and db.useBlocklist) and E.global.unitframe.aurafilters
+	filters.Blocklist = filterList and filterList.Blocklist and filterList.Blocklist.spells or nil
 
 	filters.isPlayer = isPlayer
 	filters.isRaidPlayerDispellable = isRaidPlayerDispellable
@@ -753,7 +753,7 @@ function UF:VerifyFilter(button, aura)
 		return true
 	end
 
-	local list = filters.Blacklist
+	local list = filters.Blocklist
 	if list and E:NotSecretValue(aura.spellId) then
 		local spell = list[aura.spellId] or list[aura.name]
 		if spell and spell.enable then

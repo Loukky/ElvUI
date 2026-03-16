@@ -102,7 +102,7 @@ local function GetUnitAuras(unit, auraType)
 
 	group.args.midnightGroup = ACH:Group(E.Retail and L["Filters"] or L["Filters: Midnight"], nil, 50, nil, nil, nil, nil, function() return not E.Retail and not E.db.nameplates.units[unit][auraType].useMidnight end)
 
-	group.args.midnightGroup.args.useBlacklist = ACH:Toggle(L["Blacklist"], L["Activate the blacklist filter."], 1)
+	group.args.midnightGroup.args.useBlocklist = ACH:Toggle(L["Blocklist"], E.Retail and L["Activate the blocklist filter.\n\n|cffff3333Note:|r Only non-secret auras will be checked."] or L["Activate the blocklist filter."], 1)
 	group.args.midnightGroup.args.isAuraPlayer = ACH:Toggle(L["Player"], L["All of your auras."], 2)
 	group.args.midnightGroup.args.isAuraRaidPlayerDispellable = ACH:Toggle(L["Player Dispellable"], L["Auras you can dispel."], 3)
 

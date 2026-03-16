@@ -155,7 +155,7 @@ local function GetOptionsTable_AuraBars(updateFunc, groupName)
 	config.args.filtersGroup = ACH:Group(L["Filters"], nil, 20)
 
 	if E.Retail then
-		config.args.filtersGroup.args.useBlacklist = ACH:Toggle(L["Blacklist"], L["Activate the blacklist filter."], 1)
+		config.args.filtersGroup.args.useBlocklist = ACH:Toggle(L["Blocklist"], L["Activate the blocklist filter.\n\n|cffff3333Note:|r Only non-secret auras will be checked."], 1)
 		config.args.filtersGroup.args.isAuraPlayer = ACH:Toggle(L["Player"], L["All of your auras."], 2)
 		config.args.filtersGroup.args.isAuraRaidPlayerDispellable = ACH:Toggle(L["Player Dispellable"], L["Auras you can dispel."], 3)
 
@@ -294,7 +294,7 @@ local function GetOptionsTable_Auras(auraType, updateFunc, groupName, numUnits)
 
 	config.args.midnightGroup = ACH:Group(E.Retail and L["Filters"] or L["Filters: Midnight"], nil, 50, nil, nil, nil, nil, function() return not E.Retail and not E.db.unitframe.units[groupName][auraType].useMidnight end)
 
-	config.args.midnightGroup.args.useBlacklist = ACH:Toggle(E.NewSign..L["Blacklist"], L["Activate the blacklist filter."], 1)
+	config.args.midnightGroup.args.useBlocklist = ACH:Toggle(L["Blocklist"], E.Retail and L["Activate the blocklist filter.\n\n|cffff3333Note:|r Only non-secret auras will be checked."] or L["Activate the blocklist filter."], 1)
 	config.args.midnightGroup.args.isAuraPlayer = ACH:Toggle(L["Player"], L["All of your auras."], 2)
 	config.args.midnightGroup.args.isAuraRaidPlayerDispellable = ACH:Toggle(L["Player Dispellable"], L["Auras you can dispel."], 3)
 
