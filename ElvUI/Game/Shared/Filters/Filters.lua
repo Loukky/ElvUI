@@ -6,11 +6,11 @@ local unpack = unpack
 E.Filters = {}
 E.Filters.Included = {}
 
-E.Filters.List = function(priority)
+E.Filters.List = function(priority, enable, stack)
 	return {
-		enable = true,
+		enable = (enable == nil and true) or enable,
 		priority = priority or 0,
-		stackThreshold = 0
+		stackThreshold = stack or 0
 	}
 end
 
