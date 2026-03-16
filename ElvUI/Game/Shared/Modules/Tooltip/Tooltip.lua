@@ -63,6 +63,7 @@ local UnitSex = UnitSex
 
 local TooltipDataType = Enum.TooltipDataType
 local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
+local AddLinePreCall = TooltipDataProcessor and TooltipDataProcessor.AddLinePreCall
 local AddTooltipPostCall = TooltipDataProcessor and TooltipDataProcessor.AddTooltipPostCall
 local GetDisplayedItem = TooltipUtil and TooltipUtil.GetDisplayedItem
 
@@ -79,8 +80,16 @@ local C_PetJournal_GetPetTeamAverageLevel = C_PetJournal and C_PetJournal.GetPet
 local C_PetBattles_IsInBattle = C_PetBattles and C_PetBattles.IsInBattle
 local C_PlayerInfo_GetPlayerMythicPlusRatingSummary = C_PlayerInfo.GetPlayerMythicPlusRatingSummary
 local C_ClassColor_GetClassColor = C_ClassColor and C_ClassColor.GetClassColor
+local GetCoinTextureString = C_CurrencyInfo.GetCoinTextureString
 
+local TooltipDataLineType = Enum.TooltipDataLineType
+local LINETYPE_SELLPRICE = TooltipDataLineType.SellPrice
+
+local HIGHLIGHT_FONT_COLOR = HIGHLIGHT_FONT_COLOR
 local PRIEST_COLOR = RAID_CLASS_COLORS.PRIEST
+local SELL_PRICE = SELL_PRICE
+local MINIMUM = MINIMUM
+local MAXIMUM = MAXIMUM
 local UNKNOWN = UNKNOWN
 
 -- Custom to find LEVEL string on tooltip
@@ -1121,6 +1130,25 @@ function TT:WorldCursorTooltipUpdate(_, state)
 	end
 end
 
+function TT:AddMoneyInfo(lineData)
+	if self:IsForbidden() or self.isShopping or (lineData.type ~= LINETYPE_SELLPRICE) or not TT.db.moneyLines then return end
+
+	local price = lineData.price
+	if not price then return end
+
+	local r, g, b = HIGHLIGHT_FONT_COLOR:GetRGB()
+	local maxPrice = lineData.maxPrice
+	if maxPrice and maxPrice >= 1 then
+		self:AddLine(format('%s', SELL_PRICE), r, g, b)
+		self:AddLine(format('    %s: %s', MINIMUM, GetCoinTextureString(price)), r, g, b)
+		self:AddLine(format('    %s: %s', MAXIMUM, GetCoinTextureString(maxPrice)), r, g, b)
+	else
+		self:AddLine(format('%s: %s', SELL_PRICE, GetCoinTextureString(price)), r, g, b)
+	end
+
+	return true
+end
+
 function TT:Initialize()
 	if not E.private.tooltip.enable then return end
 	TT.Initialized = true
@@ -1166,6 +1194,10 @@ function TT:Initialize()
 		AddTooltipPostCall(TooltipDataType.Macro, TT.GameTooltip_OnTooltipSetSpell)
 		AddTooltipPostCall(TooltipDataType.Item, TT.GameTooltip_OnTooltipSetItem)
 		AddTooltipPostCall(TooltipDataType.Unit, TT.GameTooltip_OnTooltipSetUnit)
+
+		if E.Retail then -- MoneyFrame will error otherwise
+			AddLinePreCall(LINETYPE_SELLPRICE, TT.AddMoneyInfo)
+		end
 
 		TT:SecureHook(GameTooltip, 'Hide', 'GameTooltip_Hide') -- dont use OnHide use Hide directly
 	else

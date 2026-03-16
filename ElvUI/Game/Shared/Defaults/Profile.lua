@@ -1507,6 +1507,7 @@ P.tooltip = {
 	includeReagents = true,
 	includeWarband = true,
 	modifierCount = true,
+	moneyLines = true,
 	showMount = true,
 	modifierID = 'SHOW',
 	role = true,
