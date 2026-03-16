@@ -55,7 +55,15 @@ G.unitframe.aurafilters.TurtleBuffs = {
 G.unitframe.aurafilters.Blacklist = {
 	type = 'Blacklist',
 	desc = L["Auras you don't want to see on your frames."],
-	spells = {}
+	spells = {
+		[57723] = List(), -- Exhaustion
+		[57724] = List(), -- Sated
+		[80354] = List(), -- Temporal Displacement
+		[95809] = List(), -- Hunter Pet Insanity
+		[160455] = List(), -- Hunter Pet Fatigued
+		[264689] = List(), -- Hunter Pet Fatigued
+		[390435] = List(), -- Exhaustion
+	}
 }
 
 G.unitframe.aurafilters.Whitelist = {
