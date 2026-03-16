@@ -1978,26 +1978,7 @@ function UF:ToggleForceShowGroupFrames(group, numGroup)
 end
 
 local Blacklist = {
-	player = {
-		enable = true,
-		aurabars = true,
-		fader = true,
-		auras = {
-			priority = true,
-			minDuration = true,
-			maxDuration = true,
-		},
-		buffs = {
-			priority = true,
-			minDuration = true,
-			maxDuration = true,
-		},
-		debuffs = {
-			priority = true,
-			minDuration = true,
-			maxDuration = true,
-		},
-	},
+	player = { enable = true, fader = true, aurabars = true },
 	arena = { enable = true, fader = true },
 	assist = { enable = true, fader = true },
 	boss = { enable = true, fader = true },
@@ -2012,12 +1993,6 @@ local Blacklist = {
 	party = { enable = true, fader = true, visibility = true },
 	raidpet = { enable = true, fader = true, visibility = true },
 }
-
-for key in next, E.AuraDefaults do
-	Blacklist.player.auras[key] = true
-	Blacklist.player.buffs[key] = true
-	Blacklist.player.debuffs[key] = true
-end
 
 for i = 1, 3 do
 	Blacklist['raid'..i] = { customName = true, enable = true, fader = true, visibility = true }
