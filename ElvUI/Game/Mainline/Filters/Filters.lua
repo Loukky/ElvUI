@@ -6,28 +6,6 @@ local Aura = E.Filters.Aura
 -- This used to be standalone and is now merged into G.unitframe.aurafilters.Whitelist
 G.unitframe.aurafilters.PlayerBuffs = nil
 
---[[
-Long-term Self Buffs
-	433568 - Rite of Sanctification
-	433583 - Rite of Adjuration
-
-Rogue Poisons
-	2823 - Deadly Poison
-	8679 - Wound Poison
-	3408 - Crippling Poison
-	5761 - Numbing Poison
-	315584 - Instant Poison
-	381637 - Atrophic Poison
-	381664 - Amplifying Poison
-
-Shaman Imbuements
-	319773 – Windfury Weapon
-	319778 – Flametongue Weapon
-	382021, 382022 – Earthliving Weapon
-	457496, 457481 – Tidecaller's Guard
-	462757, 462742 – Thunderstrike Ward
-]]
-
 G.unitframe.aurafilters.ClassDebuffs = {
 	type = 'Whitelist',
 	desc = L["Only important debuffs which influence your action priority. Recommended to be paired with 'Non Personal' set to 'Block'."],
@@ -69,12 +47,16 @@ G.unitframe.aurafilters.Blocklist = {
 		[381637]	= List(nil, false), -- Atrophic Poison
 		[381664]	= List(nil, false), -- Amplifying Poison
 		[8679]		= List(nil, false), -- Wound Poison
-		-- Shaman Enchants
+		-- Shaman Imbuements
 		[319773]	= List(nil, false), -- Windfury Weapon
 		[319778]	= List(nil, false), -- Flametongue Weapon
 		[382021]	= List(nil, false), -- Earthliving Weapon
 		[382022]	= List(nil, false), -- Earthliving Weapon
 		[382024]	= List(nil, false), -- Earthliving Weapon
+		[457496]	= List(nil, false), -- Tidecaller's Guard
+		[457481]	= List(nil, false), -- Tidecaller's Guard
+		[462757]	= List(nil, false), -- Thunderstrike Ward
+		[462742]	= List(nil, false), -- Thunderstrike Ward
 		-- Skyriding
 		[404464]	= List(), -- Flight Style: Skyriding
 		[404468]	= List(), -- Flight Style: Steady
@@ -87,6 +69,8 @@ G.unitframe.aurafilters.Blocklist = {
 		[264689]	= List(), -- Hunter Pet Fatigued
 		[377234]	= List(), -- Thrill of the Skies
 		[390435]	= List(), -- Exhaustion
+		[433568]	= List(), -- Rite of Sanctification
+		[433583]	= List(), -- Rite of Adjuration
 		[57723]		= List(), -- Exhaustion
 		[57724]		= List(), -- Sated
 		[71041]		= List(), -- Dungeon Deserter
