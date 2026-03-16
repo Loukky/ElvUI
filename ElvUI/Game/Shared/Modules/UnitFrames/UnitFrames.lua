@@ -1982,6 +1982,11 @@ local Blacklist = {
 		enable = true,
 		aurabars = true,
 		fader = true,
+		auras = {
+			priority = true,
+			minDuration = true,
+			maxDuration = true,
+		},
 		buffs = {
 			priority = true,
 			minDuration = true,
@@ -2007,6 +2012,12 @@ local Blacklist = {
 	party = { enable = true, fader = true, visibility = true },
 	raidpet = { enable = true, fader = true, visibility = true },
 }
+
+for key in next, E.AuraDefaults do
+	Blacklist.player.auras[key] = true
+	Blacklist.player.buffs[key] = true
+	Blacklist.player.debuffs[key] = true
+end
 
 for i = 1, 3 do
 	Blacklist['raid'..i] = { customName = true, enable = true, fader = true, visibility = true }

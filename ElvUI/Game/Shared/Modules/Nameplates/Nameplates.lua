@@ -45,6 +45,9 @@ local POWERTYPE_ALTERNATE = Enum.PowerType.Alternate or 10
 local Blacklist = {
 	PLAYER = {
 		enable = true,
+		auras = {},
+		buffs = {},
+		debuffs = {},
 		health = {
 			enable = true,
 		},
@@ -54,6 +57,12 @@ local Blacklist = {
 	ENEMY_NPC = {},
 	FRIENDLY_NPC = {},
 }
+
+for key in next, E.AuraDefaults do
+	Blacklist.PLAYER.auras[key] = true
+	Blacklist.PLAYER.buffs[key] = true
+	Blacklist.PLAYER.debuffs[key] = true
+end
 
 function NP:ResetAuraPriority()
 	for unitType, content in pairs(E.db.nameplates.units) do
