@@ -1,5 +1,4 @@
 local E, L, V, P, G = unpack(ElvUI)
-local NP = E:GetModule('NamePlates')
 local ElvUF = E.oUF
 
 local Translit = E.Libs.Translit
@@ -771,7 +770,7 @@ E:AddTag('manacolor', 'UNIT_POWER_FREQUENT UNIT_DISPLAYPOWER', function()
 end)
 
 E:AddTag('selectioncolor', 'UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-	local selection = NP:UnitSelectionType(unit)
+	local selection = E:UnitSelectionType(unit)
 	local cs = ElvUF.colors.selection[selection]
 	return cs and Hex(cs) or HEX_FALLBACK
 end)
