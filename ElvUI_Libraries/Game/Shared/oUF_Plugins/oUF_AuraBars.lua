@@ -50,13 +50,13 @@ local function UpdateValue(bar, start)
 			bar:SetValue(remain, bar.smoothing)
 		end
 	else
-		local remain = (bar.expiration - GetTime()) / (bar.modRate or 1)
-		local value = remain / bar.duration
+		bar:SetMinMaxValues(0, bar.duration)
 
+		local remain = (bar.expiration - GetTime()) / (bar.modRate or 1)
 		if start and bar.SetValue_ then
-			bar:SetValue_(value)
+			bar:SetValue_(remain)
 		else
-			bar:SetValue(value)
+			bar:SetValue(remain)
 		end
 	end
 end
@@ -206,10 +206,6 @@ local function AuraUpdate(element, unit, aura, index, offset, filter, isDebuff, 
 		else
 			bar.cooldown:Clear()
 		end
-	end
-
-	if bar.auraDuration then
-		bar.cooldown:SetCooldownFromDurationObject(bar.auraDuration)
 	end
 
 	local show = (element.CustomFilter or CustomFilter) (element, unit, bar, aura, name, texture,
