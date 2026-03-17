@@ -764,10 +764,6 @@ function UF:VerifyFilter(button, aura)
 		return false -- block no duration auras
 	end
 
-	if button.noFilter then
-		return true -- no allow boxes checked
-	end
-
 	local list = filters.Blocklist
 	if list and E:NotSecretValue(aura.spellId) then
 		local spell = list[aura.spellId] or list[aura.name]
@@ -776,7 +772,9 @@ function UF:VerifyFilter(button, aura)
 		end
 	end
 
-	if E.Retail then
+	if button.noFilter then
+		return true -- no allow boxes checked
+	elseif E.Retail then
 		return (filters.isPlayer and player)
 		or (filters.isRaidPlayerDispellable and aura.auraIsRaidPlayerDispellable)
 		or (filters.isImportant and aura.auraIsImportant and other)
