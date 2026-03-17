@@ -220,7 +220,8 @@ local function updateAura(frame, which, unit, aura, index, offset, filter, visib
 
 	-- We might want to consider delaying the creation of an actual cooldown
 	-- object to this point, but I think that will just make things needlessly
-	-- complicated.
+	-- complicated. ~haste on Apr 26, 2009 (2d1cf232d1)
+	-- We need this over the filter to allow duration check ~Simpy
 	if(button.Cooldown and not element.disableCooldown) then
 		if button.Cooldown.SetCooldownFromDurationObject then
 			if button.auraDuration then
