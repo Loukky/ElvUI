@@ -52,7 +52,6 @@ G.unitframe.aurafilters.Blocklist = {
 		[319778]	= List(nil, false), -- Flametongue Weapon
 		[382021]	= List(nil, false), -- Earthliving Weapon
 		[382022]	= List(nil, false), -- Earthliving Weapon
-		[382024]	= List(nil, false), -- Earthliving Weapon
 		[457496]	= List(nil, false), -- Tidecaller's Guard
 		[457481]	= List(nil, false), -- Tidecaller's Guard
 		[462757]	= List(nil, false), -- Thunderstrike Ward
