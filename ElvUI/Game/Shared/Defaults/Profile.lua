@@ -26,7 +26,9 @@ E.AuraDefaults = {
 	notAuraCancelablePlayer = false,
 	isAuraPlayer = false,
 	isAuraRaid = false,
-	isAuraRaidPlayer = false
+	isAuraRaidPlayer = false,
+	isAuraPermanent = false,
+	isAuraPermanentPlayer = false
 }
 
 --Core

@@ -44,14 +44,10 @@ end
 
 local function UpdateValue(bar, start)
 	if oUF.isRetail then
-		if bar.auraDuration then
-			bar.cooldown:SetCooldownFromDurationObject(bar.auraDuration)
-
-			local remain = bar.auraDuration:GetRemainingDuration()
-			if remain then
-				bar:SetMinMaxValues(0, bar.aura.duration)
-				bar:SetValue(remain, bar.smoothing)
-			end
+		local remain = bar.auraDuration and bar.auraDuration:GetRemainingDuration()
+		if remain then
+			bar:SetMinMaxValues(0, bar.aura.duration)
+			bar:SetValue(remain, bar.smoothing)
 		end
 	else
 		local remain = (bar.expiration - GetTime()) / (bar.modRate or 1)
@@ -203,6 +199,10 @@ local function AuraUpdate(element, unit, aura, index, offset, filter, isDebuff, 
 	bar.auraInstanceID = aura and aura.auraInstanceID or nil
 	bar.auraDuration = aura and GetAuraDuration and GetAuraDuration(unit, aura.auraInstanceID) or nil
 	bar.noTime = oUF:NotSecretValue(duration) and (duration == 0 and expiration == 0)
+
+	if bar.auraDuration then
+		bar.cooldown:SetCooldownFromDurationObject(bar.auraDuration)
+	end
 
 	local show = (element.CustomFilter or CustomFilter) (element, unit, bar, aura, name, texture,
 		count, debuffType, duration, expiration, source, isStealable, nameplateShowPersonal, spellID,

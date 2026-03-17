@@ -278,18 +278,22 @@ function UF:UpdateFilters(button)
 	local isBigDefensivePlayer = db and db.isAuraBigDefensivePlayer
 	local isRaidInCombat = db and db.isAuraRaidInCombat
 	local isRaidInCombatPlayer = db and db.isAuraRaidInCombatPlayer
-	local isExternalDefensive = E.Retail and db and db.isAuraExternalDefensive
-	local isExternalDefensivePlayer = E.Retail and db and db.isAuraExternalDefensivePlayer
+	local isExternalDefensive = db and db.isAuraExternalDefensive
+	local isExternalDefensivePlayer = db and db.isAuraExternalDefensivePlayer
 	local isCancelable = db and db.isAuraCancelable
 	local isCancelablePlayer = db and db.isAuraCancelablePlayer
 	local notCancelable = db and db.notAuraCancelable
 	local notCancelablePlayer = db and db.notAuraCancelablePlayer
 	local isRaid = db and db.isAuraRaid
 	local isRaidPlayer = db and db.isAuraRaidPlayer
+	local isPermanent = db and db.isAuraPermanent
+	local isPermanentPlayer = db and db.isAuraPermanentPlayer
 
 	local filters = button.auraFilters
 	local filterList = (db and db.useBlocklist) and E.global.unitframe.aurafilters
 	filters.Blocklist = filterList and filterList.Blocklist and filterList.Blocklist.spells or nil
+	filters.isPermanent = isPermanent
+	filters.isPermanentPlayer = isPermanentPlayer
 
 	filters.isPlayer = isPlayer
 	filters.isRaidPlayerDispellable = isRaidPlayerDispellable
@@ -763,6 +767,12 @@ function UF:VerifyFilter(button, aura)
 
 	local player, cancel = aura.auraIsPlayer, aura.auraIsCancelable
 	local other, perma = not player, not cancel
+
+	local checkPermanent = (filters.isPermanentPlayer and player) or (filters.isPermanent and other)
+	local cooldown = checkPermanent and (button.Cooldown or button.cooldown) -- cooldown is aurabars
+	if cooldown and not cooldown:IsShown() then
+		return false
+	end
 
 	if E.Retail then
 		return (filters.isPlayer and player)
