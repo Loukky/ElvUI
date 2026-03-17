@@ -14,7 +14,6 @@ local GetCVarBool = C_CVar.GetCVarBool
 local GetCVar = C_CVar.GetCVar
 
 local carryFilterFrom, carryFilterTo
-
 local filters = {}
 
 local ORDER = 100
