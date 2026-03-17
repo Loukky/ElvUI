@@ -31,12 +31,12 @@ function UF:Construct_AuraBars(bar)
 	UF:Update_StatusBar(bar)
 
 	-- we dont wanna format them in the cd module
-	bar.cooldown:SetDrawSwipe(false)
-	bar.cooldown:SetDrawBling(false)
-	bar.cooldown:SetHideCountdownNumbers(true)
-	bar.cooldown:SetEdgeTexture(E.Media.Textures.Invisible)
+	bar.Cooldown:SetDrawSwipe(false)
+	bar.Cooldown:SetDrawBling(false)
+	bar.Cooldown:SetHideCountdownNumbers(true)
+	bar.Cooldown:SetEdgeTexture(E.Media.Textures.Invisible)
 
-	E:RegisterCooldown(bar.cooldown, 'aurabars')
+	E:RegisterCooldown(bar.Cooldown, 'aurabars')
 
 	UF:Configure_FontString(bar.nameText)
 

@@ -759,7 +759,7 @@ function UF:VerifyFilter(button, aura)
 	local other, noCancel = not player, not cancel
 
 	local checkPermanent = (filters.isPermanentPlayer and player) or (filters.isPermanent and other)
-	local cooldown = checkPermanent and (button.Cooldown or button.cooldown) -- cooldown is aurabars
+	local cooldown = checkPermanent and button.Cooldown
 	if cooldown and not cooldown:IsShown() then
 		return false -- block no duration auras
 	end

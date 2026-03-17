@@ -89,14 +89,14 @@ local function CreateAuraBar(element, index)
 	icon:SetPoint('RIGHT', bar, 'LEFT', -element.barSpacing, 0)
 	icon:SetSize(element.height, element.height)
 
-	local cooldown = CreateFrame('Cooldown', '$parentCooldown', bar, 'CooldownFrameTemplate')
+	local Cooldown = CreateFrame('Cooldown', '$parentCooldown', bar, 'CooldownFrameTemplate')
 
 	local nameText = bar:CreateFontString(nil, 'OVERLAY', 'NumberFontNormal')
 	nameText:SetPoint('LEFT', bar, 'LEFT', 2, 0)
 
 	bar.icon = icon
 	bar.spark = spark
-	bar.cooldown = cooldown
+	bar.Cooldown = Cooldown
 	bar.nameText = nameText
 	bar.__owner = element
 
@@ -194,17 +194,17 @@ local function AuraUpdate(element, unit, aura, index, offset, filter, isDebuff, 
 	bar.auraDuration = aura and GetAuraDuration and GetAuraDuration(unit, aura.auraInstanceID) or nil
 	bar.noTime = oUF:NotSecretValue(duration) and (duration == 0 and expiration == 0)
 
-	if bar.cooldown then -- same as what is in the auras file
-		if bar.cooldown.SetCooldownFromDurationObject then
+	if bar.Cooldown then -- same as what is in the auras file
+		if bar.Cooldown.SetCooldownFromDurationObject then
 			if bar.auraDuration then
-				bar.cooldown:SetCooldownFromDurationObject(bar.auraDuration)
+				bar.Cooldown:SetCooldownFromDurationObject(bar.auraDuration)
 			else
-				bar.cooldown:Clear()
+				bar.Cooldown:Clear()
 			end
 		elseif(duration and duration > 0) then
-			bar.cooldown:SetCooldown(expiration - duration, duration, modRate)
+			bar.Cooldown:SetCooldown(expiration - duration, duration, modRate)
 		else
-			bar.cooldown:Clear()
+			bar.Cooldown:Clear()
 		end
 	end
 
