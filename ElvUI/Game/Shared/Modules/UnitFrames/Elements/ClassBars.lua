@@ -148,13 +148,13 @@ function UF:Configure_ClassBar(frame)
 	--We don't want to modify the original frame.CLASSBAR_WIDTH value, as it bugs out when the classbar gains more buttons
 	local CLASSBAR_WIDTH = frame.CLASSBAR_WIDTH
 	local MAX_CLASS_BAR = frame.MAX_CLASS_BAR
-	local ONE_LESS = MAX_CLASS_BAR - 1
+	local ONE_LESS_BAR = MAX_CLASS_BAR - 1
 
 	if frame.USE_MINI_CLASSBAR and not frame.CLASSBAR_DETACHED then
 		if MAX_CLASS_BAR == 1 or frame.ClassBar == 'EclipseBar' or frame.ClassBar == 'Stagger' or frame.ClassBar == 'AlternativePower' then
-			CLASSBAR_WIDTH = CLASSBAR_WIDTH * 2 / 3
+			CLASSBAR_WIDTH = (CLASSBAR_WIDTH * 2) / 3
 		else
-			CLASSBAR_WIDTH = CLASSBAR_WIDTH * ONE_LESS / MAX_CLASS_BAR
+			CLASSBAR_WIDTH = (CLASSBAR_WIDTH * ONE_LESS_BAR) / MAX_CLASS_BAR
 		end
 	elseif frame.CLASSBAR_DETACHED then --Detached
 		CLASSBAR_WIDTH = db.classbar.detachedWidth
@@ -195,10 +195,10 @@ function UF:Configure_ClassBar(frame)
 					if frame.CLASSBAR_DETACHED and db.classbar.orientation == 'VERTICAL' then
 						button:Width(barsWidth)
 					else
-						button:Width((barsWidth - (SPACING_ATTACHED * ONE_LESS) - DOUBLE_BORDER) / MAX_CLASS_BAR) --Width accounts for 5px spacing between each button, excluding borders
+						button:Width((barsWidth - (SPACING_ATTACHED * ONE_LESS_BAR) - DOUBLE_BORDER) / MAX_CLASS_BAR) --Width accounts for 5px spacing between each button, excluding borders
 					end
 				elseif i ~= MAX_CLASS_BAR then
-					button:Width((barsWidth - (ONE_LESS * (DOUBLE_BORDER - UF.SPACING))) / MAX_CLASS_BAR) --classbar width minus total width of dividers between each button, divided by number of buttons
+					button:Width((barsWidth - (ONE_LESS_BAR * (DOUBLE_BORDER - UF.SPACING))) / MAX_CLASS_BAR) --classbar width minus total width of dividers between each button, divided by number of buttons
 				end
 
 				button:GetStatusBarTexture():SetHorizTile(false)
