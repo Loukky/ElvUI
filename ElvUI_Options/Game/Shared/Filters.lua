@@ -17,10 +17,10 @@ local GetSpellSubtext = GetSpellSubtext
 
 local quickSearchText, selectedSpell, selectedFilter, filterList, spellList = '', nil, nil, {}, {}
 local auraBarDefaults = { enable = true, color = { r = 1, g = 1, b = 1, a = 1 } }
-local includeFilters = { Blocklist = true }
+local includeRetail = { Blocklist = true }
 local overrideNames = {
-	Blocklist = L["Blocklist (Midnight)"],
-	Blacklist = L["Blacklist (Legacy)"]
+	Blocklist = not E.Retail and L["Blocklist |cFF888888(Midnight)|r"] or nil,
+	Blacklist = L["Blacklist |cFF888888(Legacy)|r"]
 }
 
 local defaultFilterList = {
@@ -95,7 +95,7 @@ local function SetFilterList()
 	local list = E.global.unitframe.aurafilters
 	if list then
 		for filter in pairs(list) do
-			if not E.Retail or includeFilters[filter] then
+			if not E.Retail or includeRetail[filter] then
 				filterList[filter] = overrideNames[filter] or filter
 			end
 		end
@@ -112,7 +112,7 @@ local function ResetFilterList()
 	local list = G.unitframe.aurafilters
 	if list then
 		for filter in pairs(list) do
-			if not E.Retail or includeFilters[filter] then
+			if not E.Retail or includeRetail[filter] then
 				filterList[filter] = filter
 			end
 		end
@@ -128,7 +128,7 @@ local function DeleteFilterList()
 	if list then
 		local defaultList = G.unitframe.aurafilters
 		for filter in pairs(list) do
-			if (not E.Retail or includeFilters[filter]) and not defaultList[filter] then
+			if (not E.Retail or includeRetail[filter]) and not defaultList[filter] then
 				filterList[filter] = filter
 			end
 		end
@@ -142,7 +142,7 @@ local function DeleteFilterListDisable()
 	if list then
 		local defaultList = G.unitframe.aurafilters
 		for filter in pairs(list) do
-			if (not E.Retail or includeFilters[filter]) and not defaultList[filter] then
+			if (not E.Retail or includeRetail[filter]) and not defaultList[filter] then
 				return false
 			end
 		end
@@ -409,14 +409,14 @@ Filters.mainOptions.args.resetFilters = ACH:Execute(L["Reset All"], L["This rese
 
 Filters.mainOptions.args.filterGroup = ACH:Group(function() return defaultFilterList[selectedFilter] or overrideNames[selectedFilter] or selectedFilter end, nil, 10, nil, nil, nil, nil, function() return not selectedFilter end)
 Filters.mainOptions.args.filterGroup.inline = true
-Filters.mainOptions.args.filterGroup.args.selectSpellheader = ACH:Description(L["|cffFF3333Warning:|r Click the arrow on the dropdown box to see a list of spells."], 0, 'medium')
+Filters.mainOptions.args.filterGroup.args.selectSpellheader = ACH:Description(L["|cffFF3333Note:|r Click the arrow on the dropdown box to see a list of spells."], 0, 'medium')
 Filters.mainOptions.args.filterGroup.args.selectSpell = ACH:Select(L["Select Aura"], nil, 1, SetSpellList, nil, 350, function(_) return selectedSpell or '' end, function(_, value) selectedSpell = (value ~= '' and value) end, nil, nil, true)
 
 Filters.mainOptions.args.filterGroup.args.quickSearch = ACH:Input(L["Filter Search"], L["Search for a spell name inside of a filter."], 2, nil, 200, function() return quickSearchText end, function(_, value) quickSearchText = value end)
 Filters.mainOptions.args.filterGroup.args.filterType = ACH:Select(L["Filter Type"], L["Set the filter type. Blacklist will hide any auras in the list and show all others. Whitelist will show any auras in the filter and hide all others."], 3, { Whitelist = L["Whitelist"], Blacklist = L["Blacklist"] }, nil, nil, function() return E.global.unitframe.aurafilters[selectedFilter].type end, function(_, value) E.global.unitframe.aurafilters[selectedFilter].type = value UF:Update_AllFrames() end, nil, function() return defaultFilterList[selectedFilter] or G.unitframe.aurafilters[selectedFilter] end)
 Filters.mainOptions.args.filterGroup.args.addSpell = ACH:Input(L["Add Aura ID"], L["Add an aura to the filter. Aura IDs can be acquired using the tooltip to find the correct ID."], 4, nil, 350, nil, AddOrRemoveSpellID)
 Filters.mainOptions.args.filterGroup.args.removeSpell = ACH:Select(L["Remove Aura"], nil, 5, SetSpellList, function(_, value) return value ~= '' and format(L["Remove Spell - %s"], GetSpellNameRank(value)) end, 350, nil, AddOrRemoveSpellID)
-Filters.mainOptions.args.filterGroup.args.filterDesc = ACH:Input(L["Description"], nil, 6, nil, 350, function() return E.global.unitframe.aurafilters[selectedFilter].desc end, function(_, value) E.global.unitframe.aurafilters[selectedFilter].desc = value UF:Update_AllFrames() end, nil, function() return defaultFilterList[selectedFilter] or G.unitframe.aurafilters[selectedFilter] end)
+Filters.mainOptions.args.filterGroup.args.filterDesc = ACH:Input(L["Description"], nil, 6, nil, 350, function() return E.global.unitframe.aurafilters[selectedFilter].desc end, function(_, value) if not G.unitframe.aurafilters[selectedFilter] then E.global.unitframe.aurafilters[selectedFilter].desc = value end end, nil, function() return defaultFilterList[selectedFilter] end)
 
 Filters.mainOptions.args.auraIndicator = ACH:Group(function() return GetSpellNameRank(GetSelectedSpell()) end, nil, -1, nil, UpdateAuraIndicator, UpdateAuraIndicator, nil, function() return not selectedSpell or (selectedFilter ~= 'Aura Indicator (Pet)' and selectedFilter ~= 'Aura Indicator (Profile)' and selectedFilter ~= 'Aura Indicator (Class)' and selectedFilter ~= 'Aura Indicator (Global)') end)
 Filters.mainOptions.args.auraIndicator.inline = true
