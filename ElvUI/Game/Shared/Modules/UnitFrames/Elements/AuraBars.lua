@@ -38,14 +38,12 @@ function UF:Construct_AuraBars(bar)
 
 	E:RegisterCooldown(bar.cooldown, 'aurabars')
 
-	UF:Configure_FontString(bar.timeText)
 	UF:Configure_FontString(bar.nameText)
 
 	UF:AuraBars_UpdateBar(bar)
 
 	bar.nameText:SetJustifyH('LEFT')
 	bar.nameText:SetJustifyV('MIDDLE')
-	bar.nameText:Point('RIGHT', bar.timeText, 'LEFT', -4, 0)
 	bar.nameText:SetWordWrap(false)
 
 	bar.bg = bar:CreateTexture(nil, 'BORDER')
@@ -72,7 +70,6 @@ function UF:AuraBars_UpdateBar(bar)
 
 	UF:UpdateFilters(bar)
 
-	UF:Update_FontString(bar.timeText)
 	UF:Update_FontString(bar.nameText)
 end
 

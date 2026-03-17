@@ -58,8 +58,6 @@ local function UpdateValue(bar, start)
 		else
 			bar:SetValue(value)
 		end
-
-		bar.timeText:SetFormattedText(oUF:GetTime(remain))
 	end
 end
 
@@ -96,14 +94,10 @@ local function CreateAuraBar(element, index)
 	local nameText = bar:CreateFontString(nil, 'OVERLAY', 'NumberFontNormal')
 	nameText:SetPoint('LEFT', bar, 'LEFT', 2, 0)
 
-	local timeText = bar:CreateFontString(nil, 'OVERLAY', 'NumberFontNormal')
-	timeText:SetPoint('RIGHT', bar, 'RIGHT', -2, 0)
-
 	bar.icon = icon
 	bar.spark = spark
 	bar.cooldown = cooldown
 	bar.nameText = nameText
-	bar.timeText = timeText
 	bar.__owner = element
 
 	if(element.PostCreateBar) then element:PostCreateBar(bar) end
@@ -200,6 +194,20 @@ local function AuraUpdate(element, unit, aura, index, offset, filter, isDebuff, 
 	bar.auraDuration = aura and GetAuraDuration and GetAuraDuration(unit, aura.auraInstanceID) or nil
 	bar.noTime = oUF:NotSecretValue(duration) and (duration == 0 and expiration == 0)
 
+	if bar.cooldown then -- same as what is in the auras file
+		if bar.cooldown.SetCooldownFromDurationObject then
+			if bar.auraDuration then
+				bar.cooldown:SetCooldownFromDurationObject(bar.auraDuration)
+			else
+				bar.cooldown:Clear()
+			end
+		elseif(duration and duration > 0) then
+			bar.cooldown:SetCooldown(expiration - duration, duration, modRate)
+		else
+			bar.cooldown:Clear()
+		end
+	end
+
 	if bar.auraDuration then
 		bar.cooldown:SetCooldownFromDurationObject(bar.auraDuration)
 	end
@@ -237,7 +245,6 @@ local function SetPosition(element, from, to)
 
 		if bar.noTime then
 			bar:SetValue(1, bar.smoothing)
-			bar.timeText:SetText('')
 		end
 	end
 end
