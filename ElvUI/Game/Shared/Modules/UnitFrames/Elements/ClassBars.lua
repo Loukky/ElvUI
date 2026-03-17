@@ -192,10 +192,10 @@ function UF:Configure_ClassBar(frame)
 					if frame.CLASSBAR_DETACHED and db.classbar.orientation == 'VERTICAL' then
 						button:Width(barsWidth)
 					else
-						button:Width((CLASSBAR_WIDTH - (((frame.CLASSBAR_DETACHED and db.classbar.spacing or 5) + (UF.BORDER*2 + UF.SPACING*2))*(MAX_CLASS_BAR - 1)) - UF.BORDER*2)/MAX_CLASS_BAR) --Width accounts for 5px spacing between each button, excluding borders
+						button:Width((barsWidth - (((frame.CLASSBAR_DETACHED and db.classbar.spacing or 5) + (UF.BORDER*2 + UF.SPACING*2))*(MAX_CLASS_BAR - 1)) - UF.BORDER*2)/MAX_CLASS_BAR) --Width accounts for 5px spacing between each button, excluding borders
 					end
 				elseif i ~= MAX_CLASS_BAR then
-					button:Width((CLASSBAR_WIDTH - ((MAX_CLASS_BAR-1)*(UF.BORDER*2-UF.SPACING))) / MAX_CLASS_BAR) --classbar width minus total width of dividers between each button, divided by number of buttons
+					button:Width((barsWidth - ((MAX_CLASS_BAR-1)*(UF.BORDER*2-UF.SPACING))) / MAX_CLASS_BAR) --classbar width minus total width of dividers between each button, divided by number of buttons
 				end
 
 				button:GetStatusBarTexture():SetHorizTile(false)
