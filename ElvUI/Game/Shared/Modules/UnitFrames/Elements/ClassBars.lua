@@ -162,8 +162,9 @@ function UF:Configure_ClassBar(frame)
 		CLASSBAR_WIDTH = db.classbar.detachedWidth
 	end
 
-	bars:Width(CLASSBAR_WIDTH - SPACING)
-	bars:Height(frame.CLASSBAR_HEIGHT - SPACING)
+	local barsWidth = CLASSBAR_WIDTH - SPACING
+	local barsHeight = frame.CLASSBAR_HEIGHT - SPACING
+	bars:Size(barsWidth, barsHeight)
 
 	if frame.ClassBar == 'ClassPower' or frame.ClassBar == 'Runes' or frame.ClassBar == 'Totems' then
 		if frame.ClassBar == 'Runes' then
@@ -183,13 +184,13 @@ function UF:Configure_ClassBar(frame)
 					button.backdrop:SetBackdropBorderColor(color.r, color.g, color.b)
 				end
 
-				button:Height(bars:GetHeight())
+				button:Height(barsHeight)
 
 				if MAX_CLASS_BAR == 1 then
-					button:Width(CLASSBAR_WIDTH)
+					button:Width(barsWidth)
 				elseif frame.USE_MINI_CLASSBAR then
 					if frame.CLASSBAR_DETACHED and db.classbar.orientation == 'VERTICAL' then
-						button:Width(CLASSBAR_WIDTH)
+						button:Width(barsWidth)
 					else
 						button:Width((CLASSBAR_WIDTH - (((frame.CLASSBAR_DETACHED and db.classbar.spacing or 5) + (UF.BORDER*2 + UF.SPACING*2))*(MAX_CLASS_BAR - 1)) - UF.BORDER*2)/MAX_CLASS_BAR) --Width accounts for 5px spacing between each button, excluding borders
 					end
