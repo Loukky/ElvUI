@@ -753,8 +753,19 @@ end
 
 function UF:VerifyFilter(button, aura)
 	local filters = button.auraFilters
-	if not filters or button.noFilter then
-		return true
+	if not filters then return true end
+
+	local player, cancel = aura.auraIsPlayer, aura.auraIsCancelable
+	local other, noCancel = not player, not cancel
+
+	local checkPermanent = (filters.isPermanentPlayer and player) or (filters.isPermanent and other)
+	local cooldown = checkPermanent and (button.Cooldown or button.cooldown) -- cooldown is aurabars
+	if cooldown and not cooldown:IsShown() then
+		return false -- block no duration auras
+	end
+
+	if button.noFilter then
+		return true -- no allow boxes checked
 	end
 
 	local list = filters.Blocklist
@@ -763,15 +774,6 @@ function UF:VerifyFilter(button, aura)
 		if spell and spell.enable then
 			return false
 		end
-	end
-
-	local player, cancel = aura.auraIsPlayer, aura.auraIsCancelable
-	local other, perma = not player, not cancel
-
-	local checkPermanent = (filters.isPermanentPlayer and player) or (filters.isPermanent and other)
-	local cooldown = checkPermanent and (button.Cooldown or button.cooldown) -- cooldown is aurabars
-	if cooldown and not cooldown:IsShown() then
-		return false
 	end
 
 	if E.Retail then
@@ -789,16 +791,16 @@ function UF:VerifyFilter(button, aura)
 		or (filters.isExternalDefensivePlayer and aura.auraIsExternalDefensive and player)
 		or (filters.isCancelable and cancel and other)
 		or (filters.isCancelablePlayer and cancel and player)
-		or (filters.notCancelable and perma and other)
-		or (filters.notCancelablePlayer and perma and player)
+		or (filters.notCancelable and noCancel and other)
+		or (filters.notCancelablePlayer and noCancel and player)
 		or (filters.isRaid and aura.auraIsRaid and other)
 		or (filters.isRaidPlayer and aura.auraIsRaid and player)
 	else
 		return (filters.isPlayer and player)
 		or (filters.isCancelable and cancel and other)
 		or (filters.isCancelablePlayer and cancel and player)
-		or (filters.notCancelable and perma and other)
-		or (filters.notCancelablePlayer and perma and player)
+		or (filters.notCancelable and noCancel and other)
+		or (filters.notCancelablePlayer and noCancel and player)
 		or (filters.isRaid and aura.auraIsRaid and other)
 		or (filters.isRaidPlayer and aura.auraIsRaid and player)
 	end
