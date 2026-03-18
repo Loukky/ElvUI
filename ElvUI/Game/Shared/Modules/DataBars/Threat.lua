@@ -22,9 +22,8 @@ local tankStatus = { [0] = 3, 2, 1, 0 }
 function DB:ThreatBar_GetLargestThreatOnList(value)
 	local largestValue, largestUnit = 0, nil
 	for unit, percent in next, DB.StatusBars.Threat.list do
-		if E:NotSecretValue(percent) and percent > largestValue then
-			largestValue = percent
-			largestUnit = unit
+		if E:NotSecretValue(percent) and (percent > largestValue) then
+			largestValue, largestUnit = percent, unit
 		end
 	end
 
