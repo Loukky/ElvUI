@@ -522,10 +522,10 @@ end
 function UF:GetAuraCurve(unit, button, allow)
 	if not unit or not allow then return end
 
-	local which = GetAuraDispelTypeColor and button.filter == 'HARMFUL' and 'debuffs'
-	if not which then return end
+	local curve = GetAuraDispelTypeColor and E.Curves.Color.Auras[button.filter == 'HARMFUL' and 'debuffs']
+	if not curve then return end
 
-	return GetAuraDispelTypeColor(unit, button.auraInstanceID, E.Curves.Color.Auras[which])
+	return GetAuraDispelTypeColor(unit, button.auraInstanceID, curve)
 end
 
 function UF:PostUpdateAura(unit, button)
