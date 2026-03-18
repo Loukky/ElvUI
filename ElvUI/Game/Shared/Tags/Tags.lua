@@ -417,14 +417,14 @@ if not E.Retail then
 
 	E:AddTag('threat:percent', 'UNIT_THREAT_LIST_UPDATE UNIT_THREAT_SITUATION_UPDATE GROUP_ROSTER_UPDATE', function(unit)
 		local _, _, percent = UnitDetailedThreatSituation('player', unit)
-		if percent and percent > 0 and (IsInGroup() or UnitExists('pet')) then
+		if E:NotSecretValue(percent) and (percent and percent > 0) and (IsInGroup() or UnitExists('pet')) then
 			return format('%.0f%%', percent)
 		end
 	end)
 
 	E:AddTag('threat:current', 'UNIT_THREAT_LIST_UPDATE UNIT_THREAT_SITUATION_UPDATE GROUP_ROSTER_UPDATE', function(unit)
 		local _, _, percent, _, threatvalue = UnitDetailedThreatSituation('player', unit)
-		if percent and percent > 0 and (IsInGroup() or UnitExists('pet')) then
+		if E:NotSecretValue(percent) and (percent and percent > 0) and (IsInGroup() or UnitExists('pet')) then
 			return E:ShortValue(threatvalue)
 		end
 	end)
@@ -759,8 +759,9 @@ end)
 
 E:AddTag('threatcolor', 'UNIT_THREAT_LIST_UPDATE UNIT_THREAT_SITUATION_UPDATE GROUP_ROSTER_UPDATE', function(unit)
 	local _, status = UnitDetailedThreatSituation('player', unit)
-	if status and (IsInGroup() or UnitExists('pet')) then
-		return Hex(E:GetThreatStatusColor(status, true))
+	if E:NotSecretValue(status) and status and (IsInGroup() or UnitExists('pet')) then
+		local color = E:GetThreatStatusColor(status, true)
+		return color and Hex(color) or HEX_FALLBACK
 	end
 end)
 
