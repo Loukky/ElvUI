@@ -150,6 +150,14 @@ function S:SkinCraft()
 			_G.CraftDetailScrollFrameBottom:Show()
 		end
 	end)
+
+	S:HandleCheckBox(_G.CraftFrameAvailableFilterCheckButton)
+	_G.CraftFrameAvailableFilterCheckButton:ClearAllPoints()
+	_G.CraftFrameAvailableFilterCheckButton:Point('TOPLEFT', CraftRankFrame, 'BOTTOMLEFT', 0, 0)
+
+	S:HandleDropDownBox(CraftFrame.Dropdown)
+	CraftFrame.Dropdown:ClearAllPoints()
+	CraftFrame.Dropdown:Point('TOPRIGHT', CraftRankFrame, 'BOTTOMRIGHT', 0, 0)
 end
 
 S:AddCallbackForAddon('Blizzard_CraftUI', 'SkinCraft')
