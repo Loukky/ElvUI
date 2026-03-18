@@ -47,11 +47,14 @@ function S:Blizzard_TradeSkillUI()
 
 	S:HandleEditBox(_G.TradeSearchInputBox)
 	_G.TradeSearchInputBox:ClearAllPoints()
-	_G.TradeSearchInputBox:Point('TOPRIGHT', TradeSkillRankFrame, 'BOTTOMRIGHT', 0, 0)
+	_G.TradeSearchInputBox:Point('TOPRIGHT', TradeSkillRankFrame, 'BOTTOMRIGHT')
 
-	S:HandleCheckBox(_G.TradeSkillFrameAvailableFilterCheckButton)
-	_G.TradeSkillFrameAvailableFilterCheckButton:ClearAllPoints()
-	_G.TradeSkillFrameAvailableFilterCheckButton:Point('TOPLEFT', TradeSkillRankFrame, 'BOTTOMLEFT', 0, 0)
+	local AvailableCheckButton = _G.TradeSkillFrameAvailableFilterCheckButton
+	if AvailableCheckButton then
+		S:HandleCheckBox(AvailableCheckButton)
+		AvailableCheckButton:ClearAllPoints()
+		AvailableCheckButton:Point('TOPLEFT', TradeSkillRankFrame, 'BOTTOMLEFT')
+	end
 
 	S:HandleDropDownBox(_G.TradeSkillInvSlotDropdown, 110)
 	_G.TradeSkillInvSlotDropdown:ClearAllPoints()
