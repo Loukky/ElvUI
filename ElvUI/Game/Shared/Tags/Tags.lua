@@ -469,9 +469,7 @@ if not E.Retail then
 		if not IsInRaid() then return end
 
 		local name, realm = UnitName(unit)
-		if not name then return end
-
-		if E:IsSecretValue(realm) then return end
+		if E:IsSecretValue(realm) or not name then return end
 
 		local nameRealm = (realm and realm ~= '' and format('%s-%s', name, realm)) or name
 		for i = 1, GetNumGroupMembers() do
