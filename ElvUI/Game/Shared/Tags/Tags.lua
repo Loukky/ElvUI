@@ -465,21 +465,6 @@ if not E.Retail then
 		end
 	end)
 
-	E:AddTag('group:raid', 'GROUP_ROSTER_UPDATE', function(unit)
-		if not IsInRaid() then return end
-
-		local name, realm = UnitName(unit)
-		if E:IsSecretValue(realm) or not name then return end
-
-		local nameRealm = (realm and realm ~= '' and format('%s-%s', name, realm)) or name
-		for i = 1, GetNumGroupMembers() do
-			local raidName, _, group = GetRaidRosterInfo(i)
-			if raidName == nameRealm then
-				return group
-			end
-		end
-	end)
-
 	E:AddTag('healthcolor', 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
 		if UnitIsDeadOrGhost(unit) or not UnitIsConnected(unit) then
 			return Hex(0.84, 0.75, 0.65)
@@ -887,6 +872,21 @@ E:AddTag('target:translit', 'UNIT_TARGET', function(unit)
 	end
 
 	return targetName
+end)
+
+E:AddTag('group:raid', 'GROUP_ROSTER_UPDATE', function(unit)
+	if not IsInRaid() then return end
+
+	local name, realm = UnitName(unit)
+	if E:IsSecretValue(realm) or not name then return end
+
+	local nameRealm = (realm and realm ~= '' and format('%s-%s', name, realm)) or name
+	for i = 1, GetNumGroupMembers() do
+		local raidName, _, group = GetRaidRosterInfo(i)
+		if raidName == nameRealm then
+			return group
+		end
+	end
 end)
 
 E:AddTag('pvptimer', 1, function(unit)
