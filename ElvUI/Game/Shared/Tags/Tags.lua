@@ -768,8 +768,8 @@ E:AddTag('threatcolor', 'UNIT_THREAT_LIST_UPDATE UNIT_THREAT_SITUATION_UPDATE GR
 
 	local _, status = UnitDetailedThreatSituation('player', unit)
 	if E:NotSecretValue(status) and status then
-		local color = E:GetThreatStatusColor(status, true)
-		return color and Hex(color) or HEX_FALLBACK
+		local r, g, b = E:GetThreatStatusColor(status, true)
+		return r and Hex(r, g, b) or HEX_FALLBACK
 	end
 end)
 
