@@ -249,13 +249,6 @@ if not E.Retail then
 		return targetName
 	end)
 
-	E:AddTag('target:translit', 'UNIT_TARGET', function(unit)
-		local targetName = UnitName(unit..'target')
-		if targetName then
-			return Translit:Transliterate(targetName, translitMark)
-		end
-	end)
-
 	E:AddTag('health:max', 'UNIT_MAXHEALTH', function(unit)
 		local max = UnitHealthMax(unit)
 		return E:GetFormattedText('CURRENT', max, max)
@@ -473,16 +466,18 @@ if not E.Retail then
 	end)
 
 	E:AddTag('group:raid', 'GROUP_ROSTER_UPDATE', function(unit)
-		if IsInRaid() then
-			local name, realm = UnitName(unit)
-			if name then
-				local nameRealm = (realm and realm ~= '' and format('%s-%s', name, realm)) or name
-				for i = 1, GetNumGroupMembers() do
-					local raidName, _, group = GetRaidRosterInfo(i)
-					if raidName == nameRealm then
-						return group
-					end
-				end
+		if not IsInRaid() then return end
+
+		local name, realm = UnitName(unit)
+		if not name then return end
+
+		if E:IsSecretValue(realm) then return end
+
+		local nameRealm = (realm and realm ~= '' and format('%s-%s', name, realm)) or name
+		for i = 1, GetNumGroupMembers() do
+			local raidName, _, group = GetRaidRosterInfo(i)
+			if raidName == nameRealm then
+				return group
 			end
 		end
 	end)
@@ -708,16 +703,6 @@ for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long =
 		return name
 	end)
 
-	E:AddTag(format('name:%s:translit', textFormat), 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
-		local unitName = UnitName(unit)
-		local name = E:NotSecretValue(unitName) and Translit:Transliterate(unitName, translitMark)
-		if name then
-			return E:ShortenString(name, length)
-		end
-
-		return name
-	end)
-
 	E:AddTag(format('target:abbrev:%s', textFormat), 'UNIT_TARGET', function(unit)
 		local targetName = UnitName(unit..'target')
 		if E:NotSecretValue(targetName) and targetName and strfind(targetName, '%s') then
@@ -740,13 +725,21 @@ for textFormat, length in pairs({ veryshort = 5, short = 10, medium = 15, long =
 		return targetName
 	end)
 
+	E:AddTag(format('name:%s:translit', textFormat), 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+		local unitName = UnitName(unit)
+		local translitName = E:NotSecretValue(unitName) and Translit:Transliterate(unitName, translitMark)
+		if translitName and translitName ~= '' then
+			return E:ShortenString(translitName, length)
+		end
+
+		return unitName
+	end)
+
 	E:AddTag(format('target:%s:translit', textFormat), 'UNIT_TARGET', function(unit)
 		local targetName = UnitName(unit..'target')
-		if E:NotSecretValue(targetName) and targetName then
-			local translitName = Translit:Transliterate(targetName, translitMark)
-			if translitName then
-				return E:ShortenString(translitName, length)
-			end
+		local translitName = E:NotSecretValue(targetName) and Translit:Transliterate(targetName, translitMark)
+		if translitName and translitName ~= '' then
+			return E:ShortenString(translitName, length)
 		end
 
 		return targetName
@@ -838,35 +831,64 @@ end)
 
 E:AddTag('realm', 'UNIT_NAME_UPDATE', function(unit)
 	local _, realm = UnitName(unit)
-	if realm and realm ~= '' then
-		return realm
-	end
+	return realm
 end)
 
 E:AddTag('realm:dash', 'UNIT_NAME_UPDATE', function(unit)
 	local _, realm = UnitName(unit)
-	if realm and (realm ~= '' and realm ~= E.myrealm) then
-		return format('-%s', realm)
-	elseif realm ~= '' then
+	if E:IsSecretValue(realm) then
 		return realm
+	elseif not realm or realm == '' then
+		return
 	end
+
+	return (realm ~= E.myrealm) and format('-%s', realm) or realm
 end)
 
 E:AddTag('realm:translit', 'UNIT_NAME_UPDATE', function(unit)
-	local _, realm = Translit:Transliterate(UnitName(unit), translitMark)
-	if realm and realm ~= '' then
+	local _, realm = UnitName(unit)
+	if E:IsSecretValue(realm) then
 		return realm
+	elseif not realm or realm == '' then
+		return
 	end
+
+	local translitRealm = Translit:Transliterate(realm, translitMark)
+	if translitRealm and translitRealm ~= '' then
+		return translitRealm
+	end
+
+	return realm
 end)
 
 E:AddTag('realm:dash:translit', 'UNIT_NAME_UPDATE', function(unit)
-	local _, realm = Translit:Transliterate(UnitName(unit), translitMark)
-
-	if realm and (realm ~= '' and realm ~= E.myrealm) then
+	local _, realm = UnitName(unit)
+	if E:IsSecretValue(realm) then
 		return format('-%s', realm)
-	elseif realm ~= '' then
-		return realm
+	elseif not realm or realm == '' then
+		return
 	end
+
+	local translitRealm = Translit:Transliterate(realm, translitMark)
+	if translitRealm and translitRealm ~= '' then
+		return (realm ~= E.myrealm) and format('-%s', translitRealm) or translitRealm
+	end
+
+	return realm
+end)
+
+E:AddTag('target:translit', 'UNIT_TARGET', function(unit)
+	local targetName = UnitName(unit..'target')
+	if E:IsSecretValue(targetName) then
+		return targetName
+	end
+
+	local translitName = Translit:Transliterate(targetName, translitMark)
+	if translitName and translitName ~= '' then
+		return translitName
+	end
+
+	return targetName
 end)
 
 E:AddTag('pvptimer', 1, function(unit)
@@ -918,16 +940,22 @@ E:AddTag('guild:translit', 'UNIT_NAME_UPDATE PLAYER_GUILD_UPDATE', function(unit
 	if not UnitIsPlayer(unit) then return end
 
 	local guildName = GetGuildInfo(unit)
-	if guildName then
-		return Translit:Transliterate(guildName, translitMark)
+	local translitGuild = E:NotSecretValue(guildName) and Translit:Transliterate(guildName, translitMark)
+	if translitGuild and translitGuild ~= '' then
+		return translitGuild
 	end
+
+	return guildName
 end)
 
 E:AddTag('guild:brackets:translit', 'PLAYER_GUILD_UPDATE', function(unit)
 	local guildName = GetGuildInfo(unit)
-	if guildName then
-		return format('<%s>', Translit:Transliterate(guildName, translitMark))
+	local translitGuild = E:NotSecretValue(guildName) and Translit:Transliterate(guildName, translitMark)
+	if translitGuild and translitGuild ~= '' then
+		return format('<%s>', translitGuild)
 	end
+
+	return guildName
 end)
 
 E:AddTag('guild:rank', 'UNIT_NAME_UPDATE', function(unit)
