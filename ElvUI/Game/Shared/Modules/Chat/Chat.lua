@@ -3106,18 +3106,16 @@ end
 do
 	local queueCache = {}
 	local function RecentSocialQueue(TIME, MSG)
-		local previousMessage = false
-		for guid, tbl in next, queueCache do
-			-- !dont break this loop! its used to keep the cache updated
+		local previous = false -- !dont break this loop!
+		for guid, tbl in next, queueCache do -- its used to keep the cache updated
 			if TIME and (difftime(TIME, tbl[1]) >= 300) then
-				queueCache[guid] = nil --remove any older than 5m
-			elseif MSG and (MSG == tbl[2]) then
-				previousMessage = true --dont show any of the same message within 5m
-				-- see note for `message` in `SocialQueueMessage` about `MSG` content
+				queueCache[guid] = nil -- remove any older than 5m
+			elseif MSG and (MSG == tbl[2]) then -- dont show any of the same message within 5m
+				previous = true -- see note for `message` in `SocialQueueMessage` about `MSG` content
 			end
 		end
 
-		return previousMessage
+		return previous
 	end
 
 	function CH:SocialQueueMessage(guid, message)
