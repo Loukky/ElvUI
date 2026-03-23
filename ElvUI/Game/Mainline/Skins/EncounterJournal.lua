@@ -301,6 +301,54 @@ local function RepositionTabs()
 	end
 end
 
+local function HandleCollapseButtons(frame)
+	for _, button in next, { frame.ScrollTarget:GetChildren() } do
+		if button and not button.IsSkinned then
+			local collapse = button.HeaderCollapseIndicator
+			if collapse then
+				collapse:SetAlpha(0)
+
+				local b = CreateFrame('Button', nil, frame)
+				b:SetPoint('TOPLEFT', collapse)
+				b:SetFrameLevel(4)
+				b:Hide()
+				b:SetSize(17, 17)
+				b:StripTextures()
+				b:SetTemplate()
+
+				b.minus = b:CreateTexture(nil, 'OVERLAY')
+				b.minus:SetSize(7, 1)
+				b.minus:SetPoint('CENTER')
+				b.minus:SetTexture(E.media.blankTex)
+
+				b.plus = b:CreateTexture(nil, 'OVERLAY')
+				b.plus:SetSize(1, 7)
+				b.plus:SetPoint('CENTER')
+				b.plus:SetTexture(E.media.blankTex)
+
+				b:HookScript('OnEnter', S.SetModifiedBackdrop)
+				b:HookScript('OnLeave', S.SetOriginalBackdrop)
+
+				b:SetScript('OnMouseUp', function() button:OnClick() end)
+
+				hooksecurefunc(collapse, 'SetShown', function(_, show)
+					b:SetShown(show)
+				end)
+
+				hooksecurefunc(collapse, 'SetAtlas', function(_, atlas)
+					if atlas == 'campaign_headericon_closed' then
+						b.plus:Show()
+					else
+						b.plus:Hide()
+					end
+				end)
+			end
+
+			button.IsSkinned = true
+		end
+	end
+end
+
 function S:Blizzard_EncounterJournal()
 	if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.encounterjournal) then return end
 
@@ -354,6 +402,12 @@ function S:Blizzard_EncounterJournal()
 	local JourneysList = _G.EncounterJournalJourneysFrame.JourneysList
 	if JourneysList then
 		hooksecurefunc(JourneysList, 'Update', JourneysListUpdate)
+	end
+
+	-- Monthly Activities
+	local MonthlyActivities = _G.EncounterJournalMonthlyActivitiesFrame
+	if MonthlyActivities then
+		hooksecurefunc(MonthlyActivities.ScrollBox, 'Update', HandleCollapseButtons)
 	end
 
 	-- Encounter Info Frame
