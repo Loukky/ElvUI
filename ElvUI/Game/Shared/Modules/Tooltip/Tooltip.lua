@@ -341,10 +341,11 @@ function TT:SetUnitText(tt, unit, isPlayerUnit)
 				classificationString = format('%s %s|r', E:CallTag('classificationcolor', unit), E:CallTag('classification', unit))
 			end
 
-			levelLine:SetFormattedText('|cff%02x%02x%02x%s|r%s %s%s', diffColor.r * 255, diffColor.g * 255, diffColor.b * 255, level > 0 and level or '??', classificationString, creatureType or '', pvpFlag)
+			local classText = classLine and classLine:GetText()
+			local classNotSecret = E:NotSecretValue(classText)
+			levelLine:SetFormattedText('|cff%02x%02x%02x%s|r%s %s%s', diffColor.r * 255, diffColor.g * 255, diffColor.b * 255, level > 0 and level or '??', classificationString, (classNotSecret and creatureType or ''), pvpFlag)
 
-			local classText = creatureType and classLine and classLine:GetText()
-			if creatureType == classText then -- we dont want to show creatureType two times
+			if classNotSecret and (classText == creatureType) then -- we dont want to show creatureType two times
 				classLine:SetText('') -- so just hide this one, we put it on the level line
 				classLine:Hide()
 			end
