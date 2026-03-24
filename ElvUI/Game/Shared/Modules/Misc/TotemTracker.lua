@@ -25,6 +25,8 @@ function TM:UpdateButton(button, totem)
 			button.cooldown:SetCooldownFromDurationObject(GetTotemDuration(slot))
 		elseif duration and duration > 0 then
 			button.cooldown:SetCooldown(startTime, duration)
+		else
+			button.cooldown:Clear()
 		end
 
 		if E.Retail or E.Mists then
