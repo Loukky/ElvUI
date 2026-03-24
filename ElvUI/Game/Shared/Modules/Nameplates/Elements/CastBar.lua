@@ -4,7 +4,6 @@ local UF = E:GetModule('UnitFrames')
 local CH = E:GetModule('Chat')
 local LSM = E.Libs.LSM
 
-local abs = abs
 local next = next
 local strmatch = strmatch
 local utf8sub = string.utf8sub
