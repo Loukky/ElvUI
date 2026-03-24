@@ -47,11 +47,15 @@ local GetAuraDataByAuraInstanceID = C_UnitAuras.GetAuraDataByAuraInstanceID
 local GetPlayerAuraBySpellID = C_UnitAuras.GetPlayerAuraBySpellID
 local GetActionDisplayCount = C_ActionBar.GetActionDisplayCount
 local IsEquippedGearOutfitAction = C_ActionBar.IsEquippedGearOutfitAction
+local GetActionChargeDuration = C_ActionBar.GetActionChargeDuration
+local GetActionCooldownDuration = C_ActionBar.GetActionCooldownDuration
+local GetActionLossOfControlCooldownDuration = C_ActionBar.GetActionLossOfControlCooldownDuration
 local C_Container_GetItemCooldown = C_Container.GetItemCooldown
 local C_EquipmentSet_PickupEquipmentSet = C_EquipmentSet.PickupEquipmentSet
 local C_LevelLink_IsActionLocked = C_LevelLink and C_LevelLink.IsActionLocked
 local C_TransmogOutfitInfo_IsLockedOutfit = C_TransmogOutfitInfo and C_TransmogOutfitInfo.IsLockedOutfit
 local C_TransmogOutfitInfo_IsEquippedGearOutfitLocked = C_TransmogOutfitInfo and C_TransmogOutfitInfo.IsEquippedGearOutfitLocked
+local CreateDuration = C_DurationUtil and C_DurationUtil.CreateDuration
 
 local SpellVFX_ClearReticle, SpellVFX_ClearInterruptDisplay, SpellVFX_PlaySpellCastAnim, SpellVFX_PlayTargettingReticleAnim, SpellVFX_StopTargettingReticleAnim, SpellVFX_StopSpellCastAnim, SpellVFX_PlaySpellInterruptedAnim
 local SpellVFX_CastingAnim_OnHide, SpellVFX_CastingAnim_Finish_OnFinished
@@ -3136,14 +3140,14 @@ if GetActionDisplayCount then
 end
 
 -- Cooldown duration objects from 12.0
-if C_ActionBar and C_ActionBar.GetActionChargeDuration then
-	Action.GetChargeDuration    = function(self) return C_ActionBar.GetActionChargeDuration(self._state_action) end
+if GetActionChargeDuration then
+	Action.GetChargeDuration    = function(self) return GetActionChargeDuration(self._state_action) end
 end
-if C_ActionBar and C_ActionBar.GetActionCooldownDuration then
-	Action.GetCooldownDuration  = function(self) return C_ActionBar.GetActionCooldownDuration(self._state_action) end
+if GetActionCooldownDuration then
+	Action.GetCooldownDuration  = function(self) return GetActionCooldownDuration(self._state_action) end
 end
-if C_ActionBar and C_ActionBar.GetActionLossOfControlCooldownDuration then
-	Action.GetLoCCooldownDuration = function(self) return C_ActionBar.GetActionLossOfControlCooldownDuration(self._state_action) end
+if GetActionLossOfControlCooldownDuration then
+	Action.GetLoCCooldownDuration = function(self) return GetActionLossOfControlCooldownDuration(self._state_action) end
 end
 
 -- legacy cooldown functions, avoiding table creation on game versions that still have the old API
@@ -3285,9 +3289,9 @@ Item.SetTooltip              = function(self) return GameTooltip:SetHyperlink(se
 Item.GetSpellId              = function(self) return nil end
 Item.GetPassiveCooldownSpellID = function(self) return nil end
 
-if C_DurationUtil and C_DurationUtil.CreateDuration then
+if CreateDuration then
 	Item.GetCooldownDuration = function(self)
-		local duration = C_DurationUtil.CreateDuration()
+		local duration = CreateDuration()
 		if not duration then return nil end
 
 		local info = self:GetCooldownInfo()
