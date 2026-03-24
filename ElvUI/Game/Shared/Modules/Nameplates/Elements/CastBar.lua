@@ -114,7 +114,7 @@ function NP:Castbar_SetText(castbar, db, changed, spellName, unit)
 			target = UnitName(unit..'target') -- player or NPCs; if used on other players:
 		end -- the cast target doesn't match their target, can be misleading if they mouseover cast
 
-		if E:NotSecretValue(target) and (target and target ~= '') and (E:NotSecretValue(plate.unitName) and (target ~= plate.unitName)) then
+		if target then
 			local color = (db.displayTargetClass and UF:GetCasterColor(target)) or 'FFdddddd'
 			if db.targetStyle == 'SEPARATE' then
 				castbar.TargetText:SetFormattedText('|c%s%s|r', color, target)

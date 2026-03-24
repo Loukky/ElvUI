@@ -15,6 +15,7 @@ local UnitName = UnitName
 local UnitReaction = UnitReaction
 local UnitSpellHaste = UnitSpellHaste
 
+local C_ClassColor_GetClassColor = C_ClassColor and C_ClassColor.GetClassColor
 local IsSpellInSpellBook = C_SpellBook.IsSpellInSpellBook or IsSpellKnownOrOverridesKnown
 local IsSpellKnown = C_SpellBook.IsSpellKnown or IsPlayerSpell
 local StatusBarInterpolation = Enum.StatusBarInterpolation
@@ -527,13 +528,20 @@ function UF:GetInterruptColor(db, unit)
 	return r, g, b
 end
 
-function UF:GetCasterColor(unit)
-	if not unit then return end
+function UF:GetCasterColor(unit) -- unit is a secret (string value) from cast events
+	if E:IsSecretValue(unit) or not unit then return end
 
 	local _, className = UnitClass(unit)
-	local classColor = className and E:ClassColor(className)
-	if classColor then
-		return classColor.colorStr
+	if E:IsSecretValue(className) then
+		local color = C_ClassColor_GetClassColor(className)
+		if color then
+			return color:GenerateHexColor()
+		end
+	elseif className then
+		local color = E:ClassColor(className)
+		if color then
+			return color.colorStr
+		end
 	end
 end
 
