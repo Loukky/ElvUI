@@ -6,6 +6,7 @@ local unpack, select, tinsert = unpack, select, tinsert
 local ipairs, next, rad = ipairs, next, rad
 local hooksecurefunc = hooksecurefunc
 
+local CreateFrame = CreateFrame
 local GetItemQualityByID = C_Item.GetItemQualityByID
 
 local journalBottomTabs = {}
@@ -301,50 +302,63 @@ local function RepositionTabs()
 	end
 end
 
+local function CollapseSetShown(collapse, shown)
+	local btn = collapse.collapseIndicator
+	if not btn then return end
+
+	btn:SetShown(shown)
+end
+
+local function CollapseSetAtlas(collapse, atlas)
+	local btn = collapse.collapseIndicator
+	if not (btn and btn.plus) then return end
+
+	btn.plus:SetShown(atlas == 'campaign_headericon_closed')
+end
+
+local function CollapseMouseUp(btn)
+	btn:OnClick() -- is this safe?
+end
+
+local function CreateCollapseButton(frame, collapse)
+	local btn = CreateFrame('Button', nil, frame)
+	btn:Point('TOPLEFT', collapse)
+	btn:StripTextures()
+	btn:SetTemplate()
+	btn:SetFrameLevel(4)
+	btn:Size(17)
+	btn:Hide()
+
+	if not btn.minus then
+		btn.minus = btn:CreateTexture(nil, 'OVERLAY')
+		btn.minus:Size(7, 1)
+		btn.minus:Point('CENTER')
+		btn.minus:SetTexture(E.media.blankTex)
+	end
+
+	if not btn.plus then
+		btn.plus = btn:CreateTexture(nil, 'OVERLAY')
+		btn.plus:Size(1, 7)
+		btn.plus:Point('CENTER')
+		btn.plus:SetTexture(E.media.blankTex)
+	end
+
+	btn:HookScript('OnEnter', S.SetModifiedBackdrop)
+	btn:HookScript('OnLeave', S.SetOriginalBackdrop)
+	btn:SetScript('OnMouseUp', CollapseMouseUp)
+
+	hooksecurefunc(collapse, 'SetShown', CollapseSetShown)
+	hooksecurefunc(collapse, 'SetAtlas', CollapseSetAtlas)
+
+	return btn
+end
+
 local function HandleCollapseButtons(frame)
 	for _, button in next, { frame.ScrollTarget:GetChildren() } do
-		if button and not button.IsSkinned then
-			local collapse = button.HeaderCollapseIndicator
-			if collapse then
-				collapse:SetAlpha(0)
-
-				local b = CreateFrame('Button', nil, frame)
-				b:Point('TOPLEFT', collapse)
-				b:SetFrameLevel(4)
-				b:Hide()
-				b:Size(17)
-				b:StripTextures()
-				b:SetTemplate()
-
-				b.minus = b:CreateTexture(nil, 'OVERLAY')
-				b.minus:Size(7, 1)
-				b.minus:Point('CENTER')
-				b.minus:SetTexture(E.media.blankTex)
-
-				b.plus = b:CreateTexture(nil, 'OVERLAY')
-				b.plus:Size(1, 7)
-				b.plus:Point('CENTER')
-				b.plus:SetTexture(E.media.blankTex)
-
-				b:HookScript('OnEnter', S.SetModifiedBackdrop)
-				b:HookScript('OnLeave', S.SetOriginalBackdrop)
-
-				b:SetScript('OnMouseUp', function() button:OnClick() end)
-
-				hooksecurefunc(collapse, 'SetShown', function(_, show)
-					b:SetShown(show)
-				end)
-
-				hooksecurefunc(collapse, 'SetAtlas', function(_, atlas)
-					if atlas == 'campaign_headericon_closed' then
-						b.plus:Show()
-					else
-						b.plus:Hide()
-					end
-				end)
-			end
-
-			button.IsSkinned = true
+		local collapse = button.HeaderCollapseIndicator
+		if collapse and not collapse.collapseIndicator then
+			collapse.collapseIndicator = CreateCollapseButton(frame, collapse)
+			collapse:SetAlpha(0)
 		end
 	end
 end
