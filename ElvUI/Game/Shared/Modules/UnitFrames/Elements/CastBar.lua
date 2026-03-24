@@ -396,46 +396,57 @@ function UF:Configure_Castbar(frame)
 	end
 end
 
-function UF:CustomCastDelayText(duration, durationObject)
-	local remain, maximum
-	if durationObject then
-		remain = durationObject:GetRemainingDuration()
-		maximum = durationObject:GetTotalDuration()
-	elseif duration then
-		maximum = self.max
-		remain = abs(duration - maximum)
-	else -- excuse me?
-		return
-	end
+function UF:SetCastDisplayDelay(frame, which, duration, maximum, remain, delay)
+	local text = frame.Time
+	if not text then return end
 
-	local db = self:GetParent().db
-	if not (db and db.castbar) then return end
-	db = db.castbar.format
-
-	if self.channeling then
-		if db == 'CURRENT' then
-			self.Time:SetFormattedText('%.1f |cffaf5050%.1f|r', remain, self.delay)
-		elseif db == 'CURRENTMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f |cffaf5050%.1f|r', duration, maximum, self.delay)
-		elseif db == 'REMAINING' then
-			self.Time:SetFormattedText('%.1f |cffaf5050%.1f|r', duration, self.delay)
-		elseif db == 'REMAININGMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f |cffaf5050%.1f|r', remain, maximum, self.delay)
+	if frame.channeling then
+		if which == 'CURRENT' then
+			text:SetFormattedText('%.1f |cffaf5050%.1f|r', remain, delay)
+		elseif which == 'CURRENTMAX' then
+			text:SetFormattedText('%.1f / %.1f |cffaf5050%.1f|r', duration, maximum, delay)
+		elseif which == 'REMAINING' then
+			text:SetFormattedText('%.1f |cffaf5050%.1f|r', duration, delay)
+		elseif which == 'REMAININGMAX' then
+			text:SetFormattedText('%.1f / %.1f |cffaf5050%.1f|r', remain, maximum, delay)
 		end
-	else
-		if db == 'CURRENT' then
-			self.Time:SetFormattedText('%.1f |cffaf5050%s %.1f|r', duration, '+', self.delay)
-		elseif db == 'CURRENTMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f |cffaf5050%s %.1f|r', duration, maximum, '+', self.delay)
-		elseif db == 'REMAINING' then
-			self.Time:SetFormattedText('%.1f |cffaf5050%s %.1f|r', remain, '+', self.delay)
-		elseif db == 'REMAININGMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f |cffaf5050%s %.1f|r', remain, maximum, '+', self.delay)
-		end
+	elseif which == 'CURRENT' then
+		text:SetFormattedText('%.1f |cffaf5050%s %.1f|r', duration, '+', delay)
+	elseif which == 'CURRENTMAX' then
+		text:SetFormattedText('%.1f / %.1f |cffaf5050%s %.1f|r', duration, maximum, '+', delay)
+	elseif which == 'REMAINING' then
+		text:SetFormattedText('%.1f |cffaf5050%s %.1f|r', remain, '+', delay)
+	elseif which == 'REMAININGMAX' then
+		text:SetFormattedText('%.1f / %.1f |cffaf5050%s %.1f|r', remain, maximum, '+', delay)
 	end
 end
 
-function UF:CustomTimeText(duration, durationObject)
+function UF:SetCastDisplayCustom(frame, which, duration, maximum, remain)
+	local text = frame.Time
+	if not text then return end
+
+	if frame.channeling then
+		if which == 'CURRENT' then
+			text:SetFormattedText('%.1f', remain)
+		elseif which == 'CURRENTMAX' then
+			text:SetFormattedText('%.1f / %.1f', remain, maximum)
+		elseif which == 'REMAINING' then
+			text:SetFormattedText('%.1f', duration)
+		elseif which == 'REMAININGMAX' then
+			text:SetFormattedText('%.1f / %.1f', duration, maximum)
+		end
+	elseif which == 'CURRENT' then
+		text:SetFormattedText('%.1f', duration)
+	elseif which == 'CURRENTMAX' then
+		text:SetFormattedText('%.1f / %.1f', duration, maximum)
+	elseif which == 'REMAINING' then
+		text:SetFormattedText('%.1f', remain)
+	elseif which == 'REMAININGMAX' then
+		text:SetFormattedText('%.1f / %.1f', remain, maximum)
+	end
+end
+
+function UF:GetCastDurations(duration, durationObject)
 	local remain, maximum
 	if durationObject then
 		remain = durationObject:GetRemainingDuration()
@@ -447,31 +458,27 @@ function UF:CustomTimeText(duration, durationObject)
 		return
 	end
 
+	return remain, maximum
+end
+
+function UF:CustomCastDelayText(duration, durationObject)
+	local remain, maximum = UF:GetCastDurations(duration, durationObject)
+	if not remain then return end
+
 	local db = self:GetParent().db
 	if not (db and db.castbar) then return end
-	db = db.castbar.format
 
-	if self.channeling then
-		if db == 'CURRENT' then
-			self.Time:SetFormattedText('%.1f', remain)
-		elseif db == 'CURRENTMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f', remain, maximum)
-		elseif db == 'REMAINING' then
-			self.Time:SetFormattedText('%.1f', duration)
-		elseif db == 'REMAININGMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f', duration, maximum)
-		end
-	else
-		if db == 'CURRENT' then
-			self.Time:SetFormattedText('%.1f', duration)
-		elseif db == 'CURRENTMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f', duration, maximum)
-		elseif db == 'REMAINING' then
-			self.Time:SetFormattedText('%.1f', remain)
-		elseif db == 'REMAININGMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f', remain, maximum)
-		end
-	end
+	UF:SetCastDisplayDelay(self, db.castbar.format, duration, maximum, remain, self.delay)
+end
+
+function UF:CustomTimeText(duration, durationObject)
+	local remain, maximum = UF:GetCastDurations(duration, durationObject)
+	if not remain then return end
+
+	local db = self:GetParent().db
+	if not (db and db.castbar) then return end
+
+	UF:SetCastDisplayCustom(self, db.castbar.format, duration, maximum, remain)
 end
 
 function UF:HideTicks(frame)

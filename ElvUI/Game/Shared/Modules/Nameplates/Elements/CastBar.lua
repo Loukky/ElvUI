@@ -40,73 +40,17 @@ function NP:Castbar_CheckInterrupt(unit)
 end
 
 function NP:Castbar_CustomDelayText(duration, durationObject)
-	local remain, maximum
-	if durationObject then
-		remain = durationObject:GetRemainingDuration()
-		maximum = durationObject:GetTotalDuration()
-	elseif duration then
-		maximum = self.max
-		remain = abs(duration - maximum)
-	else -- excuse me?
-		return
-	end
+	local remain, maximum = UF:GetCastDurations(duration, durationObject)
+	if not remain then return end
 
-	if self.channeling then
-		if self.channelTimeFormat == 'CURRENT' then
-			self.Time:SetFormattedText('%.1f |cffaf5050%.1f|r', remain, self.delay)
-		elseif self.channelTimeFormat == 'CURRENTMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f |cffaf5050%.1f|r', duration, maximum, self.delay)
-		elseif self.channelTimeFormat == 'REMAINING' then
-			self.Time:SetFormattedText('%.1f |cffaf5050%.1f|r', duration, self.delay)
-		elseif self.channelTimeFormat == 'REMAININGMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f |cffaf5050%.1f|r', remain, maximum, self.delay)
-		end
-	else
-		if self.castTimeFormat == 'CURRENT' then
-			self.Time:SetFormattedText('%.1f |cffaf5050%s %.1f|r', duration, '+', self.delay)
-		elseif self.castTimeFormat == 'CURRENTMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f |cffaf5050%s %.1f|r', duration, maximum, '+', self.delay)
-		elseif self.castTimeFormat == 'REMAINING' then
-			self.Time:SetFormattedText('%.1f |cffaf5050%s %.1f|r', remain, '+', self.delay)
-		elseif self.castTimeFormat == 'REMAININGMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f |cffaf5050%s %.1f|r', remain, maximum, '+', self.delay)
-		end
-	end
+	UF:SetCastDisplayDelay(self, (self.channeling and self.channelTimeFormat) or self.castTimeFormat, duration, maximum, remain, self.delay)
 end
 
 function NP:Castbar_CustomTimeText(duration, durationObject)
-	local remain, maximum
-	if durationObject then
-		remain = durationObject:GetRemainingDuration()
-		maximum = durationObject:GetTotalDuration()
-	elseif duration then
-		maximum = self.max
-		remain = abs(duration - maximum)
-	else -- excuse me?
-		return
-	end
+	local remain, maximum = UF:GetCastDurations(duration, durationObject)
+	if not remain then return end
 
-	if self.channeling then
-		if self.channelTimeFormat == 'CURRENT' then
-			self.Time:SetFormattedText('%.1f', remain)
-		elseif self.channelTimeFormat == 'CURRENTMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f', remain, maximum)
-		elseif self.channelTimeFormat == 'REMAINING' then
-			self.Time:SetFormattedText('%.1f', duration)
-		elseif self.channelTimeFormat == 'REMAININGMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f', duration, maximum)
-		end
-	else
-		if self.castTimeFormat == 'CURRENT' then
-			self.Time:SetFormattedText('%.1f', duration)
-		elseif self.castTimeFormat == 'CURRENTMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f', duration, maximum)
-		elseif self.castTimeFormat == 'REMAINING' then
-			self.Time:SetFormattedText('%.1f', remain)
-		elseif self.castTimeFormat == 'REMAININGMAX' then
-			self.Time:SetFormattedText('%.1f / %.1f', remain, maximum)
-		end
-	end
+	UF:SetCastDisplayCustom(self, (self.channeling and self.channelTimeFormat) or self.castTimeFormat, duration, maximum, remain)
 end
 
 function NP:Castbar_SetText(castbar, db, changed, spellName, unit)
