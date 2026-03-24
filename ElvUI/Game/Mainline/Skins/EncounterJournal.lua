@@ -330,17 +330,17 @@ local function CreateCollapseButton(frame, collapse)
 	btn:Hide()
 
 	if not btn.minus then
-		btn.minus = btn:CreateTexture(nil, 'OVERLAY')
-		btn.minus:Size(7, 1)
+		btn.minus = btn:CreateTexture(nil, 'OVERLAY', nil, 1)
+		btn.minus:Size(7, 1) -- this size is different then the plus texture?
 		btn.minus:Point('CENTER')
-		btn.minus:SetTexture(E.media.blankTex)
+		btn.minus:SetTexture(E.media.blankTex) -- is this supposed to be `E.Media.Textures.MinusButton`
 	end
 
 	if not btn.plus then
-		btn.plus = btn:CreateTexture(nil, 'OVERLAY')
-		btn.plus:Size(1, 7)
+		btn.plus = btn:CreateTexture(nil, 'OVERLAY', nil, 2)
+		btn.plus:Size(1, 7)  -- this size is different then the minus texture?
 		btn.plus:Point('CENTER')
-		btn.plus:SetTexture(E.media.blankTex)
+		btn.plus:SetTexture(E.media.blankTex) -- is this supposed to be `E.Media.Textures.PlusButton`
 	end
 
 	btn:HookScript('OnEnter', S.SetModifiedBackdrop)
