@@ -2425,6 +2425,8 @@ if SecretCooldownsUseDuration then
 		SetOrClearCooldown(self.cooldown, showNormal, self:GetCooldownDuration())
 		SetOrClearCooldown(self.chargeCooldown, showCharge, self:GetChargeDuration())
 		SetOrClearCooldown(self.lossOfControlCooldown, showLoC, self:GetLoCCooldownDuration())
+
+		lib.callbacks:Fire("OnCooldownUpdate", self, nil, nil, nil, cooldownInfo, chargeInfo, locInfo)
 	end
 else
 	function UpdateCooldown(self)
