@@ -39,14 +39,14 @@ function NP:Castbar_CheckInterrupt(unit)
 end
 
 function NP:Castbar_CustomDelayText(duration, durationObject)
-	local remain, maximum = UF:GetCastDurations(duration, durationObject)
+	local remain, maximum = UF:GetCastDurations(self, duration, durationObject)
 	if not remain then return end
 
 	UF:SetCastDisplayDelay(self, (self.channeling and self.channelTimeFormat) or self.castTimeFormat, duration, maximum, remain, self.delay)
 end
 
 function NP:Castbar_CustomTimeText(duration, durationObject)
-	local remain, maximum = UF:GetCastDurations(duration, durationObject)
+	local remain, maximum = UF:GetCastDurations(self, duration, durationObject)
 	if not remain then return end
 
 	UF:SetCastDisplayCustom(self, (self.channeling and self.channelTimeFormat) or self.castTimeFormat, duration, maximum, remain)

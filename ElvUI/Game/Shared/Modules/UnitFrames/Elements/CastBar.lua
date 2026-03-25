@@ -446,13 +446,13 @@ function UF:SetCastDisplayCustom(frame, which, duration, maximum, remain)
 	end
 end
 
-function UF:GetCastDurations(duration, durationObject)
+function UF:GetCastDurations(element, duration, durationObject)
 	local remain, maximum
 	if durationObject then
 		remain = durationObject:GetRemainingDuration()
 		maximum = durationObject:GetTotalDuration()
 	elseif duration then
-		maximum = self.max
+		maximum = element.max
 		remain = abs(duration - maximum)
 	else -- excuse me?
 		return
@@ -462,7 +462,7 @@ function UF:GetCastDurations(duration, durationObject)
 end
 
 function UF:CustomCastDelayText(duration, durationObject)
-	local remain, maximum = UF:GetCastDurations(duration, durationObject)
+	local remain, maximum = UF:GetCastDurations(self, duration, durationObject)
 	if not remain then return end
 
 	local db = self:GetParent().db
@@ -472,7 +472,7 @@ function UF:CustomCastDelayText(duration, durationObject)
 end
 
 function UF:CustomTimeText(duration, durationObject)
-	local remain, maximum = UF:GetCastDurations(duration, durationObject)
+	local remain, maximum = UF:GetCastDurations(self, duration, durationObject)
 	if not remain then return end
 
 	local db = self:GetParent().db
