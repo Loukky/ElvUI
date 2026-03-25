@@ -116,8 +116,10 @@ local function UpdateTotem(self, event, slot)
 
 	if totem.Cooldown then
 		if oUF:IsSecretValue(duration) then
-			durationObj = GetTotemDuration(slot)
-			totem.Cooldown:SetCooldownFromDuration(durationObj)
+			if GetTotemDuration then
+				durationObj = GetTotemDuration(slot)
+				totem.Cooldown:SetCooldownFromDuration(durationObj)
+			end
 		elseif start and (duration and duration > 0) then
 			totem.Cooldown:SetCooldown(start, duration)
 		end
