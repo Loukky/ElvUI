@@ -183,21 +183,28 @@ function PA:CreateAura(parent, unit, index, db)
 		aura.anchorID = PA:CreateAnchor(aura, parent, unit, index, db)
 	end
 
-	aura:Size(db.icon.size)
+	-- EnableMouse doesnt work; set the size to 1x1
+	if db.clickThrough then
+		aura:SetSize(1, 1)
+	else
+		aura:Size(db.icon.size)
+	end
+
 	aura:ClearAllPoints()
 
+	local offsetNoMouse = (db.clickThrough and db.icon.size) or 0
 	if index == 1 then
-		aura:Point('CENTER', parent, 0, 0)
+		aura:Point('CENTER', parent, -(offsetNoMouse * 0.5), 0)
 	else
-		local offsetX, offsetY = 0, 0
+		local offsetX, offsetY, offsetIcon = 0, 0, db.icon.offset + offsetNoMouse
 		if db.icon.point == 'RIGHT' then
-			offsetX = db.icon.offset
+			offsetX = offsetIcon
 		elseif db.icon.point == 'LEFT' then
-			offsetX = -db.icon.offset
+			offsetX = -offsetIcon
 		elseif db.icon.point == 'TOP' then
-			offsetY = db.icon.offset
+			offsetY = offsetIcon
 		else
-			offsetY = -db.icon.offset
+			offsetY = -offsetIcon
 		end
 
 		aura:Point(E.InversePoints[db.icon.point], parent.auraIcons[index-1], db.icon.point, offsetX, offsetY)
