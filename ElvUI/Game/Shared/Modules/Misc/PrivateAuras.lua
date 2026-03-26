@@ -283,9 +283,9 @@ function PA:RaidWarning_Reposition(_, anchor)
 	if not anchor then
 		anchor = _G.PrivateRaidBossEmoteFrameAnchor
 
-		reconfigure[anchor] = 1
-
 		if InCombatLockdown() then
+			reconfigure[anchor] = 1
+		else
 			warningAnchor.relativeTo = anchor.mover or UIParent
 			SetPrivateWarningTextAnchor(anchor, warningAnchor) -- protected on 12.0.1 build 66562
 		end
