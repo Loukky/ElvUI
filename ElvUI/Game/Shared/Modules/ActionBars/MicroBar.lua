@@ -273,8 +273,11 @@ function AB:UpdateMicroBarTextures()
 end
 
 function AB:UpdateMicroButtonsParent()
-	for _, x in next, AB.MICRO_BUTTONS do
-		_G[x]:SetParent(microBar)
+	for _, name in next, AB.MICRO_BUTTONS do
+		local button = _G[name]
+		if button then
+			button:SetParent(microBar)
+		end
 	end
 end
 
