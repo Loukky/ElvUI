@@ -154,10 +154,8 @@ function PA:CreateAnchor(aura, parent, unit, index, db)
 end
 
 function PA:RemoveAura(aura)
-	if aura.anchorID then
-		if not InCombatLockdown() then
-			RemovePrivateAuraAnchor(aura.anchorID) -- protected on 12.0.1 build 66562
-		end
+	if aura.anchorID and not InCombatLockdown() then
+		RemovePrivateAuraAnchor(aura.anchorID) -- protected on 12.0.1 build 66562
 
 		aura.anchorID = nil
 	end
@@ -181,7 +179,9 @@ function PA:CreateAura(parent, unit, index, db)
 		aura = CreateFrame('Frame', format('%s%d', parent:GetName(), index), parent)
 	end
 
-	aura.anchorID = PA:CreateAnchor(aura, parent, unit, index, db)
+	if not aura.anchorID then
+		aura.anchorID = PA:CreateAnchor(aura, parent, unit, index, db)
+	end
 
 	aura:Size(db.icon.size)
 	aura:ClearAllPoints()
