@@ -99,7 +99,7 @@ local function GetUnitAuras(unit, auraType)
 	group.args.sourceGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 11, C.Values.FontSize)
 	group.args.sourceGroup.args.fontOutline = ACH:FontFlags(L["Font Outline"], L["Set the font outline."], 12)
 
-	group.args.midnightGroup = ACH:Group(E.Retail and L["Filters"] or L["Filters: Midnight"], nil, 50, nil, nil, nil, nil, function() return not E.Retail and not E.db.nameplates.units[unit][auraType].useMidnight end)
+	group.args.midnightGroup = ACH:Group(E.Retail and L["Filters"] or L["Filters: Midnight"], nil, 50, nil, nil, nil, nil, function() if E.Retail then return NP.db.useBlizzardAuras else return not E.db.nameplates.units[unit][auraType].useMidnight end end)
 
 	group.args.midnightGroup.args.useBlocklist = ACH:Toggle(L["Blocklist"], E.Retail and L["Activate the blocklist filter.\n\n|cffff3333Note:|r Only non-secret auras will be checked."] or L["Activate the blocklist filter."], 1)
 	group.args.midnightGroup.args.isAuraPlayer = ACH:Toggle(L["Player"], L["All of your auras."], 2)
@@ -458,6 +458,7 @@ NamePlates.generalGroup.args.showFriendlyCombat = ACH:Select(L["Friendly Combat 
 NamePlates.generalGroup.args.clampToScreen = ACH:Toggle(L["Clamp Nameplates"], L["Clamp nameplates to the top of the screen when outside of view."], 4, nil, nil, 140)
 NamePlates.generalGroup.args.highlight = ACH:Toggle(L["Hover Highlight"], nil, 5, nil, nil, 125)
 NamePlates.generalGroup.args.fadeIn = ACH:Toggle(L["Alpha Fading"], nil, 6, nil, nil, 125)
+NamePlates.generalGroup.args.useBlizzardAuras = ACH:Toggle(E.NewSign..L["Blizzard Auras"], nil, 7, nil, nil, 125)
 NamePlates.generalGroup.args.spacer1 = ACH:Spacer(10, 'full')
 NamePlates.generalGroup.args.multiplier = ACH:Range(L["Multiplier"], L["Backdrop Multiplier"], 11, { softMin = 0.2, min = 0, softMax = 0.8, max = 1, step = 0.01 })
 NamePlates.generalGroup.args.overlapV = ACH:Range(L["Overlap Vertical"], L["Percentage amount for vertical overlap of Nameplates."], 12, { min = 0, max = 3, step = .1 })

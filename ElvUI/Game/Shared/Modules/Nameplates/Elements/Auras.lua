@@ -68,21 +68,24 @@ function NP:Construct_Auras(nameplate)
 	Auras.SetPosition = UF.SetPosition
 	Auras.PostCreateButton = NP.Construct_AuraIcon
 	Auras.PostUpdateButton = UF.PostUpdateAura
-	Auras.CustomFilter = UF.AuraFilter
+	Auras.GetBlizzardAuras = NP.GetBlizzardCrowdControl
+	Auras.CustomFilter = NP.AuraFilter
 
 	Buffs.PreUpdate = UF.PreUpdateAura
 	Buffs.PreSetPosition = UF.SortAuras
 	Buffs.SetPosition = UF.SetPosition
 	Buffs.PostCreateButton = NP.Construct_AuraIcon
 	Buffs.PostUpdateButton = UF.PostUpdateAura
-	Buffs.CustomFilter = UF.AuraFilter
+	Buffs.GetBlizzardAuras = NP.GetBlizzardBuffs
+	Buffs.CustomFilter = NP.AuraFilter
 
 	Debuffs.PreUpdate = UF.PreUpdateAura
 	Debuffs.PreSetPosition = UF.SortAuras
 	Debuffs.SetPosition = UF.SetPosition
 	Debuffs.PostCreateButton = NP.Construct_AuraIcon
 	Debuffs.PostUpdateButton = UF.PostUpdateAura
-	Debuffs.CustomFilter = UF.AuraFilter
+	Debuffs.GetBlizzardAuras = NP.GetBlizzardDebuffs
+	Debuffs.CustomFilter = NP.AuraFilter
 
 	nameplate.Auras_, nameplate.Buffs_, nameplate.Debuffs_ = Auras, Buffs, Debuffs
 	nameplate.Auras, nameplate.Buffs, nameplate.Debuffs = Auras, Buffs, Debuffs
@@ -167,6 +170,12 @@ function NP:Update_Auras(nameplate)
 	if db.auras.enable or db.debuffs.enable or db.buffs.enable then
 		if not nameplate:IsElementEnabled('Auras') then
 			nameplate:EnableElement('Auras')
+		end
+
+		if NP.db.useBlizzardAuras then -- oUF wont need this we feed it the event
+			nameplate:UnregisterEvent('UNIT_AURA')
+		elseif not nameplate:IsEventRegistered('UNIT_AURA') then
+			nameplate:RegisterEvent('UNIT_AURA')
 		end
 
 		nameplate.Auras_:ClearAllPoints()
