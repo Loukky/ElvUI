@@ -388,8 +388,11 @@ local function filterIcons(frame, which, unit, filter, limit, offset, dontHide)
 end
 
 local function UpdateAuras(self, event, unit, updateInfo)
-	if self.usingBlizzardAuras and event == 'UNIT_AURA' then return end
-	if oUF:ShouldSkipAuraUpdate(self, (event == 'FAKE_REFRESH_AURAS' and 'UNIT_AURA') or event, unit, updateInfo) then return end
+	if self.usingBlizzardAuras then
+		if event == 'UNIT_AURA' then return end -- we send a fake event: FAKE_REFRESH_AURAS
+	elseif oUF:ShouldSkipAuraUpdate(self, (event == 'FAKE_REFRESH_AURAS' and 'UNIT_AURA') or event, unit, updateInfo) then
+		return
+	end
 
 	local auras = self.Auras
 	if(auras) then
