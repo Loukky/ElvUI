@@ -31,6 +31,7 @@ local UnitReaction = UnitReaction
 local UnitWidgetSet = UnitWidgetSet
 
 local UnitNameplateShowsWidgetsOnly = UnitNameplateShowsWidgetsOnly
+local IsAuraFilteredOutByInstanceID = C_UnitAuras.IsAuraFilteredOutByInstanceID
 
 local C_NamePlate_GetNamePlateForUnit = C_NamePlate.GetNamePlateForUnit
 local C_NamePlate_SetNamePlateEnemySize = C_NamePlate.SetNamePlateEnemySize
@@ -881,10 +882,20 @@ function NP:BlizzardPlate_RefreshList(listFrame, auraList)
 
 	local nameplate = plate and plate.unitFrame
 	local blizzAuras = nameplate and nameplate.blizzAuras
-	local list = blizzAuras and ((listFrame == self.BuffListFrame and blizzAuras.BuffList) or (listFrame == self.DebuffListFrame and blizzAuras.DebuffList) or (listFrame == self.CrowdControlListFrame and blizzAuras.CrowdControlList))
-	if not list then return end
+	if not blizzAuras then return end
 
-	NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList)
+	local list, filter
+	if listFrame == self.BuffListFrame then
+		list, filter = blizzAuras.BuffList, 'HELPFUL|INCLUDE_NAME_PLATE_ONLY'
+	elseif listFrame == self.DebuffListFrame then
+		list, filter = blizzAuras.DebuffList, 'HARMFUL|INCLUDE_NAME_PLATE_ONLY|PLAYER'
+	elseif listFrame == self.CrowdControlListFrame then
+		list, filter = blizzAuras.CrowdControlList, 'HARMFUL|INCLUDE_NAME_PLATE_ONLY'
+	end
+
+	if list then
+		NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList, filter)
+	end
 end
 
 function NP:BlizzardPlate_RefreshAuras(updateInfo)
@@ -1006,14 +1017,11 @@ function NP:SetStatusBarColor(bar, r, g, b)
 	end
 end
 
-function NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList)
+function NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList, filter)
 	wipe(list)
 
 	for _, child in next, listFrame:GetLayoutChildren() do
-		local auraInstanceID = child.auraInstanceID
-		if auraInstanceID then
-			list[auraInstanceID] = auraList[auraInstanceID]
-		end
+		list[child.auraInstanceID] = not IsAuraFilteredOutByInstanceID(child.unitToken, child.auraInstanceID, filter) and auraList[child.auraInstanceID] or nil
 	end
 end
 
