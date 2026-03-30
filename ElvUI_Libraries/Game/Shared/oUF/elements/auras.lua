@@ -151,7 +151,7 @@ local function CreateButton(element, index)
 	return button
 end
 
-local function customFilter(element, unit, button, aura)
+local function customFilter(frame, element, unit, button, aura)
 	if (element.onlyShowPlayer and button.isPlayer) or (not element.onlyShowPlayer and aura.auraInstanceID) then
 		return true
 	end
@@ -238,7 +238,7 @@ local function updateAura(frame, which, unit, aura, index, offset, filter, visib
 
 	local show = not element.forceCreate
 	if not (forceShow or element.forceCreate) then
-		show = (element.CustomFilter or customFilter) (element, unit, button, aura, name, icon,
+		show = (element.CustomFilter or customFilter) (frame, element, unit, button, aura, name, icon,
 			applications, dispelName, duration, expirationTime, sourceUnit, isStealable, nameplateShowPersonal, spellId,
 			canApplyAura, isBossAura, isFromPlayerOrPlayerPet, nameplateShowAll, timeMod)
 	end

@@ -864,12 +864,12 @@ function NP:CheckDeath(event, unit)
 	end
 end
 
-function NP:AuraFilter(unit, button, aura, ...)
+function NP:AuraFilter(element, unit, button, aura, ...)
 	if NP.db.useBlizzardAuras then
-		local filter = self:BlizzardFilter(self:GetParent())
+		local filter = element:BlizzardFilter(self)
 		return filter[aura and aura.auraInstanceID]
 	else
-		return UF.AuraFilter(self, unit, button, aura, ...)
+		return UF.AuraFilter(self, element, unit, button, aura, ...)
 	end
 end
 
