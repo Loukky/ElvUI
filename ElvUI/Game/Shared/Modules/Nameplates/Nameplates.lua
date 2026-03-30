@@ -764,13 +764,6 @@ function NP:NAME_PLATE_UNIT_ADDED(_, unit)
 	NP:UpdatePlateType(self)
 	NP:UpdatePlateSize(self)
 
-	local aurasFrame = NP.db.useBlizzardAuras and self.blizzPlate and self.blizzPlate.AurasFrame
-	if aurasFrame then
-		NP.BlizzardPlate_RefreshList(aurasFrame, aurasFrame.DebuffListFrame, aurasFrame.debuffList)
-		NP.BlizzardPlate_RefreshList(aurasFrame, aurasFrame.BuffListFrame, aurasFrame.buffList)
-		NP.BlizzardPlate_RefreshList(aurasFrame, aurasFrame.CrowdControlListFrame, aurasFrame.crowdControlList)
-	end
-
 	self.softTargetFrame = self.blizzPlate and self.blizzPlate.SoftTargetFrame
 	if self.softTargetFrame then
 		self.softTargetFrame:SetParent(self)
@@ -840,12 +833,6 @@ function NP:NAME_PLATE_UNIT_REMOVED(event, unit)
 	-- in some cases when the plate previously had the element
 	if self.QuestIcons then
 		self.QuestIcons:Hide()
-	end
-
-	if NP.db.useBlizzardAuras then
-		for _, list in next, self.blizzAuras do
-			wipe(list)
-		end
 	end
 
 	-- vars that we need to keep in a nonstale state
