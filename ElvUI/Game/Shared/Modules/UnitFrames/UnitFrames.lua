@@ -1664,11 +1664,19 @@ do
 
 		if isNamePlate then
 			local aurasFrame = E.Retail and frame.AurasFrame
-			if aurasFrame and not NameplateHooked[frame] then
-				NameplateHooked[frame] = true
+			if aurasFrame then
+				if NP.db.useBlizzardAuras then
+					frame:RegisterEvent('UNIT_AURA')
+				else -- assume we can have this off here
+					frame:UnregisterEvent('UNIT_AURA')
+				end
 
-				hooksecurefunc(aurasFrame, 'RefreshList', NP.BlizzardPlate_RefreshList)
-				hooksecurefunc(aurasFrame, 'RefreshAuras', NP.BlizzardPlate_RefreshAuras)
+				if not NameplateHooked[frame] then
+					NameplateHooked[frame] = true
+
+					hooksecurefunc(aurasFrame, 'RefreshList', NP.BlizzardPlate_RefreshList)
+					hooksecurefunc(aurasFrame, 'RefreshAuras', NP.BlizzardPlate_RefreshAuras)
+				end
 			end
 
 			pcall(frame.SetAlpha, frame, 0)
@@ -1690,11 +1698,6 @@ do
 
 		for index, element in ipairs(DisabledElements) do
 			element:UnregisterAllEvents() -- turn elements off
-
-			if isNamePlate and NP.db.useBlizzardAuras and (E.Retail and element == frame.AurasFrame) then
-				frame:RegisterEvent('UNIT_AURA')
-			end
-
 			DisabledElements[index] = nil -- keep this clean
 		end
 	end
