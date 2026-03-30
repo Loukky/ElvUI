@@ -878,12 +878,11 @@ function NP:CheckDeath(event, unit)
 	end
 end
 
-function NP:AuraFilter(element, unit, button, aura, ...)
+function NP:AuraFilter(...)
 	if NP.db.useBlizzardAuras then
-		local filter = element:BlizzardFilter(self)
-		return filter[aura and aura.auraInstanceID]
+		return true -- already filtered by blizzard
 	else
-		return UF.AuraFilter(self, element, unit, button, aura, ...)
+		return UF.AuraFilter(self, ...)
 	end
 end
 
