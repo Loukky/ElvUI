@@ -143,8 +143,8 @@ function NP:Configure_Auras(nameplate, which)
 	auras.num = db.numAuras * db.numRows
 	auras.db = db -- for auraSort
 
-	if which == 'Auras' then
-		auras.filter = db.filter or 'HARMFUL'
+	if which == 'Auras' then -- this wont actually use helpful for blizzard auras its just to stop it from trying debuffs too
+		auras.filter = (NP.db.useBlizzardAuras and 'HELPFUL') or db.filter or 'HARMFUL'
 	end
 
 	local index = 1
