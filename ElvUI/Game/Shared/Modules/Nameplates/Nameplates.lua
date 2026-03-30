@@ -902,6 +902,8 @@ function NP:BlizzardPlate_RefreshList(listFrame, auraList)
 end
 
 function NP:BlizzardPlate_RefreshAuras(updateInfo)
+	if not NP.db.useBlizzardAuras then return end
+
 	NP:NamePlateCallBack('FAKE_REFRESH_AURAS', self.unitToken, updateInfo)
 end
 

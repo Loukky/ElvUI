@@ -1667,8 +1667,6 @@ do
 			if aurasFrame then
 				if NP.db.useBlizzardAuras then
 					frame:RegisterEvent('UNIT_AURA')
-				else -- assume we can have this off here
-					frame:UnregisterEvent('UNIT_AURA')
 				end
 
 				if not NameplateHooked[frame] then
