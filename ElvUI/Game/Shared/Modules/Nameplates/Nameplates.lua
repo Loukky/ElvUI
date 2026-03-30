@@ -1024,7 +1024,10 @@ function NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList)
 	wipe(list)
 
 	for _, child in next, listFrame:GetLayoutChildren() do
-		list[child.auraInstanceID] = auraList[child.auraInstanceID]
+		local auraInstanceID = child.auraInstanceID
+		if auraInstanceID then
+			list[auraInstanceID] = auraList[auraInstanceID]
+		end
 	end
 end
 
