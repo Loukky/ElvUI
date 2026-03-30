@@ -1675,7 +1675,7 @@ do
 					NameplateHooked[frame] = true
 
 					hooksecurefunc(aurasFrame, 'RefreshList', NP.BlizzardPlate_RefreshList)
-					hooksecurefunc(frame, 'OnEvent', NP.BlizzardPlate_OnEvent)
+					hooksecurefunc(aurasFrame, 'RefreshAuras', NP.BlizzardPlate_RefreshAuras)
 				end
 			end
 

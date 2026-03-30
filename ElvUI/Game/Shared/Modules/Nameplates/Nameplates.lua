@@ -32,7 +32,6 @@ local UnitWidgetSet = UnitWidgetSet
 
 local UnitNameplateShowsWidgetsOnly = UnitNameplateShowsWidgetsOnly
 
-local GetAuraDataByAuraInstanceID = C_UnitAuras.GetAuraDataByAuraInstanceID
 local C_NamePlate_GetNamePlateForUnit = C_NamePlate.GetNamePlateForUnit
 local C_NamePlate_SetNamePlateEnemySize = C_NamePlate.SetNamePlateEnemySize
 local C_NamePlate_SetNamePlateFriendlySize = C_NamePlate.SetNamePlateFriendlySize
@@ -724,7 +723,8 @@ end
 function NP:NAME_PLATE_UNIT_ADDED(_, unit)
 	if not unit then unit = self.unit end
 
-	self.blizzPlate = self:GetParent().UnitFrame
+	local plate = self:GetParent()
+	self.blizzPlate = plate.UnitFrame
 	self.widgetsOnly = E.Retail and self.blizzPlate and UnitNameplateShowsWidgetsOnly(unit)
 	self.widgetSet = E.Retail and UnitWidgetSet(unit)
 	self.classification = UnitClassification(unit)
@@ -763,6 +763,13 @@ function NP:NAME_PLATE_UNIT_ADDED(_, unit)
 	NP:UpdateNumPlates()
 	NP:UpdatePlateType(self)
 	NP:UpdatePlateSize(self)
+
+	local aurasFrame = NP.db.useBlizzardAuras and self.blizzPlate and self.blizzPlate.AurasFrame
+	if aurasFrame then
+		NP.BlizzardPlate_RefreshList(aurasFrame, aurasFrame.DebuffListFrame, aurasFrame.debuffList)
+		NP.BlizzardPlate_RefreshList(aurasFrame, aurasFrame.BuffListFrame, aurasFrame.buffList)
+		NP.BlizzardPlate_RefreshList(aurasFrame, aurasFrame.CrowdControlListFrame, aurasFrame.crowdControlList)
+	end
 
 	self.softTargetFrame = self.blizzPlate and self.blizzPlate.SoftTargetFrame
 	if self.softTargetFrame then
@@ -835,6 +842,12 @@ function NP:NAME_PLATE_UNIT_REMOVED(event, unit)
 		self.QuestIcons:Hide()
 	end
 
+	if NP.db.useBlizzardAuras then
+		for _, list in next, self.blizzAuras do
+			wipe(list)
+		end
+	end
+
 	-- vars that we need to keep in a nonstale state
 	self.Health.cur = nil -- cutaway
 	self.Power.cur = nil -- cutaway
@@ -874,7 +887,7 @@ function NP:AuraFilter(element, unit, button, aura, ...)
 	end
 end
 
-function NP:BlizzardPlate_RefreshList(listFrame)
+function NP:BlizzardPlate_RefreshList(listFrame, auraList)
 	if not NP.db.useBlizzardAuras then return end
 
 	local blizzPlate = self:GetParent()
@@ -885,17 +898,11 @@ function NP:BlizzardPlate_RefreshList(listFrame)
 	local list = blizzAuras and ((listFrame == self.BuffListFrame and blizzAuras.BuffList) or (listFrame == self.DebuffListFrame and blizzAuras.DebuffList) or (listFrame == self.CrowdControlListFrame and blizzAuras.CrowdControlList))
 	if not list then return end
 
-	wipe(list)
-
-	if listFrame:IsShown() then
-		NP:BlizzardAuras_GetAuras(listFrame, list)
-	end
+	NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList)
 end
 
-function NP:BlizzardPlate_OnEvent(event, unit, updateInfo)
-	if not NP.db.useBlizzardAuras or (event ~= 'UNIT_AURA') then return end
-
-	NP:NamePlateCallBack(event, unit, updateInfo)
+function NP:BlizzardPlate_RefreshAuras(updateInfo)
+	NP:NamePlateCallBack('FAKE_REFRESH_AURAS', self.unitToken, updateInfo)
 end
 
 function NP:NamePlateCallBack(event, unit, updateInfo)
@@ -906,7 +913,7 @@ function NP:NamePlateCallBack(event, unit, updateInfo)
 	if not nameplate or not nameplate.UpdateAllElements then return end -- prevent error with plater
 	if nameplate.widgetsOnly then return end -- not required to update this one
 
-	if event == 'UNIT_AURA' then
+	if event == 'FAKE_REFRESH_AURAS' then
 		local element = nameplate.Buffs or nameplate.Debuffs or nameplate.Auras
 		if element then -- any of them will work, oUF will handle all three
 			element.UpdateAuras(nameplate, event, unit, updateInfo)
@@ -1011,29 +1018,30 @@ function NP:SetStatusBarColor(bar, r, g, b)
 	end
 end
 
-function NP:GetBlizzardAuras(nameplate, which)
-	local blizzAuras = nameplate.blizzAuras
-	if not blizzAuras then return end
+function NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList)
+	wipe(list)
 
-	return NP.db.useBlizzardAuras and blizzAuras[which] or nil
+	for _, child in next, listFrame:GetLayoutChildren() do
+		list[child.auraInstanceID] = auraList[child.auraInstanceID]
+	end
+end
+
+function NP:BlizzardAuras_GetAuras(nameplate, which)
+	if not NP.db.useBlizzardAuras or not nameplate.blizzAuras then return end
+
+	return nameplate.blizzAuras[which] or nil
 end
 
 function NP:GetBlizzardCrowdControl(nameplate)
-	return NP:GetBlizzardAuras(nameplate, 'CrowdControlList')
+	return NP:BlizzardAuras_GetAuras(nameplate, 'CrowdControlList')
 end
 
 function NP:GetBlizzardBuffs(nameplate)
-	return NP:GetBlizzardAuras(nameplate, 'BuffList')
+	return NP:BlizzardAuras_GetAuras(nameplate, 'BuffList')
 end
 
 function NP:GetBlizzardDebuffs(nameplate)
-	return NP:GetBlizzardAuras(nameplate, 'DebuffList')
-end
-
-function NP:BlizzardAuras_GetAuras(aurasList, list)
-	for _, child in next, aurasList:GetLayoutChildren() do
-		list[child.auraInstanceID] = GetAuraDataByAuraInstanceID(child.unitToken, child.auraInstanceID)
-	end
+	return NP:BlizzardAuras_GetAuras(nameplate, 'DebuffList')
 end
 
 function NP:Initialize()
