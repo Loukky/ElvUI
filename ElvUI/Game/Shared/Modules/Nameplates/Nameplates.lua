@@ -885,11 +885,11 @@ function NP:BlizzardPlate_RefreshList(listFrame, auraList)
 	if not blizzAuras then return end
 
 	local list, filter
-	if listFrame == self.BuffListFrame then
+	if listFrame == self.BuffListFrame and auraList == self.buffList then
 		list, filter = blizzAuras.BuffList, 'HELPFUL|INCLUDE_NAME_PLATE_ONLY'
-	elseif listFrame == self.DebuffListFrame then
+	elseif listFrame == self.DebuffListFrame and auraList == self.debuffList then
 		list, filter = blizzAuras.DebuffList, 'HARMFUL|INCLUDE_NAME_PLATE_ONLY|PLAYER'
-	elseif listFrame == self.CrowdControlListFrame then
+	elseif listFrame == self.CrowdControlListFrame and auraList == self.crowdControlList then
 		list, filter = blizzAuras.CrowdControlList, 'HARMFUL|INCLUDE_NAME_PLATE_ONLY'
 	end
 
