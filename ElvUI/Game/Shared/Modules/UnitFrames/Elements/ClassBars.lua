@@ -769,15 +769,23 @@ end
 -----------------------------------------------------------
 function UF:Construct_Stagger(frame)
 	local stagger = CreateFrame('Statusbar', '$parent_Stagger', frame)
-	stagger:CreateBackdrop(nil,nil, nil, nil, true)
 	stagger.PostUpdate = UF.PostUpdateStagger
-	stagger.PostVisibility = UF.PostUpdateVisibilityStagger
+	stagger.PostVisibility = UF.PostVisibilityStagger
+	stagger.PostUpdateColor = UF.Stagger_PostUpdateColor
 
-	UF.statusbars[stagger] = 'stagger'
-	UF.classbars[stagger] = true
+	stagger:CreateBackdrop(nil,nil, nil, nil, true)
+	stagger.backdrop.callbackBackdropColor = UF.StatusBarBlackBackdrop
+	stagger.backdrop:SetBackdropColor(0, 0, 0, 1)
+
+	stagger.bg = stagger:CreateTexture(nil, 'BORDER')
+	stagger.bg:SetTexture(E.media.blankTex)
+	stagger.bg:SetInside(stagger.backdrop)
 
 	stagger:SetScript('OnShow', UF.ToggleResourceBar)
 	stagger:SetScript('OnHide', UF.ToggleResourceBar)
+
+	UF.statusbars[stagger] = 'stagger'
+	UF.classbars[stagger] = true
 
 	return stagger
 end
@@ -796,7 +804,7 @@ function UF:PostUpdateStagger(stagger)
 	end
 end
 
-function UF:PostUpdateVisibilityStagger(_, _, isShown, stateChanged)
+function UF:PostVisibilityStagger(_, _, isShown, stateChanged)
 	if not E.Retail then return end
 
 	self.ClassBar = (isShown and 'Stagger') or 'ClassPower'
@@ -804,6 +812,10 @@ function UF:PostUpdateVisibilityStagger(_, _, isShown, stateChanged)
 	if stateChanged then
 		UF:PostVisibility_ClassBars(self)
 	end
+end
+
+function UF:Stagger_PostUpdateColor(_, color)
+	UF:SetStatusBarColor(self, color.r, color.g, color.b)
 end
 
 -----------------------------------------------------------
