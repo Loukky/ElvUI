@@ -861,11 +861,13 @@ end
 function NP:UNIT_FACTION(_, unit)
 	if not unit or self.unit ~= unit then return end
 
+	self.isMe = UnitIsUnit(unit, 'player')
 	self.reaction = UnitReaction('player', unit) -- Player Reaction
 	self.repReaction = UnitReaction(unit, 'player') -- Reaction to Player
 	self.isFriend = UnitIsFriend('player', unit)
 	self.isEnemy = UnitIsEnemy('player', unit)
 	self.faction = UnitFactionGroup(unit)
+	self.isPVPSanctuary = UnitIsPVPSanctuary(unit)
 	self.battleFaction = E:GetUnitBattlefieldFaction(unit)
 	self.classColor = (self.isPlayer and E:ClassColor(self.classFile)) or (self.repReaction and NP.Colors.reactions[self.repReaction]) or nil
 
