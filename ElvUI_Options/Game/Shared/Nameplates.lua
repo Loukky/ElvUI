@@ -4,9 +4,8 @@ local NP = E:GetModule('NamePlates')
 local ACD = E.Libs.AceConfigDialog
 local ACH = E.Libs.ACH
 
-local pairs, type, strsplit = pairs, type, strsplit
-local wipe, next, tonumber = wipe, next, tonumber
-local format = format
+local wipe, next, pairs, type = wipe, next, pairs, type
+local format, tonumber, strsplit = format, tonumber, strsplit
 
 local IsShiftKeyDown = IsShiftKeyDown
 local IsControlKeyDown = IsControlKeyDown
