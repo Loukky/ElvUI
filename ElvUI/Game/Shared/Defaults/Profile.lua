@@ -905,9 +905,10 @@ P.nameplates = {
 		beingTankedByTank = true,
 		goodScale = 1,
 		badScale = 1,
-		useThreatColor = true,
 		indicator = false,
+		useThreatColor = true,
 		useSoloColor = false,
+		skipGoodColor = false
 	},
 	widgets = {
 		below = true,
