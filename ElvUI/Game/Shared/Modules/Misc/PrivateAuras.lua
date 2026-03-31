@@ -73,6 +73,11 @@ function PA:CreateAnchor(aura, parent, unit, index, db)
 	local previousAura = parent.auraIcons[index]
 	if previousAura then -- clear any old ones
 		PA:RemoveAura(previousAura)
+
+		if previousAura.anchorID then
+			reconfigure[parent] = 2
+			return -- combat stopped it
+		end
 	end
 
 	if not unit then -- try to get the unit token
