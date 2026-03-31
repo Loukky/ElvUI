@@ -1020,7 +1020,7 @@ end
 function NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList, filter)
 	wipe(list)
 
-	for _, child in next, listFrame:GetLayoutChildren() do
+	for _, child in next, { listFrame:GetChildren() } do
 		list[child.auraInstanceID] = not IsAuraFilteredOutByInstanceID(child.unitToken, child.auraInstanceID, filter) and auraList[child.auraInstanceID] or nil
 	end
 end
