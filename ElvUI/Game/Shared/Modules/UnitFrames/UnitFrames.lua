@@ -1666,7 +1666,7 @@ do
 			local aurasFrame = E.Retail and frame.AurasFrame
 			if aurasFrame then
 				if NP.db.useBlizzardAuras then
-					frame:RegisterEvent('UNIT_AURA')
+					frame:RegisterUnitEvent('UNIT_AURA', frame.unit)
 				end
 
 				if not NameplateHooked[frame] then
