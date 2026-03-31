@@ -143,8 +143,6 @@ function NP:Construct_Castbar(nameplate)
 	local castbarTexture = LSM:Fetch('statusbar', NP.db.statusbar)
 
 	local castbar = CreateFrame('StatusBar', '$parentCastbar', nameplate)
-	castbar:SetFrameStrata(nameplate:GetFrameStrata())
-	castbar:SetFrameLevel(5)
 	castbar:CreateBackdrop('Transparent', nil, nil, nil, nil, true)
 	castbar:SetStatusBarTexture(castbarTexture)
 
@@ -244,6 +242,7 @@ function NP:Update_Castbar(nameplate)
 		castbar.channelTimeFormat = db.channelTimeFormat
 		castbar.pipColor = NP.db.colors.empoweredCast
 
+		castbar:SetFrameLevel(5)
 		castbar:ClearAllPoints()
 		castbar:Point(E.InversePoints[db.anchorPoint], nameplate, db.anchorPoint, db.xOffset, db.yOffset)
 		castbar:Size(db.width, db.height)

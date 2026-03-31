@@ -68,8 +68,6 @@ end
 
 function NP:Construct_Health(nameplate)
 	local Health = CreateFrame('StatusBar', nameplate.frameName..'Health', nameplate)
-	Health:SetFrameStrata(nameplate:GetFrameStrata())
-	Health:SetFrameLevel(5)
 	Health:CreateBackdrop('Transparent', nil, nil, nil, nil, true)
 	Health:SetStatusBarTexture(LSM:Fetch('statusbar', NP.db.statusbar))
 	Health.considerSelectionInCombatHostile = true
@@ -111,8 +109,8 @@ function NP:Update_Health(nameplate, skipUpdate)
 			nameplate:EnableElement('Health')
 		end
 
+		nameplate.Health:SetFrameLevel(5)
 		nameplate.Health:Point('CENTER')
-
 		nameplate.Health:Size(db.health.width, db.health.height)
 
 		if E.Retail then
@@ -131,7 +129,6 @@ function NP:Construct_HealthPrediction(nameplate)
 
 	for _, name in ipairs(bars) do
 		local bar = CreateFrame('StatusBar', nil, nameplate.Health.ClipFrame)
-		bar:SetFrameStrata(nameplate:GetFrameStrata())
 		bar:SetStatusBarTexture(LSM:Fetch('statusbar', NP.db.statusbar))
 		bar:Point('TOP')
 		bar:Point('BOTTOM')

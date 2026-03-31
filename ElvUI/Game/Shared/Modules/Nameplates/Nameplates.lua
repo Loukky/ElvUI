@@ -240,7 +240,6 @@ end
 
 function NP:Construct_RaisedELement(nameplate)
 	local RaisedElement = CreateFrame('Frame', '$parent_RaisedElement', nameplate)
-	RaisedElement:SetFrameStrata(nameplate:GetFrameStrata())
 	RaisedElement:SetFrameLevel(10)
 	RaisedElement:SetAllPoints()
 	RaisedElement:EnableMouse(false)
