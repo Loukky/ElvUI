@@ -386,6 +386,12 @@ do
 		'Debuffs_'
 	}
 
+	if E.myclass == 'DEATHKNIGHT' then
+		tinsert(elements, 'Runes')
+	elseif E.myclass == 'MONK' then
+		tinsert(elements, 'Stagger')
+	end
+
 	function NP:ReparentElements(nameplate, parent)
 		for _, name in next, elements do
 			local element = nameplate[name]
