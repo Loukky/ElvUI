@@ -77,11 +77,7 @@ function NP:Update_ThreatIndicator(nameplate)
 			nameplate:EnableElement('ThreatIndicator')
 		end
 
-		if db.indicator then
-			nameplate.ThreatIndicator:SetAlpha(1)
-		else
-			nameplate.ThreatIndicator:SetAlpha(0)
-		end
+		nameplate.ThreatIndicator:SetAlpha(db.indicator and 1 or 0)
 	elseif nameplate:IsElementEnabled('ThreatIndicator') then
 		nameplate:DisableElement('ThreatIndicator')
 	end
