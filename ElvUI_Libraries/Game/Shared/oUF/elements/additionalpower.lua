@@ -64,9 +64,6 @@ local ALT_POWER_INFO = CopyTable(_G.ALT_POWER_BAR_PAIR_DISPLAY_INFO) or {
 	SHAMAN = { [11] = CopyTable(MANA) },	-- Maelstrom
 	PRIEST = { [13] = CopyTable(MANA) }		-- Insanity
 }
-ALT_POWER_INFO.DRUID = ALT_POWER_INFO.DRUID or {}
-ALT_POWER_INFO.DRUID[1] = ALT_POWER_INFO.DRUID[1] or CopyTable(MANA)
-ALT_POWER_INFO.DRUID[3] = ALT_POWER_INFO.DRUID[3] or CopyTable(MANA)
 
 local function UpdateColor(self, event, unit, powerType)
 	if(not (unit and UnitIsUnit(unit, 'player') and powerType == POWER_NAME)) then return end
@@ -259,7 +256,14 @@ local function Enable(self, unit)
 		self:RegisterEvent('UNIT_DISPLAYPOWER', VisibilityPath)
 
 		if(not element.displayPairs) then
-			element.displayPairs = CopyTable(ALT_POWER_INFO)
+			local info = ALT_POWER_INFO
+
+			-- add druid info, if needed
+			if not info.DRUID then info.DRUID = {} end
+			if not info.DRUID[1] then info.DRUID[1] = CopyTable(MANA) end
+			if not info.DRUID[3] then info.DRUID[3] = CopyTable(MANA) end
+
+			element.displayPairs = info
 		end
 
 		if(element:IsObjectType('StatusBar') and not element:GetStatusBarTexture()) then
