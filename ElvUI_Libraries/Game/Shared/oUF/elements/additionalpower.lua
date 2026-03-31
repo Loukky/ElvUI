@@ -59,11 +59,14 @@ local StatusBarInterpolation = Enum.StatusBarInterpolation
 local MANA = { powerName = 'MANA', powerType = 0 }
 local POWER_NAME = _G.ADDITIONAL_POWER_BAR_NAME or 'MANA'
 local POWER_INDEX = _G.ADDITIONAL_POWER_BAR_INDEX or 0
-local ALT_POWER_INFO = _G.ALT_POWER_BAR_PAIR_DISPLAY_INFO or {
+local ALT_POWER_INFO = CopyTable(_G.ALT_POWER_BAR_PAIR_DISPLAY_INFO) or {
 	DRUID = { [8] = CopyTable(MANA) },		-- LunarPower
 	SHAMAN = { [11] = CopyTable(MANA) },	-- Maelstrom
 	PRIEST = { [13] = CopyTable(MANA) }		-- Insanity
 }
+ALT_POWER_INFO.DRUID = ALT_POWER_INFO.DRUID or {}
+ALT_POWER_INFO.DRUID[1] = ALT_POWER_INFO.DRUID[1] or CopyTable(MANA)
+ALT_POWER_INFO.DRUID[3] = ALT_POWER_INFO.DRUID[3] or CopyTable(MANA)
 
 local function UpdateColor(self, event, unit, powerType)
 	if(not (unit and UnitIsUnit(unit, 'player') and powerType == POWER_NAME)) then return end
