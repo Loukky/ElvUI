@@ -300,14 +300,13 @@ function A:UpdateAura(button, index)
 	end
 
 	local colorDebuffs, color = button.filter == 'HARMFUL' and A.db.colorDebuffs
-	if E.Retail then
-		local curve = GetAuraDispelTypeColor and E.Curves.Color.Auras[colorDebuffs and 'debuffs']
-		color = curve and GetAuraDispelTypeColor(unitToken, data.auraInstanceID, curve) or E.db.general.bordercolor
-
-		button:SetBackdropBorderColor(color.r, color.g, color.b)
-		button.statusBar.backdrop:SetBackdropBorderColor(color.r, color.g, color.b)
+	if not colorDebuffs then -- quick exit
+		color = E.db.general.bordercolor
+	elseif E.Retail then
+		local curve = GetAuraDispelTypeColor and E.Curves.Color.Auras.debuffs
+		color = (curve and GetAuraDispelTypeColor(unitToken, data.auraInstanceID, curve)) or E.db.general.bordercolor
 	else
-		color = (E:NotSecretValue(debuffType) and colorDebuffs and DebuffColors[debuffType or 'None']) or E.db.general.bordercolor
+		color = (E:NotSecretValue(debuffType) and DebuffColors[debuffType or 'None']) or E.db.general.bordercolor
 	end
 
 	button:SetBackdropBorderColor(color.r, color.g, color.b)
