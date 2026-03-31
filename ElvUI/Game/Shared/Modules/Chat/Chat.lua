@@ -3778,7 +3778,7 @@ function CH:VoiceOverlay(event, ...)
 	if event == 'VOICE_CHAT_CHANNEL_MEMBER_SPEAKING_STATE_CHANGED' then
 		local memberID, channelID, isTalking = ...
 
-		if isTalking then
+		if E:NotSecretValue(isTalking) and isTalking then
 			CH.TalkingList[memberID] = channelID
 			CH:ConfigureHead(memberID, channelID)
 		else
