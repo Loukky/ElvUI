@@ -80,34 +80,19 @@ function NP:Construct_Health(nameplate)
 	return Health
 end
 
-function NP:Health_SetColors(nameplate, threatColors)
-	if threatColors then -- managed by ThreatIndicator_PostUpdate
-		nameplate.Health:SetColorTapping(nil)
-		nameplate.Health:SetColorSelection(nil)
-		nameplate.Health.colorClassification = nil
-		nameplate.Health.colorReaction = nil
-		nameplate.Health.colorClass = nil
-	else
-		local db = NP:PlateDB(nameplate)
-		nameplate.Health:SetColorTapping(true)
-		nameplate.Health:SetColorSelection(E.Retail)
-		nameplate.Health.colorReaction = not E.Retail
-		nameplate.Health.colorClassification = db.health and db.health.useClassificationColor and (not db.health.useClassificationColorInInstance or NP.InInstance)
-		nameplate.Health.colorClass = db.health and db.health.useClassColor
-	end
-end
-
-function NP:Update_Health(nameplate, skipUpdate)
+function NP:Update_Health(nameplate)
 	local db = NP:PlateDB(nameplate)
-
-	NP:Health_SetColors(nameplate)
-
-	if skipUpdate then return end
 
 	if db.health.enable then
 		if not nameplate:IsElementEnabled('Health') then
 			nameplate:EnableElement('Health')
 		end
+
+		nameplate.Health:SetColorTapping(true)
+		nameplate.Health:SetColorSelection(E.Retail)
+		nameplate.Health.colorReaction = not E.Retail
+		nameplate.Health.colorClassification = db.health and db.health.useClassificationColor and (not db.health.useClassificationColorInInstance or NP.InInstance)
+		nameplate.Health.colorClass = db.health and db.health.useClassColor
 
 		nameplate.Health:SetFrameLevel(5)
 		nameplate.Health:Point('CENTER')

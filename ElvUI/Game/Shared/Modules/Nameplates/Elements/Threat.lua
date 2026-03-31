@@ -30,8 +30,6 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 		nameplate.threatScale = 1
 		NP:ScalePlate(nameplate, 1)
 	elseif status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) then
-		NP:Health_SetColors(nameplate, true)
-
 		local Color, Scale
 		if status == 3 then -- securely tanking
 			Color = (self.useSolo and colors.soloColor) or (self.isTank and colors.goodColor) or colors.badColor

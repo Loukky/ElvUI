@@ -440,8 +440,6 @@ function NP:UpdatePlate(nameplate, updateBase)
 		if nameplate == NP.PlayerFrame then
 			NP:Update_Fader(nameplate)
 		end
-	elseif db.enable then
-		NP:Update_Health(nameplate, true) -- this will only reset the ouf vars so it won't hold stale threat ones
 	end
 end
 
