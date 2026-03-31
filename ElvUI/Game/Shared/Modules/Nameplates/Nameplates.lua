@@ -858,7 +858,9 @@ function NP:NAME_PLATE_UNIT_REMOVED(event, unit)
 	self.npcID = nil -- just cause
 end
 
-function NP:UNIT_FACTION(event, unit)
+function NP:UNIT_FACTION(_, unit)
+	if not unit or self.unit ~= unit then return end
+
 	self.reaction = UnitReaction('player', unit) -- Player Reaction
 	self.repReaction = UnitReaction(unit, 'player') -- Reaction to Player
 	self.isFriend = UnitIsFriend('player', unit)
@@ -1147,9 +1149,9 @@ function NP:Initialize()
 	NP:RegisterEvent('PLAYER_REGEN_ENABLED')
 	NP:RegisterEvent('PLAYER_REGEN_DISABLED')
 	NP:RegisterEvent('PLAYER_ENTERING_WORLD')
-	NP:RegisterEvent('UNIT_FACTION', 'NamePlateCallBack')
 	NP:RegisterEvent('PLAYER_UPDATE_RESTING', 'EnviromentConditionals')
 	NP:RegisterEvent('ZONE_CHANGED_NEW_AREA', 'EnviromentConditionals')
+	NP:RegisterEvent('UNIT_FACTION', 'NamePlateCallBack')
 
 	if not E.Retail then
 		NP:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')

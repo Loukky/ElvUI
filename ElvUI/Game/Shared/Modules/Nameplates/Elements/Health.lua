@@ -17,8 +17,8 @@ local StatusBarInterpolation = Enum.StatusBarInterpolation
 
 function NP:Health_UpdateColor(_, unit)
 	if not unit or self.unit ~= unit then return end
-	local element = self.Health
 
+	local element = self.Health
 	local useSelection = E.Retail and element.colorSelection and E:UnitSelectionType(unit, element.considerSelectionInCombatHostile)
 	local useClassification = element.colorClassification and E:GetClassificationColor(unit)
 	local useReaction = element.colorReaction and UnitReaction(unit, 'player')
