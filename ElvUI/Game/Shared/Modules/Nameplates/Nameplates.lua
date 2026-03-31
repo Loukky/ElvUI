@@ -893,6 +893,8 @@ function NP:BlizzardPlate_RefreshList(listFrame, auraList)
 	end
 
 	if list then
+		nameplate.allowAuraUpdate = true
+
 		NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList)
 	end
 end
@@ -912,6 +914,10 @@ function NP:NamePlateCallBack(event, unit, updateInfo)
 	if nameplate.widgetsOnly then return end -- not required to update this one
 
 	if event == 'FAKE_REFRESH_AURAS' then
+		if not nameplate.allowAuraUpdate then return end
+
+		nameplate.allowAuraUpdate = nil
+
 		local element = nameplate.Buffs or nameplate.Debuffs or nameplate.Auras
 		if element then -- any of them will work, oUF will handle all three
 			element.UpdateAuras(nameplate, event, unit, updateInfo)
