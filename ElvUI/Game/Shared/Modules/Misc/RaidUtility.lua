@@ -82,6 +82,10 @@ ShowButton:SetClampedToScreen(true)
 ShowButton:SetClampRectInsets(0, 0, -1, 1)
 ShowButton:Hide()
 
+function RU:InLockdown()
+	return E.Retail and InCombatLockdown()
+end
+
 function RU:SetEnabled(button, enabled, isLeader)
 	if button.SetChecked then
 		button:SetChecked(enabled)
@@ -524,7 +528,7 @@ function RU:OnEvent_ReadyCheckButton()
 end
 
 function RU:OnClick_ReadyCheckButton()
-	if self.enabled and RU:InGroup() and not InCombatLockdown() then
+	if self.enabled and RU:InGroup() and not RU:InLockdown() then
 		DoReadyCheck()
 	end
 end
@@ -540,7 +544,7 @@ function RU:OnClick_RoleCheckButton()
 end
 
 function RU:OnClick_RaidCountdownButton()
-	if RU:InGroup() and not InCombatLockdown() then
+	if RU:InGroup() and not RU:InLockdown() then
 		C_PartyInfo.DoCountdown(10)
 	end
 end
@@ -559,7 +563,7 @@ end
 
 function RU:OnClick_EveryoneAssist()
 	if RU:IsLeader() then
-		if not InCombatLockdown() then
+		if not RU:InLockdown() then
 			PlaySound(IG_MAINMENU_OPTION_CHECKBOX_ON)
 			SetEveryoneIsAssistant(self:GetChecked())
 		end
@@ -578,7 +582,7 @@ do
 	end
 
 	local function SetSelected(restrictEnum)
-		if InCombatLockdown() then return end
+		if RU:InLockdown() then return end
 
 		SetRestrictPings(IsSelected(restrictEnum) and RestrictPingsTo.None or restrictEnum)
 	end
@@ -631,7 +635,7 @@ do
 	end
 
 	local function SetSelected(isRaid)
-		if InCombatLockdown() then return end
+		if RU:InLockdown() then return end
 
 		if isRaid then
 			ConvertToRaid()
