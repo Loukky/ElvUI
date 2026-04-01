@@ -71,6 +71,7 @@ UF.badHeaderPoints = {
 UF.headerFunctions = {}
 UF.classMaxResourceBar = { -- also used by Nameplates
 	DEATHKNIGHT = 6,
+	DEMONHUNTER = 6,
 	SHAMAN = E.Retail and 10 or nil,
 	PALADIN = 5,
 	WARLOCK = 5,
@@ -79,7 +80,8 @@ UF.classMaxResourceBar = { -- also used by Nameplates
 	MAGE = 4,
 	ROGUE = 7,
 	DRUID = 5,
-	PRIEST = 3
+	PRIEST = 3,
+	HUNTER = 3
 }
 
 function UF:GetAuraSortTime(which, a, b)
