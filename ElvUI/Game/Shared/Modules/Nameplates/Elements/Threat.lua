@@ -47,7 +47,7 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 		end
 
 		if not db.skipGoodColor or (Color ~= colors.goodColor) then
-			nameplate.Health:SetStatusBarColor(Color.r, Color.g, Color.b)
+			NP:SetStatusBarColor(nameplate.Health, Color.r, Color.g, Color.b)
 			nameplate.threatHealth = true
 		end
 
