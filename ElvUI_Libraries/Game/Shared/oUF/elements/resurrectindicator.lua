@@ -26,7 +26,7 @@ local _, ns = ...
 local oUF = ns.oUF
 
 local UnitHasIncomingResurrection = UnitHasIncomingResurrection
-local RESURRECT_ICON = oUF.isRetail and [[Interface\RaidFrame\RaidFrame-Icon-Rez]] or [[Interface\RaidFrame\Raid-Icon-Rez]]
+local RESURRECT_ICON = [[Interface\RaidFrame\Raid-Icon-Rez]]
 
 local function Update(self, event, unit)
 	if(self.unit ~= unit) then return end
