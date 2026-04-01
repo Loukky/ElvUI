@@ -1060,7 +1060,7 @@ P.nameplates = {
 			},
 			PRIEST = { r = 0.40, g = 0.00, b = 0.80, a = 1 }, -- shadow orbs
 			WARLOCK = {
-				SOUL_SHARDS = { r = 0.58, g = 0.51, b = 0.79, a = 1 },
+				SOUL_SHARDS = { r = 0.50, g = 0.25, b = 0.80, a = 1 },
 				DEMONIC_FURY = { r = 0.788, g = 0.259, b = 0.992, a = 1 },
 				BURNING_EMBERS = {
 					{ r = 1.00, g = 0.60, b = 0.20, a = 1 },
