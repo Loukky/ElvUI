@@ -72,7 +72,7 @@ function NP:Construct_Health(nameplate)
 	Health:SetStatusBarTexture(LSM:Fetch('statusbar', NP.db.statusbar))
 	Health.UpdateColor = NP.Health_UpdateColor
 
-	Health.colorReaction = not E.Retail
+	Health.colorReaction = true
 	Health.considerSelectionInCombatHostile = true
 
 	NP.StatusBars[Health] = 'health'
