@@ -936,7 +936,7 @@ P.nameplates = {
 			eliteBoss = { r = 0.85, g = 0.25, b = 0.65, a = 1 },
 			eliteMini = { r = 0.47, g = 0.25, b = 0.76, a = 1 },
 			caster = { r = 0, g = 0.50, b = 0.78, a = 1 },
-			melee = { r = 0.55, g = 0.30, b = 0.15, a = 1 },
+			melee = { r = 0.55, g = 0.30, b = 0.15, a = 1 }, -- unused
 		},
 		reactions = {
 			[1] = { r = 0.80, g = 0.30, b = 0.21, a = 1 }, -- Hated

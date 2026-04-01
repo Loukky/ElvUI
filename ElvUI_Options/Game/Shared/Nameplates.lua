@@ -672,12 +672,10 @@ do
 		eliteMini = { order = 3, name = L["Elite Mini"] },
 		rareelite = { order = 4, name = L["Rare Elite"] },
 		rare = { order = 5, name = L["Rare"] },
-		caster = { order = 6, name = L["Caster"] },
-		melee = { order = 7, name = L["Melee"] }
+		caster = { order = 6, name = L["Caster"] }
 	}
 
-	for key in next, NP.db.colors.classification do
-		local info = data[key]
+	for key, info in next, data do
 		NamePlates.colorsGroup.args.classification.args[key] = ACH:Color(info.name, nil, info.order)
 	end
 end

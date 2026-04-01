@@ -1452,8 +1452,8 @@ function E:GetClassificationColor(unit)
 		return 'eliteBoss'
 	elseif classification == 'elite' and (unitLevel >= (maxLevel + 1)) then
 		return 'eliteMini'
-	else
-		return (baseClass == 'PALADIN' and 'caster') or 'melee'
+	elseif baseClass == 'PALADIN' then
+		return 'caster'
 	end
 end
 
