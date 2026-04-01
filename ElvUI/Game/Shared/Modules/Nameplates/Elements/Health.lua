@@ -16,7 +16,7 @@ local CreateFrame = CreateFrame
 local StatusBarInterpolation = Enum.StatusBarInterpolation
 
 function NP:Health_UpdateColor(_, unit)
-	if not unit or self.unit ~= unit then return end
+	if self.threatHealth or (not unit or self.unit ~= unit) then return end
 
 	local element = self.Health
 	local useSelection = E.Retail and element.colorSelection and E:UnitSelectionType(unit, element.considerSelectionInCombatHostile)

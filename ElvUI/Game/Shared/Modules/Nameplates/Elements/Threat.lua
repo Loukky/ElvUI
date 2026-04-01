@@ -25,6 +25,7 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 	local nameplate, colors, db = self.__owner, NP.db.colors.threat, NP.db.threat
 
 	nameplate.threatStatus = status -- export for plugins
+	nameplate.threatHealth = nil
 
 	if not status then
 		nameplate.threatScale = 1
@@ -47,6 +48,7 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 
 		if not db.skipGoodColor or (Color ~= colors.goodColor) then
 			nameplate.Health:SetStatusBarColor(Color.r, Color.g, Color.b)
+			nameplate.threatHealth = true
 		end
 
 		if Scale then
@@ -78,7 +80,11 @@ function NP:Update_ThreatIndicator(nameplate)
 		end
 
 		nameplate.ThreatIndicator:SetAlpha(db.indicator and 1 or 0)
-	elseif nameplate:IsElementEnabled('ThreatIndicator') then
-		nameplate:DisableElement('ThreatIndicator')
+	else
+		nameplate.threatHealth = nil
+
+		if nameplate:IsElementEnabled('ThreatIndicator') then
+			nameplate:DisableElement('ThreatIndicator')
+		end
 	end
 end
