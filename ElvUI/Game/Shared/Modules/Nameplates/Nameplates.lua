@@ -844,13 +844,6 @@ function NP:NAME_PLATE_UNIT_REMOVED(event, unit)
 		self.QuestIcons:Hide()
 	end
 
-	local blizzAuras = NP.db.useBlizzardAuras and self.blizzAuras
-	if blizzAuras then
-		wipe(blizzAuras.BuffList)
-		wipe(blizzAuras.DebuffList)
-		wipe(blizzAuras.CrowdControlList)
-	end
-
 	-- vars that we need to keep in a nonstale state
 	self.Health.cur = nil -- cutaway
 	self.Power.cur = nil -- cutaway
