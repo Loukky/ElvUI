@@ -1435,7 +1435,7 @@ function E:UnitEffectiveLevel(unit)
 	end
 end
 
-function E:GetClassificationColor(unit)
+function E:GetClassificationType(unit)
 	if UnitIsPlayer(unit) then return end
 
 	local baseClass = UnitClassBase(unit)

@@ -20,7 +20,7 @@ function NP:Health_UpdateColor(_, unit)
 
 	local element = self.Health
 	local useSelection = E.Retail and element.colorSelection and E:UnitSelectionType(unit, element.considerSelectionInCombatHostile)
-	local useClassification = element.colorClassification and (not element.colorClassificationInInstance or NP.InInstance) and E:GetClassificationColor(unit)
+	local useClassification = element.colorClassification and (not element.colorClassificationInInstance or NP.InInstance) and E:GetClassificationType(unit)
 	local useReaction = element.colorReaction and UnitReaction(unit, 'player')
 
 	local color
