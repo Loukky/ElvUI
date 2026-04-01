@@ -26,6 +26,12 @@ L["MEDIUM"] = true
 L["TOOLTIP"] = true
 ----------------------------------
 
+L["FIRE_BLAST"] = "Fire Blast"
+L["EBON_MIGHT"] = "Ebon Might"
+L["SOUL_CLEAVE"] = "Soul Cleave"
+L["SOUL_FRAGMENTS"] = "Soul Fragments"
+L["SPEAR_TIP"] = "Tip of the Spear"
+
 L["%s and then %s"] = "%s ve ardından %s"
 L["*%s|r|cFFffffff below.  Made with|r |cFFff75dd<3|r |cFFffffffby the Tukui Community.|r"] = true
 L["24-Hour Time"] = "24 Saatlik Zaman"
@@ -1995,7 +2001,6 @@ L["DEFAULT"] = "Varsayilan"
 L["DEMONIC_FURY"] = "Demonic Fury"
 L["DRESSUP_FRAME"] = "Giyinme Odasi"
 L["DUNGEON_DIFFICULTY"] = "Zindan Zorlugu"
-L["EBON_MIGHT"] = true
 L["ELVUI_CREDITS"] = true
 L["ENCOUNTER_JOURNAL"] = "Zindan Arsivi"
 L["ENEMY_NPC"] = "Dusman NPC"
@@ -2082,7 +2087,6 @@ L["SCRAP_BUTTON"] = "Hurda"
 L["SHADOW_ORBS"] = "Shadow Orbs"
 L["SHIFT_KEY_TEXT"] = "SHIFT"
 L["SHORT"] = "Kisa"
-L["SOUL_FRAGMENTS"] = true
 L["SOUL_SHARDS"] = "Ruh |4Shard:Parcalari;"
 L["SPEED"] = "Hiz"
 L["SPELLBOOK"] = "Buyu Kitabi"

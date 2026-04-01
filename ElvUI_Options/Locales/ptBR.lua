@@ -26,6 +26,12 @@ L["MEDIUM"] = "Médio"
 L["TOOLTIP"] = "Dicas de Interface"
 ----------------------------------
 
+L["FIRE_BLAST"] = "Fire Blast"
+L["EBON_MIGHT"] = "Ebon Might"
+L["SOUL_CLEAVE"] = "Soul Cleave"
+L["SOUL_FRAGMENTS"] = "Soul Fragments"
+L["SPEAR_TIP"] = "Tip of the Spear"
+
 L["%s and then %s"] = "%s e depois %s"
 L["*%s|r|cFFffffff below.  Made with|r |cFFff75dd<3|r |cFFffffffby the Tukui Community.|r"] = true
 L["24-Hour Time"] = "24 horas"
@@ -1995,7 +2001,6 @@ L["DEFAULT"] = "Padrão"
 L["DEMONIC_FURY"] = "Demonic Fury"
 L["DRESSUP_FRAME"] = "Provador"
 L["DUNGEON_DIFFICULTY"] = "Dificuldade da masmorra"
-L["EBON_MIGHT"] = true
 L["ELVUI_CREDITS"] = true
 L["ENCOUNTER_JOURNAL"] = "Almanaque de Masmorras"
 L["ENEMY_NPC"] = "NPC Inimigo"
@@ -2082,7 +2087,6 @@ L["SCRAP_BUTTON"] = "Sucatear"
 L["SHADOW_ORBS"] = "Shadow Orbs"
 L["SHIFT_KEY_TEXT"] = "SHIFT"
 L["SHORT"] = "Pequeno"
-L["SOUL_FRAGMENTS"] = true
 L["SOUL_SHARDS"] = "|4Fragmento:Fragmentos; de Alma"
 L["SPEED"] = "Velocidade"
 L["SPELLBOOK"] = "Grimório"

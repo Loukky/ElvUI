@@ -26,6 +26,12 @@ L["MEDIUM"] = true
 L["TOOLTIP"] = true
 ----------------------------------
 
+L["FIRE_BLAST"] = "Fire Blast"
+L["EBON_MIGHT"] = "Ebon Might"
+L["SOUL_CLEAVE"] = "Soul Cleave"
+L["SOUL_FRAGMENTS"] = "Soul Fragments"
+L["SPEAR_TIP"] = "Tip of the Spear"
+
 L["%s and then %s"] = "%s et alors %s"
 L["*%s|r|cFFffffff below.  Made with|r |cFFff75dd<3|r |cFFffffffby the Tukui Community.|r"] = true
 L["24-Hour Time"] = "Mode 24 Heures"
@@ -1995,7 +2001,6 @@ L["DEFAULT"] = "Défaut"
 L["DEMONIC_FURY"] = "Demonic Fury"
 L["DRESSUP_FRAME"] = "Cabine d'essayage"
 L["DUNGEON_DIFFICULTY"] = "Difficulté du donjon"
-L["EBON_MIGHT"] = true
 L["ELVUI_CREDITS"] = true
 L["ENCOUNTER_JOURNAL"] = "Codex des donjons"
 L["ENEMY_NPC"] = "PNJ ennemi"
@@ -2082,7 +2087,6 @@ L["SCRAP_BUTTON"] = "Récupération"
 L["SHADOW_ORBS"] = "Shadow Orbs"
 L["SHIFT_KEY_TEXT"] = "MAJ"
 L["SHORT"] = "Court"
-L["SOUL_FRAGMENTS"] = true
 L["SOUL_SHARDS"] = "Éclat d'âme"
 L["SPEED"] = "Vitesse"
 L["SPELLBOOK"] = "Grimoire"

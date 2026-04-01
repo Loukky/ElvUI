@@ -26,6 +26,12 @@ L["MEDIUM"] = true
 L["TOOLTIP"] = true
 ----------------------------------
 
+L["FIRE_BLAST"] = "Fire Blast"
+L["EBON_MIGHT"] = "Ebon Might"
+L["SOUL_CLEAVE"] = "Soul Cleave"
+L["SOUL_FRAGMENTS"] = "Soul Fragments"
+L["SPEAR_TIP"] = "Tip of the Spear"
+
 L["%s and then %s"] = "%s 이후 %s"
 L["*%s|r|cFFffffff below.  Made with|r |cFFff75dd<3|r |cFFffffffby the Tukui Community.|r"] = true
 L["24-Hour Time"] = "24시제로 표시"
@@ -1995,7 +2001,6 @@ L["DEFAULT"] = "기본"
 L["DEMONIC_FURY"] = "Demonic Fury"
 L["DRESSUP_FRAME"] = "미리보기"
 L["DUNGEON_DIFFICULTY"] = "던전 난이도"
-L["EBON_MIGHT"] = true
 L["ELVUI_CREDITS"] = true
 L["ENCOUNTER_JOURNAL"] = "던전 도감"
 L["ENEMY_NPC"] = "적군 NPC"
@@ -2082,7 +2087,6 @@ L["SCRAP_BUTTON"] = "분해"
 L["SHADOW_ORBS"] = "Shadow Orbs"
 L["SHIFT_KEY_TEXT"] = "SHIFT"
 L["SHORT"] = "줄이기"
-L["SOUL_FRAGMENTS"] = true
 L["SOUL_SHARDS"] = "영혼의 조각"
 L["SPEED"] = "속도"
 L["SPELLBOOK"] = "마법책"

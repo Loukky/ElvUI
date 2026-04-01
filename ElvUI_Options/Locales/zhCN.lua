@@ -26,6 +26,12 @@ L["MEDIUM"] = true -- should not be translated
 L["TOOLTIP"] = true -- should not be translated
 ----------------------------------
 
+L["FIRE_BLAST"] = "Fire Blast"
+L["EBON_MIGHT"] = "黑檀之力"
+L["SOUL_CLEAVE"] = "Soul Cleave"
+L["SOUL_FRAGMENTS"] = "灵魂碎片"
+L["SPEAR_TIP"] = "Tip of the Spear"
+
 L["%s and then %s"] = "先%s后%s"
 L["*%s|r|cFFffffff below.  Made with|r |cFFff75dd<3|r |cFFffffffby the Tukui Community.|r"] = "*%s|r |cFFffffff此插件由 Tukui 社区共建, 为|cFFff75dd爱|r|cFFffffff而生.|r"
 L["24-Hour Time"] = "24小时制"
@@ -1995,7 +2001,6 @@ L["DEFAULT"] = "默认"
 L["DEMONIC_FURY"] = "恶魔之怒"
 L["DRESSUP_FRAME"] = "试衣间"
 L["DUNGEON_DIFFICULTY"] = "地下城难度"
-L["EBON_MIGHT"] = "黑檀之力"
 L["ELVUI_CREDITS"] = "特别感谢以下人员, 他们通过测试、编码以及捐赠来帮助我们维护这个插件."
 L["ENCOUNTER_JOURNAL"] = "地下城手册"
 L["ENEMY_NPC"] = "敌对 NPC"
@@ -2082,7 +2087,6 @@ L["SCRAP_BUTTON"] = "拆解"
 L["SHADOW_ORBS"] = "暗影宝珠"
 L["SHIFT_KEY_TEXT"] = "SHIFT"
 L["SHORT"] = "短"
-L["SOUL_FRAGMENTS"] = "灵魂碎片"
 L["SOUL_SHARDS"] = "灵魂碎片"
 L["SPEED"] = "速度"
 L["SPELLBOOK"] = "法术书"

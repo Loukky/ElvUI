@@ -26,6 +26,12 @@ L["MEDIUM"] = "Mittel"
 L["TOOLTIP"] = true--No need to translate
 ----------------------------------
 
+L["FIRE_BLAST"] = "Fire Blast"
+L["EBON_MIGHT"] = "Ebon Might"
+L["SOUL_CLEAVE"] = "Soul Cleave"
+L["SOUL_FRAGMENTS"] = "Seelenfragment"
+L["SPEAR_TIP"] = "Tip of the Spear"
+
 L["%s and then %s"] = "%s und dann %s"
 L["*%s|r|cFFffffff below.  Made with|r |cFFff75dd<3|r |cFFffffffby the Tukui Community.|r"] = "*%s|r|cFFffffff unten. Erstellt mit|r |cFFff75dd<3|r |cFFffffffvon der Tukui-Community.|r"
 L["24-Hour Time"] = "24-Stunden Format"
@@ -1995,7 +2001,6 @@ L["DEFAULT"] = "Standard"
 L["DEMONIC_FURY"] = "Demonic Fury"
 L["DRESSUP_FRAME"] = "Anprobe"
 L["DUNGEON_DIFFICULTY"] = "Schwierigkeitsgrad"
-L["EBON_MIGHT"] = true
 L["ELVUI_CREDITS"] = true
 L["ENCOUNTER_JOURNAL"] = "Dungeonkompendium"
 L["ENEMY_NPC"] = "Gegnerischer NPC"
@@ -2082,7 +2087,6 @@ L["SCRAP_BUTTON"] = "Verschrotten"
 L["SHADOW_ORBS"] = "Shadow Orbs"
 L["SHIFT_KEY_TEXT"] = "UMSCHALT"
 L["SHORT"] = "Kurz"
-L["SOUL_FRAGMENTS"] = "Seelenfragment"
 L["SOUL_SHARDS"] = "Seelensplitter"
 L["SPEED"] = "Geschwindigkeit"
 L["SPELLBOOK"] = "Zauberbuch"

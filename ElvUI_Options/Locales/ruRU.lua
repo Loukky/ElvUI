@@ -27,6 +27,12 @@ L["MEDIUM"] = true
 L["TOOLTIP"] = true
 ----------------------------------
 
+L["FIRE_BLAST"] = "Fire Blast"
+L["EBON_MIGHT"] = "Ebon Might"
+L["SOUL_CLEAVE"] = "Soul Cleave"
+L["SOUL_FRAGMENTS"] = "Soul Fragments"
+L["SPEAR_TIP"] = "Tip of the Spear"
+
 L["%s and then %s"] = "%s, а затем %s"
 L["*%s|r|cFFffffff below.  Made with|r |cFFff75dd<3|r |cFFffffffby the Tukui Community.|r"] = true
 L["24-Hour Time"] = "24х часовой формат"
@@ -1996,7 +2002,6 @@ L["DEFAULT"] = "По умолчанию"
 L["DEMONIC_FURY"] = "Demonic Fury"
 L["DRESSUP_FRAME"] = "Примерочная"
 L["DUNGEON_DIFFICULTY"] = "Сложность подземелья"
-L["EBON_MIGHT"] = true
 L["ELVUI_CREDITS"] = true
 L["ENCOUNTER_JOURNAL"] = "Атлас подземелий"
 L["ENEMY_NPC"] = "Враждебный НИП"
@@ -2083,7 +2088,6 @@ L["SCRAP_BUTTON"] = "Утилизировать"
 L["SHADOW_ORBS"] = "Shadow Orbs"
 L["SHIFT_KEY_TEXT"] = "Shift"
 L["SHORT"] = "Ниже"
-L["SOUL_FRAGMENTS"] = true
 L["SOUL_SHARDS"] = "|4осколок:осколка:осколков души;"
 L["SPEED"] = "Скорость"
 L["SPELLBOOK"] = "Способности"

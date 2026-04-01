@@ -26,6 +26,12 @@ L["MEDIUM"] = "Medio"
 L["TOOLTIP"] = "Descripción Emergente"
 ----------------------------------
 
+L["FIRE_BLAST"] = "Fire Blast"
+L["EBON_MIGHT"] = "Ebon Might"
+L["SOUL_CLEAVE"] = "Soul Cleave"
+L["SOUL_FRAGMENTS"] = "Soul Fragments"
+L["SPEAR_TIP"] = "Tip of the Spear"
+
 L["%s and then %s"] = "%s y entonces %s"
 L["*%s|r|cFFffffff below.  Made with|r |cFFff75dd<3|r |cFFffffffby the Tukui Community.|r"] = true
 L["24-Hour Time"] = "Tiempo de 24 horas"
@@ -1995,7 +2001,6 @@ L["DEFAULT"] = "Predeterminado"
 L["DEMONIC_FURY"] = "Demonic Fury"
 L["DRESSUP_FRAME"] = "Probador"
 L["DUNGEON_DIFFICULTY"] = "Dificultad de mazmorra"
-L["EBON_MIGHT"] = true
 L["ELVUI_CREDITS"] = true
 L["ENCOUNTER_JOURNAL"] = "Guía de mazmorras"
 L["ENEMY_NPC"] = "Enemy NPC"
@@ -2082,7 +2087,6 @@ L["SCRAP_BUTTON"] = "Aprovechar"
 L["SHADOW_ORBS"] = "Shadow Orbs"
 L["SHIFT_KEY_TEXT"] = "MAYÚS"
 L["SHORT"] = "Corto"
-L["SOUL_FRAGMENTS"] = true
 L["SOUL_SHARDS"] = "|4Fragmento:Fragmentos; de alma"
 L["SPEED"] = "Velocidad"
 L["SPELLBOOK"] = "Hechizos"
