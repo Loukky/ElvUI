@@ -868,6 +868,33 @@ function NP:UNIT_FACTION(_, unit)
 	NP:UpdatePlateBase(self)
 end
 
+function NP:GetThreatSituationColor(indicator, status)
+	local colors, color = NP.db.colors.threat
+	if status == 3 then -- securely tanking
+		color = (indicator.useSolo and colors.soloColor) or (indicator.isTank and colors.goodColor) or colors.badColor
+	elseif status == 2 then -- insecurely tanking
+		color = (indicator.offTank and colors.offTankColorBadTransition) or (indicator.isTank and colors.badTransition) or colors.goodTransition
+	elseif status == 1 then -- not tanking but threat higher than tank
+		color = (indicator.offTank and colors.offTankColorGoodTransition) or (indicator.isTank and colors.goodTransition) or colors.badTransition
+	else -- not tanking at all
+		color = (indicator.offTank and colors.offTankColor) or (indicator.isTank and colors.badColor) or colors.goodColor
+	end
+
+	return not NP.db.threat.skipGoodColor or (color ~= colors.goodColor), color
+end
+
+function NP:GetThreatSituationScale(indicator, db, status)
+	if status == 3 then -- securely tanking
+		return (indicator.useSolo and db.goodScale) or (indicator.isTank and db.goodScale) or db.badScale
+	elseif status == 2 then -- insecurely tanking
+		return 1
+	elseif status == 1 then -- not tanking but threat higher than tank
+		return 1
+	else -- not tanking at all
+		return (indicator.offTank and db.goodScale) or (indicator.isTank and db.badScale) or db.goodScale
+	end
+end
+
 function NP:AuraFilter(...)
 	if NP.db.useBlizzardAuras then
 		return true -- already filtered by blizzard
