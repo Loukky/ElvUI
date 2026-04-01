@@ -72,7 +72,7 @@ function NP:Construct_Health(nameplate)
 	Health:SetStatusBarTexture(LSM:Fetch('statusbar', NP.db.statusbar))
 	Health.UpdateColor = NP.Health_UpdateColor
 
-	Health.colorReaction = true
+	Health.colorReaction = not E.Retail
 	Health.considerSelectionInCombatHostile = true
 
 	NP.StatusBars[Health] = 'health'
@@ -88,11 +88,10 @@ function NP:Update_Health(nameplate)
 	if db.health.enable then
 		if not nameplate:IsElementEnabled('Health') then
 			nameplate:EnableElement('Health')
-
-			nameplate.Health:SetColorTapping(true)
-			nameplate.Health:SetColorSelection(E.Retail)
 		end
 
+		nameplate.Health:SetColorTapping(true)
+		nameplate.Health:SetColorSelection(E.Retail)
 		nameplate.Health.colorClassification = db.health and db.health.useClassificationColor and (not db.health.useClassificationColorInInstance or NP.InInstance)
 		nameplate.Health.colorClass = db.health and db.health.useClassColor
 
