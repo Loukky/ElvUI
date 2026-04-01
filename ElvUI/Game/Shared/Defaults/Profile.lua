@@ -1020,8 +1020,13 @@ P.nameplates = {
 			PALADIN = { r = 0.89, g = 0.88, b = 0.06, a = 1 },
 			DEMONHUNTER = {
 				SOUL_FRAGMENTS = { r = 0.3, g = 0.15, b = 1, a = 1 },
+				SOUL_CLEAVE = { r = 0.45, g = 0.25, b = 1, a = 1 },
+			},
+			HUNTER =  {
+				SPEAR_TIP = { r = 0, g = 0.85, b = 0.85, a = 1 },
 			},
 			MAGE = {
+				FIRE_BLAST = { r = 1.00, g = 0.40, b = 0, a = 1 },
 				FROST_ICICLES = { r = 0, g = 0.80, b = 1.00, a = 1 },
 				ARCANE_CHARGES = { r = 0, g = 0.40, b = 1.00, a = 1 }
 			},
