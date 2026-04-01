@@ -593,6 +593,7 @@ L["Display Tooltip on Raid Markers."] = "Tooltip für Raid-Markierungen anzeigen
 L["Display Types"] = "Anzeigetypen"
 L["Displayed Currency"] = "Angezeigte Währung"
 L["Displays a detailed report of every item sold when enabled."] = "Zeigt einen detaillierten Report von jedem verkauften Gegenstand wenn aktiviert."
+L["Displays Buffs and Debuffs exactly like on default Blizzard Nameplates. This option disables all ElvUI filters."] = "Zeigt Stärkungs- und Schwächungszauber genau so an wie die Standard Blizzard Namensplaketten. Diese Option deaktiviert alle ElvUI Filter."
 L["Displays item info on center of item."] = "Zeigt Artikelinformationen in der Mitte des Artikels an."
 L["Displays item level on equippable items."] = "Zeigt das Itemlevel für ausrüstbare Gegenstände an."
 L["Displays the gender of players."] = "Zeigt das Geschlecht eines Spielers an."

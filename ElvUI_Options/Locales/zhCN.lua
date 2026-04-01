@@ -593,6 +593,7 @@ L["Display Tooltip on Raid Markers."] = "在团队标记上显示鼠标提示"
 L["Display Types"] = "显示类型"
 L["Displayed Currency"] = "显示的货币"
 L["Displays a detailed report of every item sold when enabled."] = "启用后显示包含每个物品金额的详细报告"
+L["Displays Buffs and Debuffs exactly like on default Blizzard Nameplates. This option disables all ElvUI filters."] = true
 L["Displays item info on center of item."] = "在物品的中间显示物品信息"
 L["Displays item level on equippable items."] = "显示可装备物品的物品等级"
 L["Displays the gender of players."] = "显示玩家性别"

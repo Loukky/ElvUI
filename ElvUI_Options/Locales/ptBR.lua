@@ -593,6 +593,7 @@ L["Display Tooltip on Raid Markers."] = true
 L["Display Types"] = "Mostrar Tipos"
 L["Displayed Currency"] = "Moeda mostrada"
 L["Displays a detailed report of every item sold when enabled."] = "Mostra um relatório detalhado de cada item vendido quando habilitado."
+L["Displays Buffs and Debuffs exactly like on default Blizzard Nameplates. This option disables all ElvUI filters."] = true
 L["Displays item info on center of item."] = "Mostra informação do item no centro do item."
 L["Displays item level on equippable items."] = "Mostra o item level de itens equipáveis."
 L["Displays the gender of players."] = "Mostra o gênero dos jogadores."

@@ -593,6 +593,7 @@ L["Display Tooltip on Raid Markers."] = true
 L["Display Types"] = "Goruntu Turleri"
 L["Displayed Currency"] = "Gosterilen Para Birimi"
 L["Displays a detailed report of every item sold when enabled."] = "Etkinlestirildiginde satilan her ogenin ayrintili bir raporunu gosterir."
+L["Displays Buffs and Debuffs exactly like on default Blizzard Nameplates. This option disables all ElvUI filters."] = true
 L["Displays item info on center of item."] = "Oge bilgilerini ogenin ortasinda goruntuler."
 L["Displays item level on equippable items."] = "Kusanilabilir esyalarda esya seviyesini gosterir."
 L["Displays the gender of players."] = "Oyuncularin cinsiyetini gosterir."

@@ -593,6 +593,7 @@ L["Display Tooltip on Raid Markers."] = true
 L["Display Types"] = "기록할 종류"
 L["Displayed Currency"] = "표시된 화폐"
 L["Displays a detailed report of every item sold when enabled."] = "활성화하면 판매된 모든 아이템의 상세보고를 표시합니다."
+L["Displays Buffs and Debuffs exactly like on default Blizzard Nameplates. This option disables all ElvUI filters."] = true
 L["Displays item info on center of item."] = "아이템 중앙에 항목 정보를 표시합니다."
 L["Displays item level on equippable items."] = "착용 가능한 아이템의 경우 아이템 슬롯에 템렙을 표시합니다."
 L["Displays the gender of players."] = "플레이어의 성별을 표시합니다."
