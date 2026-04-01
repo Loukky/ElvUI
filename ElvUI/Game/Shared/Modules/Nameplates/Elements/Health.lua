@@ -20,7 +20,7 @@ function NP:Health_UpdateColor(_, unit)
 
 	local element = self.Health
 	local useSelection = E.Retail and element.colorSelection and E:UnitSelectionType(unit, element.considerSelectionInCombatHostile)
-	local useClassification = element.colorClassification and E:GetClassificationColor(unit)
+	local useClassification = element.colorClassification and (not element.colorClassificationInInstance or NP.InInstance) and E:GetClassificationColor(unit)
 	local useReaction = element.colorReaction and UnitReaction(unit, 'player')
 
 	local color
@@ -92,7 +92,8 @@ function NP:Update_Health(nameplate)
 
 		nameplate.Health:SetColorTapping(true)
 		nameplate.Health:SetColorSelection(E.Retail)
-		nameplate.Health.colorClassification = db.health and db.health.useClassificationColor and (not db.health.useClassificationColorInInstance or NP.InInstance)
+		nameplate.Health.colorClassification = db.health and db.health.useClassificationColor
+		nameplate.Health.colorClassificationInInstance = db.health and db.health.useClassificationColorInInstance
 		nameplate.Health.colorClass = db.health and db.health.useClassColor
 
 		nameplate.Health:SetFrameLevel(5)
