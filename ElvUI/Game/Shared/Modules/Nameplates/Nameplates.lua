@@ -30,6 +30,7 @@ local UnitReaction = UnitReaction
 local UnitWidgetSet = UnitWidgetSet
 
 local UnitNameplateShowsWidgetsOnly = UnitNameplateShowsWidgetsOnly
+local IsAuraFilteredOutByInstanceID = C_UnitAuras.IsAuraFilteredOutByInstanceID
 
 local C_NamePlate_GetNamePlateForUnit = C_NamePlate.GetNamePlateForUnit
 local C_NamePlate_SetNamePlateEnemySize = C_NamePlate.SetNamePlateEnemySize
@@ -892,19 +893,19 @@ function NP:BlizzardPlate_RefreshList(listFrame, auraList)
 	local blizzAuras = nameplate and nameplate.blizzAuras
 	if not blizzAuras then return end
 
-	local list
+	local list, filter
 	if listFrame == self.BuffListFrame and auraList == self.buffList then
-		list = blizzAuras.BuffList
+		list, filter = blizzAuras.BuffList, 'HELPFUL|INCLUDE_NAME_PLATE_ONLY'
 	elseif listFrame == self.DebuffListFrame and auraList == self.debuffList then
-		list = blizzAuras.DebuffList
+		list, filter = blizzAuras.DebuffList, 'HARMFUL|INCLUDE_NAME_PLATE_ONLY|PLAYER'
 	elseif listFrame == self.CrowdControlListFrame and auraList == self.crowdControlList then
-		list = blizzAuras.CrowdControlList
+		list, filter = blizzAuras.CrowdControlList, 'HARMFUL|INCLUDE_NAME_PLATE_ONLY'
 	end
 
 	if list then
 		nameplate.allowAuraUpdate = true
 
-		NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList)
+		NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList, filter)
 	end
 end
 
@@ -1029,11 +1030,11 @@ function NP:SetStatusBarColor(bar, r, g, b)
 	end
 end
 
-function NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList)
+function NP:BlizzardAuras_UpdateAuras(list, listFrame, auraList, filter)
 	wipe(list)
 
 	for _, child in next, { listFrame:GetChildren() } do
-		list[child.auraInstanceID] = auraList[child.auraInstanceID] or nil
+		list[child.auraInstanceID] = not IsAuraFilteredOutByInstanceID(child.unitToken, child.auraInstanceID, filter) and auraList[child.auraInstanceID] or nil
 	end
 end
 
