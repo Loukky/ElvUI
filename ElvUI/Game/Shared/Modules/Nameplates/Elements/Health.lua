@@ -20,25 +20,29 @@ function NP:Health_UpdateColor(_, unit)
 
 	local element, color = self.Health
 	local controlled = UnitPlayerControlled(unit)
-	local useSelection = E.Retail and element.colorSelection and E:UnitSelectionType(unit, element.considerSelectionInCombatHostile)
-	local useClassification = element.colorClassification and (not element.colorClassificationInInstance or NP.InInstance) and E:GetClassificationType(unit)
-	local useThreat = element.colorThreat and not controlled and E:GetThreatSituation(unit, 'player')
-	local useReaction = element.colorReaction and UnitReaction(unit, 'player')
-
 	if element.colorDisconnected and not UnitIsConnected(unit) then
 		color = self.colors.disconnected
 	elseif element.colorTapping and not controlled and UnitIsTapDenied(unit) then
 		color = NP.Colors.tapped
-	elseif useThreat then
-		NP.ThreatIndicator_PreUpdate(self.ThreatIndicator, unit)
+	end
 
-		local allowChange, threatColor = NP:GetThreatSituationColor(self.ThreatIndicator, useThreat)
-		if allowChange then
-			color = threatColor
+	if not color then
+		local useThreat = element.colorThreat and not controlled and E:GetThreatSituation(unit, 'player')
+		if useThreat then
+			NP.ThreatIndicator_PreUpdate(self.ThreatIndicator, unit)
+
+			local allowChange, threatColor = NP:GetThreatSituationColor(self.ThreatIndicator, useThreat)
+			if allowChange then
+				color = threatColor
+			end
 		end
 	end
 
 	if not color then
+		local useSelection = E.Retail and element.colorSelection and E:UnitSelectionType(unit, element.considerSelectionInCombatHostile)
+		local useClassification = element.colorClassification and (not element.colorClassificationInInstance or NP.InInstance) and E:GetClassificationType(unit)
+		local useReaction = element.colorReaction and UnitReaction(unit, 'player')
+
 		if useClassification then
 			color = NP.Colors.classification[useClassification]
 		elseif (element.colorClass and self.isPlayer) or (element.colorClassNPC and not self.isPlayer) or (element.colorClassPet and controlled and not self.isPlayer) then
