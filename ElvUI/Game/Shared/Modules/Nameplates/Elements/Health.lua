@@ -26,13 +26,18 @@ function NP:Health_UpdateColor(_, unit)
 		color = NP.Colors.tapped
 	end
 
+	local useClassification
 	if not color then
+		useClassification = element.colorClassification and (not element.colorClassificationInInstance or NP.InInstance) and E:GetClassificationType(unit)
+
 		local useThreat = element.colorThreat and not controlled and E:GetThreatSituation(unit, 'player')
 		if useThreat then
 			NP.ThreatIndicator_PreUpdate(self.ThreatIndicator, unit)
 
-			local allowChange, threatColor = NP:GetThreatSituationColor(self.ThreatIndicator, useThreat)
-			if allowChange then
+			local threatColor, goodColor = NP:GetThreatSituationColor(self.ThreatIndicator, useThreat)
+			if goodColor and useClassification and NP.db.threat.useThreatClassification then
+				color = NP.Colors.classification[useClassification] or threatColor
+			else
 				color = threatColor
 			end
 		end
@@ -40,9 +45,7 @@ function NP:Health_UpdateColor(_, unit)
 
 	if not color then
 		local useSelection = E.Retail and element.colorSelection and E:UnitSelectionType(unit, element.considerSelectionInCombatHostile)
-		local useClassification = element.colorClassification and (not element.colorClassificationInInstance or NP.InInstance) and E:GetClassificationType(unit)
 		local useReaction = element.colorReaction and UnitReaction(unit, 'player')
-
 		if useClassification then
 			color = NP.Colors.classification[useClassification]
 		elseif (element.colorClass and self.isPlayer) or (element.colorClassNPC and not self.isPlayer) or (element.colorClassPet and controlled and not self.isPlayer) then

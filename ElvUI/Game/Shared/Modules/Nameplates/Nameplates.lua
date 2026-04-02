@@ -880,7 +880,7 @@ function NP:GetThreatSituationColor(indicator, status)
 		color = (indicator.offTank and colors.offTankColor) or (indicator.isTank and colors.badColor) or colors.goodColor
 	end
 
-	return not NP.db.threat.skipGoodColor or (color ~= colors.goodColor), color
+	return color, color == colors.goodColor
 end
 
 function NP:GetThreatSituationScale(indicator, db, status)
