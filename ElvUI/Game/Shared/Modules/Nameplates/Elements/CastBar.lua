@@ -8,11 +8,12 @@ local next = next
 local strmatch = strmatch
 local utf8sub = string.utf8sub
 
-local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
+local UnitName = UnitName
+local UnitClass = UnitClass
 local CreateFrame = CreateFrame
 local UnitCanAttack = UnitCanAttack
-local UnitName = UnitName
 local UnitNameFromGUID = UnitNameFromGUID
+local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 
 local StatusBarInterpolation = Enum.StatusBarInterpolation
 local INTERRUPTED = INTERRUPTED
@@ -56,13 +57,18 @@ function NP:Castbar_SetText(castbar, db, changed, spellName, unit)
 	local targetChanged
 	if db.displayTarget then
 		local plate = castbar.__owner
-		local target, frameType = castbar.curTarget, plate.frameType
-		if not target and (frameType == 'ENEMY_NPC' or frameType == 'FRIENDLY_NPC') then
-			target = UnitName(unit..'target') -- player or NPCs; if used on other players:
-		end -- the cast target doesn't match their target, can be misleading if they mouseover cast
+		local target, frameType = castbar.targetCurrent, plate.frameType
+
+		local targetClass, _
+		if E.Retail then
+			targetClass = castbar.targetClass
+		elseif not target and (frameType == 'ENEMY_NPC' or frameType == 'FRIENDLY_NPC') then -- player or NPCs; if used on other players:
+			target = UnitName(unit..'target') -- the cast target doesn't match their target, can be misleading if they mouseover cast
+			_, targetClass = UnitClass(unit..'target')
+		end
 
 		if target then
-			local color = (db.displayTargetClass and UF:GetCasterColor(target)) or 'FFdddddd'
+			local color = (db.displayTargetClass and UF:GetCasterColor(targetClass)) or 'FFdddddd'
 			if db.targetStyle == 'SEPARATE' then
 				castbar.TargetText:SetFormattedText('|c%s%s|r', color, target)
 				targetChanged = true
