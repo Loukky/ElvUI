@@ -109,10 +109,6 @@ function S:Blizzard_Transmog()
 		if ItemsFrame then
 			S:HandleEditBox(ItemsFrame.SearchBox)
 			S:HandleButton(ItemsFrame.FilterButton, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, true, 'right')
-			--[[
-				S:HandleButton(ItemsFrame.DisplayTypeUnassignedButton) -- Leave it or change it (unskinned it fits really good tbh)
-				S:HandleButton(ItemsFrame.DisplayTypeEquippedButton) -- Leave it or change it (unskinned it fits really good tbh)
-			]]
 			S:HandleDropDownBox(ItemsFrame.WeaponDropdown)
 
 			S:HandleNextPrevButton(ItemsFrame.PagedContent.PagingControls.PrevPageButton)
@@ -158,6 +154,13 @@ function S:Blizzard_Transmog()
 			hooksecurefunc(SituationsFrame, 'Refresh', SkinSituationsDropdowns)
 		end
 	end
+
+	-- New icon selection
+	_G.TransmogFrame.OutfitPopup:HookScript('OnShow', function(frame)
+		if not frame.IsSkinned then -- set by HandleIconSelectionFrame
+			S:HandleIconSelectionFrame(frame, nil, nil, 'TransmogFrame')
+		end
+	end)
 end
 
 S:AddCallbackForAddon('Blizzard_Transmog')
