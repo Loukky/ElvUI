@@ -245,18 +245,22 @@ function NP:Style(unit)
 end
 
 function NP:Construct_RaisedELement(nameplate)
-	local RaisedElement = CreateFrame('Frame', '$parent_RaisedElement', nameplate)
-	RaisedElement:SetFrameLevel(10)
-	RaisedElement:SetAllPoints()
-	RaisedElement:EnableMouse(false)
+	local element = CreateFrame('Frame', '$parent_RaisedElement', nameplate)
+	element:SetFrameLevel(10)
+	element:SetAllPoints()
+	element:EnableMouse(false)
 
-	local tex = RaisedElement:CreateTexture()
-	tex:SetColorTexture(1, 0, 0, 0)
-	tex:SetAllPoints(RaisedElement)
+	element.frameName = element:GetName()
 
-	RaisedElement.frameName = RaisedElement:GetName()
+	if not element.stackingTexture then
+		local stacking = element:CreateTexture()
+		stacking:SetColorTexture(1, 0, 0, 0)
+		stacking:SetAllPoints(element)
 
-	return RaisedElement
+		element.stackingTexture = stacking
+	end
+
+	return element
 end
 
 function NP:Construct_ClassPowerTwo(nameplate)
