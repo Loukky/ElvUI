@@ -13,6 +13,7 @@ local UnitClass = UnitClass
 local CreateFrame = CreateFrame
 local UnitCanAttack = UnitCanAttack
 local UnitNameFromGUID = UnitNameFromGUID
+local GetPlayerInfoByGUID = GetPlayerInfoByGUID
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 
 local StatusBarInterpolation = Enum.StatusBarInterpolation
@@ -131,7 +132,13 @@ function NP:Castbar_PostCastInterrupted(unit, spellID, interruptedBy)
 	local db = NP:PlateDB(plate)
 	if db.castbar and db.castbar.enable and db.castbar.sourceInterrupt and (db.castbar.timeToHold > 0) then
 		local unitName = UnitNameFromGUID(interruptedBy)
-		if unitName then
+		if not unitName then return end
+
+		if db.castbar.sourceInterruptClassColor then
+			local _, className = GetPlayerInfoByGUID(interruptedBy)
+			local color = className and UF:GetCasterColor(className)
+			self.Text:SetFormattedText('%s [|c%s%s|r]', INTERRUPTED, color or 'FFdddddd', unitName)
+		else
 			self.Text:SetFormattedText('%s [%s]', INTERRUPTED, unitName)
 		end
 	end
