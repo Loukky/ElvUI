@@ -382,7 +382,7 @@ do
 		for _, name in next, elements do
 			local element = nameplate[name]
 			if element then
-				element:SetParent(parent or nameplate)
+				element:SetParent(parent or (name == 'QuestIcons' and nameplate.RaisedElement) or nameplate)
 			end
 		end
 	end
