@@ -554,7 +554,7 @@ function UF:GetCasterColor(targetClass)
 end
 
 function UF:SetCastText(castbar, db, changed, spellName, targetName, targetClass)
-	if E:NotSecretValue(targetName) and targetName then
+	if targetName then
 		local color = db.displayTargetClass and UF:GetCasterColor(targetClass)
 		castbar.Text:SetFormattedText('%s: |c%s%s|r', spellName, color or 'FFdddddd', targetName)
 	elseif changed then -- always true when secret
