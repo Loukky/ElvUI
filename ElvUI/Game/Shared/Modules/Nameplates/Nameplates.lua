@@ -218,9 +218,16 @@ function NP:PLAYER_REGEN_ENABLED()
 end
 
 function NP:Style(unit)
+	local plate = self:GetParent()
 	local frameName = self:GetName()
 	self.frameName = frameName
+	self.blizzPlate = plate and plate.UnitFrame or nil
 	self.isNamePlate = true
+
+	-- little magic fixes fps drops with stacking
+	if plate and plate.SetStackingBoundsFrame then
+		plate:SetStackingBoundsFrame(self.RaisedElement)
+	end
 
 	if frameName == 'ElvNP_Player' then
 		NP.PlayerFrame = self
@@ -731,8 +738,6 @@ end
 function NP:NAME_PLATE_UNIT_ADDED(_, unit)
 	if not unit then unit = self.unit end
 
-	local plate = self:GetParent()
-	self.blizzPlate = plate.UnitFrame
 	self.widgetsOnly = E.Retail and self.blizzPlate and UnitNameplateShowsWidgetsOnly(unit)
 	self.widgetSet = E.Retail and UnitWidgetSet(unit)
 	self.classification = UnitClassification(unit)
