@@ -218,8 +218,10 @@ function NP:PLAYER_REGEN_ENABLED()
 end
 
 function NP:Style(unit)
+	local plate = self:GetParent()
 	local frameName = self:GetName()
 	self.frameName = frameName
+	self.blizzPlate = plate.UnitFrame
 	self.isNamePlate = true -- used in auraskip
 
 	if frameName == 'ElvNP_Player' then
@@ -749,8 +751,6 @@ end
 function NP:NAME_PLATE_UNIT_ADDED(_, unit)
 	if not unit then unit = self.unit end
 
-	local plate = self:GetParent()
-	self.blizzPlate = plate.UnitFrame
 	self.widgetsOnly = E.Retail and self.blizzPlate and UnitNameplateShowsWidgetsOnly(unit)
 	self.widgetSet = E.Retail and UnitWidgetSet(unit)
 	self.classification = UnitClassification(unit)
@@ -923,7 +923,7 @@ function NP:BlizzardPlate_RefreshList(listFrame, auraList)
 	if not NP.db.useBlizzardAuras then return end
 
 	local blizzPlate = self:GetParent()
-	local plate = blizzPlate and blizzPlate:GetParent()
+	local plate = blizzPlate:GetParent()
 
 	local nameplate = plate and plate.unitFrame
 	local blizzAuras = nameplate and nameplate.blizzAuras
