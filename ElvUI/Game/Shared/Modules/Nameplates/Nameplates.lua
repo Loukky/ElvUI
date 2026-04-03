@@ -222,7 +222,7 @@ function NP:Style(unit)
 	local frameName = self:GetName()
 	self.frameName = frameName
 	self.blizzPlate = plate and plate.UnitFrame or nil
-	self.isNamePlate = true
+	self.isNamePlate = true -- used in auraskip
 
 	if frameName == 'ElvNP_Player' then
 		NP.PlayerFrame = self
@@ -236,12 +236,23 @@ function NP:Style(unit)
 		NP:StylePlate(self, unit)
 	end
 
-	-- little magic (part one): fixes fps drops with stacking
-	if plate and plate.SetStackingBoundsFrame and self.RaisedElement then
-		plate:SetStackingBoundsFrame(self.RaisedElement)
+	return self
+end
+
+function NP:Construct_StackingBounds(nameplate)
+	local element = CreateFrame('Frame', '$parent_StackingBounds', nameplate)
+
+	-- little magic (part one): SetStackingBoundsFrame needs it
+	local stacking = element:CreateTexture()
+	stacking:SetColorTexture(1, 0, 0, 0)
+	stacking:SetAllPoints(element)
+
+	-- little magic (part two): fixes fps drops with stacking
+	if nameplate.SetStackingBoundsFrame then
+		nameplate:SetStackingBoundsFrame(element)
 	end
 
-	return self
+	return element
 end
 
 function NP:Construct_RaisedELement(nameplate)
@@ -251,15 +262,6 @@ function NP:Construct_RaisedELement(nameplate)
 	element:EnableMouse(false)
 
 	element.frameName = element:GetName()
-
-	-- little magic (part two): apparently SetStackingBoundsFrame needs it
-	if not element.stackingTexture then
-		local stacking = element:CreateTexture()
-		stacking:SetColorTexture(1, 0, 0, 0)
-		stacking:SetAllPoints(element)
-
-		element.stackingTexture = stacking
-	end
 
 	return element
 end
@@ -290,6 +292,7 @@ function NP:StyleTargetPlate(nameplate)
 	nameplate:Point('CENTER')
 	nameplate:Size(NP.db.clickSize.personalWidth, NP.db.clickSize.personalHeight)
 
+	nameplate.StackingBounds = NP:Construct_StackingBounds(nameplate)
 	nameplate.RaisedElement = NP:Construct_RaisedELement(nameplate)
 	nameplate.ClassPower = NP:Construct_ClassPower(nameplate)
 
@@ -333,6 +336,7 @@ function NP:StylePlate(nameplate)
 
 	nameplate.blizzAuras = { BuffList = {}, DebuffList = {}, CrowdControlList = {} }
 
+	nameplate.StackingBounds = NP:Construct_StackingBounds(nameplate)
 	nameplate.RaisedElement = NP:Construct_RaisedELement(nameplate)
 	nameplate.Health = NP:Construct_Health(nameplate)
 	nameplate.Health.Text = NP:Construct_TagText(nameplate)
