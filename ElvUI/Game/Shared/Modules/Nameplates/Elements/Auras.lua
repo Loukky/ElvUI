@@ -161,6 +161,9 @@ end
 
 function NP:Update_Auras(nameplate)
 	local db = NP:PlateDB(nameplate)
+
+	nameplate.usingBlizzardAuras = NP.db.useBlizzardAuras
+
 	if db.auras.enable or db.debuffs.enable or db.buffs.enable then
 		if not nameplate:IsElementEnabled('Auras') then
 			nameplate:EnableElement('Auras')
