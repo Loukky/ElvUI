@@ -250,6 +250,10 @@ function NP:Construct_RaisedELement(nameplate)
 	RaisedElement:SetAllPoints()
 	RaisedElement:EnableMouse(false)
 
+	local tex = RaisedElement:CreateTexture()
+	tex:SetColorTexture(1, 0, 0, 0)
+	tex:SetAllPoints(RaisedElement)
+
 	RaisedElement.frameName = RaisedElement:GetName()
 
 	return RaisedElement
