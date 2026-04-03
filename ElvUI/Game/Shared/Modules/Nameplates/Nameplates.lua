@@ -224,11 +224,6 @@ function NP:Style(unit)
 	self.blizzPlate = plate and plate.UnitFrame or nil
 	self.isNamePlate = true
 
-	-- little magic fixes fps drops with stacking
-	if plate and plate.SetStackingBoundsFrame then
-		plate:SetStackingBoundsFrame(self.RaisedElement)
-	end
-
 	if frameName == 'ElvNP_Player' then
 		NP.PlayerFrame = self
 	elseif frameName == 'ElvNP_TestFrame' then
@@ -239,6 +234,11 @@ function NP:Style(unit)
 		NP:StyleTargetPlate(self, unit)
 	else
 		NP:StylePlate(self, unit)
+	end
+
+	-- little magic fixes fps drops with stacking
+	if plate and plate.SetStackingBoundsFrame and self.RaisedElement then
+		plate:SetStackingBoundsFrame(self.RaisedElement)
 	end
 
 	return self
