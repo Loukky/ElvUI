@@ -32,6 +32,12 @@ local function PageControlsPositionUpdate(frame)
 	end
 end
 
+local function OutfitPopup_OnShow(frame)
+	if not frame.IsSkinned then -- set by HandleIconSelectionFrame
+		S:HandleIconSelectionFrame(frame, nil, nil, 'TransmogFrame')
+	end
+end
+
 function S:Blizzard_Transmog()
 	if not E.private.skins.blizzard.transmogrify then return end
 
@@ -155,12 +161,9 @@ function S:Blizzard_Transmog()
 		end
 	end
 
-	-- New icon selection
-	_G.TransmogFrame.OutfitPopup:HookScript('OnShow', function(frame)
-		if not frame.IsSkinned then -- set by HandleIconSelectionFrame
-			S:HandleIconSelectionFrame(frame, nil, nil, 'TransmogFrame')
-		end
-	end)
+	if TransmogFrame.OutfitPopup then -- New icon selection
+		TransmogFrame.OutfitPopup:HookScript('OnShow', OutfitPopup_OnShow)
+	end
 end
 
 S:AddCallbackForAddon('Blizzard_Transmog')
