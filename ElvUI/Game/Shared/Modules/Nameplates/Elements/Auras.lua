@@ -161,9 +161,6 @@ end
 
 function NP:Update_Auras(nameplate)
 	local db = NP:PlateDB(nameplate)
-
-	nameplate.usingBlizzardAuras = NP.db.useBlizzardAuras
-
 	if db.auras.enable or db.debuffs.enable or db.buffs.enable then
 		if not nameplate:IsElementEnabled('Auras') then
 			nameplate:EnableElement('Auras')
@@ -177,7 +174,6 @@ function NP:Update_Auras(nameplate)
 			nameplate.Auras = nameplate.Auras_
 			NP:Configure_Auras(nameplate, 'Auras')
 			nameplate.Auras:Show()
-			nameplate.Auras:ForceUpdate()
 		elseif nameplate.Auras then
 			nameplate.Auras:Hide()
 			nameplate.Auras = nil
@@ -187,7 +183,6 @@ function NP:Update_Auras(nameplate)
 			nameplate.Debuffs = nameplate.Debuffs_
 			NP:Configure_Auras(nameplate, 'Debuffs')
 			nameplate.Debuffs:Show()
-			nameplate.Debuffs:ForceUpdate()
 		elseif nameplate.Debuffs then
 			nameplate.Debuffs:Hide()
 			nameplate.Debuffs = nil
@@ -197,7 +192,6 @@ function NP:Update_Auras(nameplate)
 			nameplate.Buffs = nameplate.Buffs_
 			NP:Configure_Auras(nameplate, 'Buffs')
 			nameplate.Buffs:Show()
-			nameplate.Buffs:ForceUpdate()
 		elseif nameplate.Buffs then
 			nameplate.Buffs:Hide()
 			nameplate.Buffs = nil
