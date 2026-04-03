@@ -136,7 +136,7 @@ function NP:Castbar_PostCastInterrupted(unit, spellID, interruptedBy)
 
 		if db.castbar.sourceInterruptClassColor then
 			local _, className = GetPlayerInfoByGUID(interruptedBy)
-			local color = className and UF:GetCasterColor(className)
+			local color = UF:GetCasterColor(className)
 			self.Text:SetFormattedText('%s [|c%s%s|r]', INTERRUPTED, color or 'FFdddddd', unitName)
 		else
 			self.Text:SetFormattedText('%s [%s]', INTERRUPTED, unitName)
