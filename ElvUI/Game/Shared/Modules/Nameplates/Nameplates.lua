@@ -236,7 +236,7 @@ function NP:Style(unit)
 		NP:StylePlate(self, unit)
 	end
 
-	-- little magic fixes fps drops with stacking
+	-- little magic (part one): fixes fps drops with stacking
 	if plate and plate.SetStackingBoundsFrame and self.RaisedElement then
 		plate:SetStackingBoundsFrame(self.RaisedElement)
 	end
@@ -252,6 +252,7 @@ function NP:Construct_RaisedELement(nameplate)
 
 	element.frameName = element:GetName()
 
+	-- little magic (part two): apparently SetStackingBoundsFrame needs it
 	if not element.stackingTexture then
 		local stacking = element:CreateTexture()
 		stacking:SetColorTexture(1, 0, 0, 0)
