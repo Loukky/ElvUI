@@ -221,7 +221,7 @@ function NP:Style(unit)
 	local plate = self:GetParent()
 	local frameName = self:GetName()
 	self.frameName = frameName
-	self.blizzPlate = plate and plate.UnitFrame or nil
+	self.blizzPlate = plate.UnitFrame
 	self.isNamePlate = true -- used in auraskip
 
 	if frameName == 'ElvNP_Player' then
@@ -789,13 +789,13 @@ function NP:NAME_PLATE_UNIT_ADDED(_, unit)
 	NP:UpdatePlateType(self)
 	NP:UpdatePlateSize(self)
 
-	self.softTargetFrame = self.blizzPlate and self.blizzPlate.SoftTargetFrame
+	self.softTargetFrame = self.blizzPlate.SoftTargetFrame
 	if self.softTargetFrame then
 		self.softTargetFrame:SetParent(self)
 		self.softTargetFrame:SetIgnoreParentAlpha(true)
 	end
 
-	self.widgetContainer = self.blizzPlate and self.blizzPlate.WidgetContainer
+	self.widgetContainer = self.blizzPlate.WidgetContainer
 	if self.widgetContainer then
 		self.widgetContainer:SetParent(self)
 		self.widgetContainer:SetIgnoreParentAlpha(true)
@@ -923,7 +923,7 @@ function NP:BlizzardPlate_RefreshList(listFrame, auraList)
 	if not NP.db.useBlizzardAuras then return end
 
 	local blizzPlate = self:GetParent()
-	local plate = blizzPlate and blizzPlate:GetParent()
+	local plate = blizzPlate:GetParent()
 
 	local nameplate = plate and plate.unitFrame
 	local blizzAuras = nameplate and nameplate.blizzAuras
