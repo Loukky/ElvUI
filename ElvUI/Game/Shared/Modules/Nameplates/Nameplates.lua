@@ -248,8 +248,9 @@ function NP:Construct_StackingBounds(nameplate)
 	stacking:SetAllPoints(element)
 
 	-- little magic (part two): fixes fps drops with stacking
-	if nameplate.SetStackingBoundsFrame then
-		nameplate:SetStackingBoundsFrame(element)
+	local plate = nameplate:GetParent()
+	if plate and plate.SetStackingBoundsFrame then
+		plate:SetStackingBoundsFrame(element)
 	end
 
 	return element
