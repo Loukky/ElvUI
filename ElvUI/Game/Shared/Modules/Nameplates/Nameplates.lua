@@ -241,6 +241,7 @@ end
 
 function NP:Construct_StackingBounds(nameplate)
 	local element = CreateFrame('Frame', '$parent_StackingBounds', nameplate)
+	element:SetAllPoints()
 
 	-- little magic (part one): SetStackingBoundsFrame needs it
 	local stacking = element:CreateTexture()
@@ -258,9 +259,9 @@ end
 
 function NP:Construct_RaisedELement(nameplate)
 	local element = CreateFrame('Frame', '$parent_RaisedElement', nameplate)
+	element:EnableMouse(false)
 	element:SetFrameLevel(10)
 	element:SetAllPoints()
-	element:EnableMouse(false)
 
 	element.frameName = element:GetName()
 
