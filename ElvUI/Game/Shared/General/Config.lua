@@ -366,15 +366,13 @@ function E:CreateMoverPopup()
 
 	align:SetScript('OnEnterPressed', function(eb)
 		local text = eb:GetText()
-		if tonumber(text) then
-			if tonumber(text) <= 256 and tonumber(text) >= 4 then
-				E.db.gridSize = tonumber(text)
-			else
-				eb:SetText(E.db.gridSize)
-			end
+		local size = tonumber(text)
+		if size and (size <= 256 and size >= 4) then
+			E.db.gridSize = size
 		else
 			eb:SetText(E.db.gridSize)
 		end
+
 		E:Grid_Show()
 		EditBox_ClearFocus(eb)
 	end)
@@ -407,7 +405,7 @@ function E:CreateMoverPopup()
 		local text = eb:GetText()
 		local width = tonumber(text)
 		if width and (width <= 10 and width >= 1) then
-			E.db.gridLineWidth = tonumber(text)
+			E.db.gridLineWidth = width
 		else
 			eb:SetText(E.db.gridLineWidth)
 		end
@@ -531,8 +529,8 @@ function E:CreateMoverPopup()
 	end)
 
 	xOffset:SetScript('OnEnterPressed', function(eb)
-		local num = eb:GetText()
-		if tonumber(num) then
+		local num = tonumber(eb:GetText())
+		if num then
 			local diff = num - xOffset.currentValue
 			xOffset.currentValue = num
 			E:NudgeMover(diff)
@@ -569,8 +567,8 @@ function E:CreateMoverPopup()
 	end)
 
 	yOffset:SetScript('OnEnterPressed', function(eb)
-		local num = eb:GetText()
-		if tonumber(num) then
+		local num = tonumber(eb:GetText())
+		if num then
 			local diff = num - yOffset.currentValue
 			yOffset.currentValue = num
 			E:NudgeMover(nil, diff)
