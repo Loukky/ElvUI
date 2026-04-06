@@ -2,6 +2,7 @@
 local E = unpack(ElvUI)
 local L = E.Libs.ACL:NewLocale('ElvUI', 'enUS', true, true)
 
+L["Line Width:"] = true
 L[" |cff00ff00bound to |r"] = true
 L["%s frame has a conflicting anchor point. Forcing the Buffs to be attached to the main unitframe."] = true
 L["%s is attempting to share the Global Profile with you. Would you like to accept the request?"] = true
@@ -144,7 +145,6 @@ L["GM Ticket Frame"] = true
 L["Gold"] = true
 L["goldabbrev"] = "|cffffd700g|r"
 L["Grays"] = true
-L["Grid Line Width:"] = true
 L["Grid Size:"] = true
 L["Heal Power"] = true
 L["Healer"] = true

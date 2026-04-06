@@ -398,23 +398,24 @@ function E:CreateMoverPopup()
 		eb:SetText(E.db.gridLineWidth)
 		EditBox_ClearFocus(eb)
 	end)
+
 	lineWidth:SetScript('OnEnterPressed', function(eb)
 		local text = eb:GetText()
-		if tonumber(text) then
-			if tonumber(text) <= 10 and tonumber(text) >= 1 then
-				E.db.gridLineWidth = tonumber(text)
-			else
-				eb:SetText(E.db.gridLineWidth)
-			end
+		local width = tonumber(text)
+		if width and (width <= 10 and width >= 1) then
+			E.db.gridLineWidth = tonumber(text)
 		else
 			eb:SetText(E.db.gridLineWidth)
 		end
+
 		E:Grid_Show()
 		EditBox_ClearFocus(eb)
 	end)
+
 	lineWidth:SetScript('OnEditFocusLost', function(eb)
 		eb:SetText(E.db.gridLineWidth)
 	end)
+
 	lineWidth:SetScript('OnEditFocusGained', EditBox_HighlightText)
 	lineWidth:SetScript('OnShow', function(eb)
 		EditBox_ClearFocus(eb)
@@ -423,7 +424,7 @@ function E:CreateMoverPopup()
 
 	lineWidth.text = lineWidth:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
 	lineWidth.text:Point('RIGHT', lineWidth, 'LEFT', -4, 0)
-	lineWidth.text:SetText(L["Grid Line Width:"])
+	lineWidth.text:SetText(L["Line Width:"])
 	lineWidth.text:FontTemplate(nil, 12, 'SHADOW')
 	f.lineWidth = lineWidth
 
