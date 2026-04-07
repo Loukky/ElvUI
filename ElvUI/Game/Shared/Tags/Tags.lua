@@ -1063,9 +1063,8 @@ for _, var in ipairs({4,8,10,15,20,25,30,35,40}) do
 
 		if UnitIsConnected(unit) then
 			for unitToken in next, E.GroupRoles do
-				if UnitIsConnected(unitToken) then
-					local isUnit = E:UnitIsUnit(unit, unitToken) -- nil means blocked
-					local distance = isUnit == false and E:GetDistance(unit, unitToken)
+				if UnitIsConnected(unitToken) and E:UnitNotUnit(unit, unitToken) then
+					local distance = E:GetDistance(unit, unitToken)
 					if distance and distance <= var then
 						inRange = inRange + 1
 					end
