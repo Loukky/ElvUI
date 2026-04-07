@@ -108,7 +108,7 @@ local function HandleElements(element, unit, button, setting, icon, count, durat
 	end
 
 	if button.stealable then
-		if not isDebuff and isStealable and element.showStealableBuffs and not oUF:UnitIsUnit(unit, 'player') then
+		if not isDebuff and isStealable and element.showStealableBuffs and oUF:UnitNotUnit(unit, 'player') then
 			button.stealable:Show()
 		else
 			button.stealable:Hide()

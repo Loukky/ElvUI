@@ -903,7 +903,7 @@ E:AddTag('pvptimer', 1, function(unit)
 end)
 
 E:AddTag('distance', 0.1, function(unit)
-	if UnitIsConnected(unit) and not E:UnitIsUnit(unit, 'player') then
+	if UnitIsConnected(unit) and E:UnitNotUnit(unit, 'player') then
 		local distance = E:GetDistance('player', unit)
 		if distance then
 			return format('%.1f', distance)

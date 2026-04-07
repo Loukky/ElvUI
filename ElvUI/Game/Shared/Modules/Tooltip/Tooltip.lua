@@ -513,7 +513,7 @@ function TT:AddTargetInfo(tt, unit)
 	local isInRaid = IsInRaid()
 	for i = 1, GetNumGroupMembers() do
 		local groupUnit = (isInRaid and 'raid' or 'party')..i
-		local unitFound = not E:UnitIsUnit(groupUnit, 'player') and E:UnitIsUnit(groupUnit..'target', unit)
+		local unitFound = E:UnitNotUnit(groupUnit, 'player') and E:UnitIsUnit(groupUnit..'target', unit)
 		if E:NotSecretValue(unitFound) and unitFound then
 			local _, className = UnitClass(groupUnit)
 			local classColor

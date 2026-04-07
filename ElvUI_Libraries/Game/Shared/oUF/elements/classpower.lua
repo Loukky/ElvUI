@@ -241,7 +241,7 @@ local function ThirdVisibility(element, enabled)
 end
 
 local function Update(self, element, event, unit, powerType)
-	if not unit or not oUF:UnitIsUnit(unit, 'player') then return end
+	if not unit or oUF:UnitNotUnit(unit, 'player') then return end
 
 	local classPowerID = element.classPowerID
 	local currentType = ClassPowerType[classPowerID]

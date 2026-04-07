@@ -103,10 +103,17 @@ end
 
 function oUF:UnitIsUnit(unit1, unit2)
 	if CanCompareUnitTokens and not CanCompareUnitTokens(unit1, unit2) then
-		return -- more secret stuff by blizzard, BTW people still exploiting your new tech thanks u suck
+		return
 	end
 
-	return UnitIsUnit(unit1, unit2)
+	local isUnit = UnitIsUnit(unit1, unit2)
+	if oUF:NotSecretValue(isUnit) then
+		return isUnit
+	end
+end
+
+function oUF:UnitNotUnit(unit1, unit2) -- nil means blocked
+	return oUF:UnitIsUnit(unit1, unit2) == false
 end
 
 function oUF:UnitExists(unit)
