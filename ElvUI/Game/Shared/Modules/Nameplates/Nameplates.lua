@@ -1063,8 +1063,8 @@ function NP:UpdateColors()
 	NP.Colors.selection[13] = E:SetColorTable(NP.Colors.selection[13], NP.db.colors.selection[13])
 end
 
-function NP:SetStatusBarColor(bar, r, g, b)
-	bar:GetStatusBarTexture():SetVertexColor(r, g, b)
+function NP:SetStatusBarColor(bar, r, g, b, a)
+	bar:GetStatusBarTexture():SetVertexColor(r, g, b, a)
 
 	if bar.bg then
 		bar.bg:SetVertexColor(r, g, b, NP.multiplier)
