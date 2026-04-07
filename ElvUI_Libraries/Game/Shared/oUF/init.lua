@@ -102,15 +102,11 @@ do -- API for secrets by Simpy
 end
 
 function oUF:UnitIsUnit(unit1, unit2)
-	if CanCompareUnitTokens then
-		if CanCompareUnitTokens(unit1, unit2) then
-			return not not UnitIsUnit(unit1, unit2)
-		else
-			return nil -- blocked is nil
-		end
-	else -- cast the return as bool; always want a non-nil value
-		return not not UnitIsUnit(unit1, unit2)
+	if CanCompareUnitTokens and not CanCompareUnitTokens(unit1, unit2) then
+		return -- more secret stuff by blizzard, BTW people still exploiting your new tech thanks u suck
 	end
+
+	return UnitIsUnit(unit1, unit2)
 end
 
 function oUF:UnitExists(unit)
