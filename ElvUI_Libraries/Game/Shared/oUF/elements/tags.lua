@@ -274,7 +274,6 @@ end
 tagFunctions.group = function(unit)
 	if not IsInRaid() then return end
 
-	-- TODO: use C_Secrets.CanCompareUnitTokens instead of pcall
 	for index = 1, GetNumGroupMembers() do
 		if oUF:UnitIsUnit(unit, 'raid' .. index) then
 			local _, _, group = GetRaidRosterInfo(index)

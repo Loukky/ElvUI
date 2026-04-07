@@ -14,6 +14,7 @@ local UnitIsUnit = UnitIsUnit
 local UnitIsVisible = UnitIsVisible
 local UnitThreatSituation = UnitThreatSituation
 local ShouldUnitIdentityBeSecret = C_Secrets and C_Secrets.ShouldUnitIdentityBeSecret
+local CanCompareUnitTokens = C_Secrets and C_Secrets.CanCompareUnitTokens
 
 local _, _, _, wowtoc = GetBuildInfo()
 oUF.wowtoc = wowtoc
@@ -100,10 +101,16 @@ do -- API for secrets by Simpy
 	end
 end
 
--- TODO: use C_Secrets.CanCompareUnitTokens instead of pcall
 function oUF:UnitIsUnit(unit1, unit2)
-	local ok, isUnit = pcall(UnitIsUnit, unit1, unit2)
-	return ok and isUnit
+	if CanCompareUnitTokens then
+		if CanCompareUnitTokens(unit1, unit2) then
+			return not not UnitIsUnit(unit1, unit2)
+		else
+			return nil -- blocked is nil
+		end
+	else -- cast the return as bool; always want a non-nil value
+		return not not UnitIsUnit(unit1, unit2)
+	end
 end
 
 function oUF:UnitExists(unit)
