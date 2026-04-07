@@ -402,8 +402,8 @@ function S:CharacterFrame()
 	CharacterMainHandSlot:ClearAllPoints()
 	CharacterMainHandSlot:Point('BOTTOMLEFT', _G.PaperDollItemsFrame, 'BOTTOMLEFT', 106, 10)
 
-	if GearManagerPopupFrame then -- New icon selection
-		GearManagerPopupFrame:HookScript('OnShow', GearManagerPopupFrame_OnShow)
+	if _G.GearManagerPopupFrame then -- New icon selection
+		_G.GearManagerPopupFrame:HookScript('OnShow', GearManagerPopupFrame_OnShow)
 	end
 
 	-- Stats

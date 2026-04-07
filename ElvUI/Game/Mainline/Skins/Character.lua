@@ -434,8 +434,8 @@ function S:Blizzard_UIPanels_Game()
 	S:HandleButton(_G.PaperDollFrameEquipSet)
 	S:HandleButton(_G.PaperDollFrameSaveSet)
 
-	if GearManagerPopupFrame then -- New icon selection
-		GearManagerPopupFrame:HookScript('OnShow', GearManagerPopupFrame_OnShow)
+	if _G.GearManagerPopupFrame then -- New icon selection
+		_G.GearManagerPopupFrame:HookScript('OnShow', GearManagerPopupFrame_OnShow)
 	end
 
 	do --Handle Tabs at bottom of character frame

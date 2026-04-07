@@ -80,8 +80,8 @@ function S:Blizzard_MacroUI()
 	-- handle the macro buttons
 	hooksecurefunc(MacroFrame.MacroSelector.ScrollBox, 'Update', MacroSelectorScrollUpdate)
 
-	if MacroPopupFrame then -- New icon selection
-		MacroPopupFrame:HookScript('OnShow', MacroPopupFrame_OnShow)
+	if _G.MacroPopupFrame then -- New icon selection
+		_G.MacroPopupFrame:HookScript('OnShow', MacroPopupFrame_OnShow)
 	end
 end
 
