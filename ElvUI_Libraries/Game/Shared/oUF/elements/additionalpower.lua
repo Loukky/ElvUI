@@ -255,14 +255,7 @@ local function Enable(self, unit)
 		self:RegisterEvent('UNIT_DISPLAYPOWER', VisibilityPath)
 
 		if(not element.displayPairs) then
-			local info = ALT_POWER_INFO
-
-			-- add druid info, if needed
-			if not info.DRUID then info.DRUID = {} end
-			if not info.DRUID[1] then info.DRUID[1] = CopyTable(MANA) end
-			if not info.DRUID[3] then info.DRUID[3] = CopyTable(MANA) end
-
-			element.displayPairs = info
+			element.displayPairs = ALT_POWER_INFO
 		end
 
 		if(element:IsObjectType('StatusBar') and not element:GetStatusBarTexture()) then
