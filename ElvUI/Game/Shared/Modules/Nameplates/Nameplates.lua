@@ -373,17 +373,19 @@ end
 
 do
 	local elements = {
-		'QuestIcons',
-		'Highlight',
-		'Portrait',
-		'PVPRole'
+		-- on the raised element
+		QuestIcons = true,
+		Portrait = true,
+		PVPRole = true,
+		-- on the nameplate itself
+		Highlight = false
 	}
 
 	function NP:ReparentNotNameonly(nameplate, parent)
-		for _, name in next, elements do
+		for name, raised in next, elements do
 			local element = nameplate[name]
 			if element then
-				element:SetParent(parent or (name == 'QuestIcons' and nameplate.RaisedElement) or nameplate)
+				element:SetParent(parent or (raised and nameplate.RaisedElement) or nameplate)
 			end
 		end
 	end
@@ -391,19 +393,21 @@ end
 
 do
 	local elements = {
-		'Health',
-		'HealthPrediction',
-		'Power',
-		'ClassificationIndicator',
-		'Castbar',
-		'ThreatIndicator',
-		'TargetIndicator',
-		'ClassPower',
-		'PvPIndicator',
-		'PvPClassificationIndicator',
-		'Auras_',
-		'Buffs_',
-		'Debuffs_'
+		-- on the raised element
+		ClassificationIndicator = true,
+		PvPIndicator = true,
+		PvPClassificationIndicator = true,
+		ThreatIndicator = true,
+		-- on the nameplate itself
+		Health = false,
+		HealthPrediction = false,
+		Power = false,
+		Castbar = false,
+		TargetIndicator = false,
+		ClassPower = false,
+		Auras_ = false,
+		Buffs_ = false,
+		Debuffs_ = false
 	}
 
 	if E.myclass == 'DEATHKNIGHT' then
@@ -413,10 +417,10 @@ do
 	end
 
 	function NP:ReparentElements(nameplate, parent)
-		for _, name in next, elements do
+		for name, raised in next, elements do
 			local element = nameplate[name]
 			if element then
-				element:SetParent(parent or nameplate)
+				element:SetParent(parent or (raised and nameplate.RaisedElement) or nameplate)
 			end
 		end
 	end
