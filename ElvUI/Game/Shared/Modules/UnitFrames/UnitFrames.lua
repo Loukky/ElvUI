@@ -1866,7 +1866,7 @@ do
 					end
 				end
 
-				if E.Retail or E.TBC then
+				if E.Retail or E.TBC or E.Wrath then
 					if disable.castbar then
 						HideFrame(_G.PlayerCastingBarFrame)
 						HideFrame(_G.PetCastingBarFrame)
