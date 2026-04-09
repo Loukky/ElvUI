@@ -643,7 +643,7 @@ do
 			if not float.Desaturate then
 				local desaturate = E:CreateCurve(LuaCurveTypeStep)
 				desaturate:AddPoint(0, 0)
-				desaturate:AddPoint(1.501, 1) -- > 1.5
+				desaturate:AddPoint(0.001, 1)
 
 				float.Desaturate = desaturate
 			end
