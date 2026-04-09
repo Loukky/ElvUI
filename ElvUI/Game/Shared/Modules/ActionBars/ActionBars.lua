@@ -155,7 +155,7 @@ function AB:HandleButtonAutoCast(bar, button)
 	local autoCast = button.AutoCastOverlay or button.AutoCastable
 	if E.Retail then
 		autoCast:SetOutside(button, 3, 3)
-	elseif E.TBC then
+	elseif (E.TBC or E.Wrath) then
 		autoCast:SetOutside(button, 1, 1)
 	else
 		local autoCastWidth = (buttonWidth * 0.5) - (buttonWidth / 7.5)
@@ -1222,7 +1222,7 @@ do
 		MicroButtonAndBagsBar = true,
 		OverrideActionBar = true,
 		MainMenuBar = true,
-		BagsBar = E.TBC or nil,
+		BagsBar = (E.TBC or E.Wrath) or nil,
 		MainActionBar = modernBars or nil,
 		[modernBars and 'StanceBar' or 'StanceBarFrame'] = true,
 		[modernBars and 'PetActionBar' or 'PetActionBarFrame'] = true,
