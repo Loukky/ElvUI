@@ -1209,7 +1209,7 @@ end
 function E:SetupGameMenu()
 	if GameMenuFrame.ElvUI then return end
 
-	if E.Retail or E.TBC then
+	if E.Retail or E.TBC or E.Wrath then
 		local button = CreateFrame('Button', 'ElvUI_GameMenuButton', GameMenuFrame, 'MainMenuFrameButtonTemplate')
 		button:SetScript('OnClick', E.ClickGameMenu)
 
