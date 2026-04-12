@@ -237,19 +237,6 @@ function S:Blizzard_PVPUI()
 		TT:SetStyle(_G.ConquestTooltip)
 	end
 
-	-- PvP StatusBars
-	for _, Frame in next, { HonorFrame, ConquestFrame, TrainingGroundsFrame } do
-		Frame.ConquestBar.Border:Hide()
-		Frame.ConquestBar.Background:Hide()
-		Frame.ConquestBar.Reward.Ring:Hide()
-		Frame.ConquestBar.Reward.CircleMask:Hide()
-		Frame.ConquestBar:SetTemplate('Transparent')
-
-		Frame.ConquestBar.Reward:ClearAllPoints()
-		Frame.ConquestBar.Reward:Point('LEFT', Frame.ConquestBar, 'RIGHT', 0, 0)
-		S:HandleIcon(Frame.ConquestBar.Reward.Icon, true)
-	end
-
 	-- New Season Frame
 	local NewSeasonPopup = _G.PVPQueueFrame.NewSeasonPopup
 	S:HandleButton(NewSeasonPopup.Leave)
@@ -333,6 +320,19 @@ function S:Blizzard_PVPUI()
 
 	-- Training Grounds Specific Buttons
 	hooksecurefunc(TrainingGroundsFrame.SpecificTrainingGroundList.ScrollBox, 'Update', SpecificScrollUpdate)
+
+	-- PvP StatusBars
+	for _, Frame in next, { HonorFrame, ConquestFrame, TrainingGroundsFrame } do
+		Frame.ConquestBar.Border:Hide()
+		Frame.ConquestBar.Background:Hide()
+		Frame.ConquestBar.Reward.Ring:Hide()
+		Frame.ConquestBar.Reward.CircleMask:Hide()
+		Frame.ConquestBar:SetTemplate('Transparent')
+
+		Frame.ConquestBar.Reward:ClearAllPoints()
+		Frame.ConquestBar.Reward:Point('LEFT', Frame.ConquestBar, 'RIGHT', 0, 0)
+		S:HandleIcon(Frame.ConquestBar.Reward.Icon, true)
+	end
 end
 
 function S:PVPReadyDialog()
