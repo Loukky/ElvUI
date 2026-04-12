@@ -238,7 +238,7 @@ function S:Blizzard_PVPUI()
 	end
 
 	-- PvP StatusBars
-	for _, Frame in next, { HonorFrame, ConquestFrame } do
+	for _, Frame in next, { HonorFrame, ConquestFrame, TrainingGroundsFrame } do
 		Frame.ConquestBar.Border:Hide()
 		Frame.ConquestBar.Background:Hide()
 		Frame.ConquestBar.Reward.Ring:Hide()
