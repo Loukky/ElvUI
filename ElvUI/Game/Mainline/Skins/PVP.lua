@@ -12,6 +12,13 @@ local ITEMQUALITY_ARTIFACT = Enum.ItemQuality.Artifact
 local CurrencyContainerUtil_GetCurrencyContainerInfo = CurrencyContainerUtil.GetCurrencyContainerInfo
 local C_CurrencyInfo_GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
 
+local categoryButtonIcons = {
+	236396, -- interface\icons\achievement_bg_winwsg
+	236368, -- interface\icons\achievement_bg_killxenemies_generalsroom
+	464820, -- interface\icons\achievement_general_stayclassy
+	236179, -- interface\icons\ability_hunter_focusedaim
+}
+
 local function HandleRoleButton(button)
 	local checkbox = button.checkButton
 	checkbox:OffsetFrameLevel(1)
@@ -113,13 +120,6 @@ function S:Blizzard_PVPUI()
 	if PlunderstormPanel then
 		S:HandleButton(PlunderstormPanel.PlunderstoreButton)
 	end
-
-	local categoryButtonIcons = {
-		236396, -- interface\icons\achievement_bg_winwsg
-		236368, -- interface\icons\achievement_bg_killxenemies_generalsroom
-		464820, -- interface\icons\achievement_general_stayclassy
-		236179, -- interface\icons\ability_hunter_focusedaim
-	}
 
 	HandleCategoryButtons('CategoryButton', categoryButtonIcons)
 
