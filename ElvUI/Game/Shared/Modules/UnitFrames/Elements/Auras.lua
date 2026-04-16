@@ -398,7 +398,7 @@ function UF:SetSmartPosition(frame, db)
 		end
 
 		fluid = info.fluid
-		info.func(db, buffs, debuffs, info.isFuild)
+		info.func(db, buffs, debuffs, info.fuild)
 	else
 		buffs.PostUpdate = nil
 		debuffs.PostUpdate = nil
