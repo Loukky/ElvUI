@@ -32,6 +32,9 @@ L["SOUL_CLEAVE"] = "Soul Cleave"
 L["SOUL_FRAGMENTS"] = "Soul Fragments"
 L["SPEAR_TIP"] = "Tip of the Spear"
 
+L["Appends the SLUG rendering flag for sharper edges."] = true
+L["Font Slug"] = true
+
 L["%s and then %s"] = true
 L["*%s|r|cFFffffff below.  Made with|r |cFFff75dd<3|r |cFFffffffby the Tukui Community.|r"] = true
 L["24-Hour Time"] = true
@@ -125,7 +128,6 @@ L["Announce when you interrupt a spell to the specified chat channel."] = true
 L["Another Players Pet"] = true
 L["Any"] = true
 L["Append to Cast Name"] = true
-L["Appends the SLUG rendering flag to the font outline for sharper edges."] = true
 L["Applies the font and font size settings throughout the entire user interface. Note: Some font size settings will be skipped due to them having a smaller font size by default."] = true
 L["Apply Font To All"] = true
 L["Apply this filter if a buff has remaining time greater than this. Set to zero to disable."] = true
@@ -713,7 +715,6 @@ L["Font Group"] = true
 L["Font Outline"] = true
 L["Font Size"] = "Font Size"
 L["Font Size as defined by Blizzard."] = true
-L["Font Slug"] = true
 L["Fonts"] = true
 L["Force Hide Blizzard Text"] = true
 L["Force Off"] = true

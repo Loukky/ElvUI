@@ -64,8 +64,8 @@ function E:SetFont(obj, font, size, style, sR, sG, sB, sA, sX, sY, r, g, b, a)
 	local shadow = strsub(style, 0, 6) == 'SHADOW'
 	if shadow then style = strsub(style, 7) end -- shadow isnt a real style
 
-	if E.Retail and E.db.general.fontSlug and (style ~= '' or not shadow) then
-		style = style ~= '' and (style .. ' SLUG') or 'SLUG'
+	if E.Retail and E.db.general.fontSlug then
+		style = style..'SLUG'
 	end
 
 	obj:SetFont(font, size, style)
