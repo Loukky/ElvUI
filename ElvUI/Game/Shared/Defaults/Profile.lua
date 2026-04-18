@@ -71,7 +71,6 @@ P.general = {
 	fontSize = 12,
 	font = 'PT Sans Narrow',
 	fontStyle = 'OUTLINE',
-	fontSlug = false,
 	topPanel = false,
 	bottomPanel = true,
 	bottomPanelSettings = {
