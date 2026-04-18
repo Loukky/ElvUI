@@ -32,7 +32,7 @@ L["SOUL_CLEAVE"] = "灵魂裂劈"
 L["SOUL_FRAGMENTS"] = "灵魂碎片"
 L["SPEAR_TIP"] = "利矛之刃"
 
-L["Appends the SLUG rendering flag for sharper edges."] = true
+L["Appends the SLUG rendering flag for sharper edges.\n\n|cffff3333Note:|r Slug will not work on Shadow, Mono, or Thick outline."] = true
 L["Font Slug"] = true
 
 L["%s and then %s"] = "先%s后%s"
