@@ -2071,15 +2071,15 @@ function CH:MessageFormatter(frame, info, chatType, chatGroup, chatTarget, chann
 
 	local isProtected = CH:MessageIsProtected(arg1)
 	local bossMonster = strsub(chatType, 1, 9) == 'RAID_BOSS' or strsub(chatType, 1, 7) == 'MONSTER'
-	if not isProtected and bossMonster then -- Blizzard Formatting Errors: escape any special characters when non-secret
-		arg1 = gsub(arg1, '(%d%s?%%)([^%%%a])', '%1%%%2') -- escape percentages that need it [broken since SL?]
-		arg1 = gsub(arg1, '(%d%s?%%)$', '%1%%') -- escape percentages on the end
-		arg1 = gsub(arg1, '^%%o', '%%s') -- replace %o to %s [broken in cata classic?]: "%o gular zila amanare rukadare." from "Cabal Zealot"
-		arg1 = gsub(arg1, '^%%bur', '%%s') -- "%bur uden agol mod ru se ruftos lo nevren algos!" from "Gan'arg Sapper"
-	end
-
 	if not isProtected then
-		arg1 = RemoveExtraSpaces(arg1) -- Remove groups of many spaces
+		if bossMonster then -- Blizzard Formatting Errors: escape any special characters when non-secret
+			arg1 = gsub(arg1, '(%d%s?%%)([^%%%a])', '%1%%%2') -- escape percentages that need it [broken since SL?]
+			arg1 = gsub(arg1, '(%d%s?%%)$', '%1%%') -- escape percentages on the end
+			arg1 = gsub(arg1, '^%%o', '%%s') -- replace %o to %s [broken in cata classic?]: "%o gular zila amanare rukadare." from "Cabal Zealot"
+			arg1 = gsub(arg1, '^%%bur', '%%s') -- "%bur uden agol mod ru se ruftos lo nevren algos!" from "Gan'arg Sapper"
+		end
+
+		arg1 = RemoveExtraSpaces(arg1) -- Replace all instances of 5+ spaces with only 4 spaces
 
 		-- Search for icon links and replace them with texture links.
 		-- If arg17 is true, don't convert to raid icons
