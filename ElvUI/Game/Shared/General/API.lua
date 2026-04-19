@@ -65,6 +65,7 @@ local GetAuraDataByIndex = C_UnitAuras.GetAuraDataByIndex
 local GetSpecialization = C_SpecializationInfo.GetSpecialization or GetSpecialization
 local GetSpecializationInfo = C_SpecializationInfo.GetSpecializationInfo or GetSpecializationInfo
 
+local GetCVarBool = C_CVar.GetCVarBool
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local StoreEnabled = C_StorePublic.IsEnabled
 local GetClassInfo = C_CreatureInfo.GetClassInfo
@@ -1466,7 +1467,7 @@ function E:CheckRestrictionState(which)
 end
 
 function E:IsChatRestricted()
-	return E:CheckRestrictionState('ChallengeMode') > 1 or E:CheckRestrictionState('Encounter') > 1
+	return GetCVarBool('addonChatRestrictionsForced') or (E:CheckRestrictionState('ChallengeMode') > 1 or E:CheckRestrictionState('Encounter') > 1)
 end
 
 function E:LoadAPI()
