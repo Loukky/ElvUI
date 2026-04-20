@@ -87,7 +87,7 @@ local ResolvePrefixedChannelName = (ChatFrameUtil and ChatFrameUtil.ResolvePrefi
 local ShouldColorChatByClass = (ChatFrameUtil and ChatFrameUtil.ShouldColorChatByClass) or Chat_ShouldColorChatByClass
 local GetMentorChannelStatus = (ChatFrameUtil and ChatFrameUtil.GetMentorChannelStatus) or ChatFrame_GetMentorChannelStatus
 local GetChatCategory = (ChatFrameUtil and ChatFrameUtil.GetChatCategory) or Chat_GetChatCategory
-
+local ChooseBoxForSend = (ChatFrameUtil and ChatFrameUtil.ChooseBoxForSend) or ChatEdit_ChooseBoxForSend
 local TitleIconVersion_Small = Enum.TitleIconVersion and Enum.TitleIconVersion.Small
 local CHATCHANNELRULESET_MENTOR = Enum.ChatChannelRuleset and Enum.ChatChannelRuleset.Mentor
 local PLAYERMENTORSHIPSTATUS_NEWCOMER = Enum.PlayerMentorshipStatus and Enum.PlayerMentorshipStatus.Newcomer
@@ -906,7 +906,7 @@ function CH:UpdateEditboxFont(chatFrame)
 	local font, outline = LSM:Fetch('font', CH.db.font), CH.db.fontOutline
 	local _, fontSize = _G.FCF_GetChatWindowInfo(id)
 
-	local editbox = _G.ChatEdit_ChooseBoxForSend(chatFrame)
+	local editbox = ChooseBoxForSend(chatFrame)
 	editbox:FontTemplate(font, fontSize, outline)
 
 	if editbox.header then
@@ -1692,7 +1692,7 @@ function CH:FindURL(event, msg, author, ...)
 end
 
 function CH:SetChatEditBoxMessage(message)
-	local ChatFrameEditBox = _G.ChatEdit_ChooseBoxForSend()
+	local ChatFrameEditBox = ChooseBoxForSend()
 	local editBoxShown = ChatFrameEditBox:IsShown()
 	local editBoxText = ChatFrameEditBox:GetText()
 	if not editBoxShown then
