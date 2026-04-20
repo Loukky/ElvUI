@@ -387,7 +387,7 @@ function B:LoadBagBar()
 			local bagID = i - 1
 			button.BagID = bagID
 
-			if not (E.Retail or E.Wrath) and button.BagID == BACKPACK_CONTAINER then
+			if not E.Retail and button.BagID == BACKPACK_CONTAINER then
 				button:SetScript('OnClick', B.BackpackButton_OnClick)
 			end
 
