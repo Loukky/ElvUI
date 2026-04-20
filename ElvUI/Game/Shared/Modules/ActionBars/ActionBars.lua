@@ -9,9 +9,6 @@ local ClearOnBarHighlightMarks = ClearOnBarHighlightMarks
 local ClearOverrideBindings = ClearOverrideBindings
 local CreateFrame = CreateFrame
 local GetBindingKey = GetBindingKey
-local GetOverrideBarIndex = GetOverrideBarIndex
-local GetTempShapeshiftBarIndex = GetTempShapeshiftBarIndex
-local GetVehicleBarIndex = GetVehicleBarIndex
 local HasOverrideActionBar = HasOverrideActionBar
 local HideUIPanel = HideUIPanel
 local hooksecurefunc = hooksecurefunc
@@ -57,6 +54,10 @@ local IsInBattle = C_PetBattles and C_PetBattles.IsInBattle
 local C_PlayerInfo_GetGlidingInfo = C_PlayerInfo.GetGlidingInfo
 local FindSpellBookSlotForSpell = C_SpellBook.FindSpellBookSlotForSpell or SpellBook_GetSpellBookSlot
 local ActionBarController_UpdateAllSpellHighlights = ActionBarController_UpdateAllSpellHighlights
+
+local GetTempShapeshiftBarIndex = C_ActionBar.GetTempShapeshiftBarIndex or GetTempShapeshiftBarIndex
+local GetOverrideBarIndex = C_ActionBar.GetOverrideBarIndex or GetOverrideBarIndex
+local GetVehicleBarIndex = C_ActionBar.GetVehicleBarIndex or GetVehicleBarIndex
 
 local GetCVarBool = C_CVar.GetCVarBool
 local COOLDOWN_GLOBAL = 61304
