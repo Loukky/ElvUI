@@ -17,7 +17,7 @@ local IsModifiedClick = IsModifiedClick
 local PutItemInBackpack = PutItemInBackpack
 local InCombatLockdown = InCombatLockdown
 local RegisterStateDriver = RegisterStateDriver
-local CalculateTotalNumberOfFreeBagSlots = CalculateTotalNumberOfFreeBagSlots
+local CalculateTotalNumberOfFreeBagSlots = C_Container.CalculateTotalNumberOfFreeBagSlots or CalculateTotalNumberOfFreeBagSlots
 
 local NUM_BAG_FRAMES = NUM_BAG_FRAMES or 4
 local KEYRING_CONTAINER = Enum.BagIndex.Keyring
@@ -232,10 +232,7 @@ end
 function B:UpdateMainButtonCount()
 	local mainCount = B.BagBar.buttons[1].Count
 	mainCount:SetShown(E.db.bags.bagBar.showCount)
-
-	if CalculateTotalNumberOfFreeBagSlots then
-		mainCount:SetText(CalculateTotalNumberOfFreeBagSlots())
-	end
+	mainCount:SetText(CalculateTotalNumberOfFreeBagSlots())
 end
 
 function B:BackpackButton_OnClick()
