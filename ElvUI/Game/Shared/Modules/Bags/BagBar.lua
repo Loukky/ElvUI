@@ -232,7 +232,10 @@ end
 function B:UpdateMainButtonCount()
 	local mainCount = B.BagBar.buttons[1].Count
 	mainCount:SetShown(E.db.bags.bagBar.showCount)
-	mainCount:SetText(CalculateTotalNumberOfFreeBagSlots())
+
+	if CalculateTotalNumberOfFreeBagSlots then
+		mainCount:SetText(CalculateTotalNumberOfFreeBagSlots())
+	end
 end
 
 function B:BackpackButton_OnClick()
