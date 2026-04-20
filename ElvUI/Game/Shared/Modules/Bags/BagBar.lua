@@ -282,7 +282,7 @@ function B:BagBar_UpdateDesaturated(inactive)
 end
 
 function B:LoadBagBar()
-	if E.Retail or E.TBC or E.Wrath then
+	if E.hasEditMode then
 		_G.BagsBar:SetParent(E.HiddenFrame)
 		_G.BagsBar:UnregisterAllEvents()
 
@@ -313,7 +313,7 @@ function B:LoadBagBar()
 	_G.MainMenuBarBackpackButtonCount:Point('BOTTOMRIGHT', _G.MainMenuBarBackpackButton, 0, 1)
 	_G.MainMenuBarBackpackButtonCount:FontTemplate(LSM:Fetch('font', E.db.bags.bagBar.font), E.db.bags.bagBar.fontSize, E.db.bags.bagBar.fontOutline)
 
-	if E.Retail or E.TBC or E.Wrath then
+	if E.hasEditMode then
 		hooksecurefunc(_G.BagsBar, 'Layout', B.SizeAndPositionBagBar)
 		hooksecurefunc(_G.MainMenuBarBagManager, 'OnExpandBarChanged', B.SizeAndPositionBagBar)
 	else

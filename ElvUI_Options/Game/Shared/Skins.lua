@@ -72,7 +72,7 @@ if E.Mists or E.Retail then
 	toggles.guild = L["Guild"]
 end
 
-if E.Retail or E.TBC or E.Wrath then
+if E.hasEditMode then
 	toggles.editor = L["Editor Manager"]
 end
 

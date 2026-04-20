@@ -4050,7 +4050,7 @@ function CH:Initialize()
 	CH:RegisterEvent('PET_BATTLE_CLOSE')
 	CH:RegisterEvent('CVAR_UPDATE')
 
-	if E.Retail or E.TBC or E.Wrath then
+	if E.hasEditMode then
 		CH:SecureHook(_G.EditModeManagerFrame, 'UpdateLayoutInfo', 'ResnapDock')
 	end
 

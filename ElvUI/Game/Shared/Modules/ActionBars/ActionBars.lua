@@ -1210,7 +1210,6 @@ function AB:IconIntroTracker_Skin()
 end
 
 do
-	local modernBars = E.Retail or E.TBC or E.Wrath
 	local untaint = {
 		MultiBar5 = true,
 		MultiBar6 = true,
@@ -1223,10 +1222,10 @@ do
 		OverrideActionBar = true,
 		MainMenuBar = true,
 		BagsBar = (E.TBC or E.Wrath) or nil,
-		MainActionBar = modernBars or nil,
-		[modernBars and 'StanceBar' or 'StanceBarFrame'] = true,
-		[modernBars and 'PetActionBar' or 'PetActionBarFrame'] = true,
-		[modernBars and 'PossessActionBar' or 'PossessBarFrame'] = true
+		MainActionBar = E.hasEditMode or nil,
+		[E.hasEditMode and 'StanceBar' or 'StanceBarFrame'] = true,
+		[E.hasEditMode and 'PetActionBar' or 'PetActionBarFrame'] = true,
+		[E.hasEditMode and 'PossessActionBar' or 'PossessBarFrame'] = true
 	}
 
 	local untaintButtons = {
@@ -1299,7 +1298,7 @@ do
 				frame:SetParent(E.HiddenFrame)
 				frame:UnregisterAllEvents()
 
-				if not (E.Retail or E.TBC or E.Wrath) then
+				if not E.hasEditMode then
 					AB:SetNoopsi(frame)
 				end
 			end
@@ -1323,7 +1322,7 @@ do
 		-- modified to fix a taint when closing the options while in combat
 		_G.SettingsPanel:SetScript('OnHide', AB.SettingsPanel_OnHide)
 
-		if E.Retail or E.TBC or E.Wrath then
+		if E.hasEditMode then
 			_G.StatusTrackingBarManager:Kill()
 			_G.ActionBarController:RegisterEvent('UPDATE_EXTRA_ACTIONBAR') -- this is needed to let the ExtraActionBar show
 
