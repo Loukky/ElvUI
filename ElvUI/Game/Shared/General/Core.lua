@@ -1695,7 +1695,7 @@ do
 				nextDelay = 0.05
 			end
 
-			E:Delay(nextDelay or staggerDelay, E[nextUpdate])
+			E:Delay(nextDelay or staggerDelay, E[nextUpdate], E)
 		end
 	end
 	E:RegisterCallback('StaggeredUpdate', CallStaggeredUpdate)
