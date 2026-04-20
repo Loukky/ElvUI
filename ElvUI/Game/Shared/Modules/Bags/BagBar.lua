@@ -285,6 +285,12 @@ function B:LoadBagBar()
 	if E.Retail or E.TBC or E.Wrath then
 		_G.BagsBar:SetParent(E.HiddenFrame)
 		_G.BagsBar:UnregisterAllEvents()
+
+		--_G.EventRegistry:UnregisterCallback('MainMenuBarManager.OnExpandChanged', _G.BagsBar.Layout, _G.BagsBar)
+
+		if _G.MainMenuBarBagManager.OnCursorChanged then
+			_G.EventRegistry:UnregisterFrameEventAndCallback('CURSOR_CHANGED', _G.MainMenuBarBagManager.OnCursorChanged, _G.MainMenuBarBagManager)
+		end
 	end
 
 	if not E.private.bags.bagBar then return end
