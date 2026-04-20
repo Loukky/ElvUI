@@ -110,8 +110,17 @@ local function HandleAffixIcons(child)
 	if not list then return end
 
 	for _, frame in ipairs(list) do
-		frame.Border:SetTexture()
-		frame.Portrait:SetTexture()
+		if frame.Border then
+			frame.Border:SetTexture()
+		end
+
+		if frame.Portrait then
+			frame.Portrait:SetTexture()
+		end
+
+		if frame.CircleMask then
+			frame.CircleMask:Hide()
+		end
 
 		if frame.info then
 			frame.Portrait:SetTexture(_G.CHALLENGE_MODE_EXTRA_AFFIX_INFO[frame.info.key].texture)
