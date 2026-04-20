@@ -21,11 +21,13 @@ AB.MICRO_BUTTONS = _G.MICRO_BUTTONS or {
 	'QuestLogMicroButton',
 	'GuildMicroButton',
 	'LFDMicroButton',
+	'LFGMicroButton',
 	'EJMicroButton',
 	'CollectionsMicroButton',
 	'MainMenuMicroButton',
 	'HelpMicroButton',
 	'StoreMicroButton',
+	'PVPMicroButton'
 }
 
 do
@@ -290,7 +292,8 @@ do
 		MainMenuMicroButton = E.Retail and 11 or 12,	-- important for note above
 		StoreMicroButton = E.Retail and 10 or 11,		-- important for note above
 		EJMicroButton = E.Retail and 9 or 10,
-		CollectionsMicroButton = E.Retail and 8 or 9
+		CollectionsMicroButton = E.Retail and 8 or 9,
+		PVPMicroButton = 7
 	}
 
 	function AB:ShownMicroButtons()
@@ -463,7 +466,7 @@ function AB:SetupMicroBar()
 	end
 
 	-- With this method we might don't taint anything. Instead of using :Kill()
-	local PerformanceBar = _G.MainMenuBarPerformanceBar or _G.MainMenuMicroButton.MainMenuBarPerformanceBar
+	local PerformanceBar = _G.MainMenuMicroButton.PerformanceIndicator or _G.MainMenuMicroButton.MainMenuBarPerformanceBar or _G.MainMenuBarPerformanceBar
 	if PerformanceBar then
 		PerformanceBar:SetAlpha(0)
 		PerformanceBar:SetScale(0.00001)
