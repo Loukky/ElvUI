@@ -1418,7 +1418,7 @@ function E:UnitExists(unit)
 end
 
 function E:UnitEffectiveLevel(unit)
-	if E.Retail or E.Mists or E.Wrath or E.TBC then
+	if E.Retail or E.TBC or E.Wrath or E.Mists then
 		return _G.UnitEffectiveLevel(unit)
 	else
 		return _G.UnitLevel(unit)
