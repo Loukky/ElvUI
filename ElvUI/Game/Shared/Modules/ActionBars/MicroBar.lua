@@ -22,6 +22,7 @@ AB.MICRO_BUTTONS = {
 	'AchievementMicroButton',
 	'QuestLogMicroButton',
 	'GuildMicroButton',
+	'SocialsMicroButton',
 	'LFDMicroButton',
 	'LFGMicroButton',
 	'EJMicroButton',
