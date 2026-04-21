@@ -81,7 +81,7 @@ function S:BlizzardMiscFrames()
 		if header then
 			header:StripTextures()
 			header:ClearAllPoints()
-			header:Point('TOP', GameMenuFrame, 0, 7)
+			header:Point('TOP', GameMenuFrame)
 		end
 
 		hooksecurefunc(GameMenuFrame, 'InitButtons', GameMenuInitButtons)
