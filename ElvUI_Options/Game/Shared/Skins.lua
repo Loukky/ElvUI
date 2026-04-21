@@ -84,6 +84,10 @@ if E.Mists or E.Wrath or E.TBC then
 	toggles.arenaRegistrar = L["Arena Registrar"]
 end
 
+if E.Classic or E.TBC then
+	toggles.craft = L["Craft"]
+end
+
 if not E.Retail then
 	toggles.questTimers = L["Quest Timers"]
 end
@@ -136,7 +140,6 @@ elseif E.Mists then
 elseif E.Classic then
 	toggles.engraving = L["Engraving"]
 	toggles.battlefield = L["Battlefield"]
-	toggles.craft = L["Craft"]
 end
 
 local function ToggleSkins(value)
