@@ -1,5 +1,5 @@
 ### Version 15.12 [ April 21st 2026 ]
-*   **Wrath Titan**
+*   **Titan Reforged**
     *   Editmode was added.
 *   **Nameplates**
     *   Icons and Indicators set on the wrong level.
