@@ -13,10 +13,12 @@ local InCombatLockdown = InCombatLockdown
 local hooksecurefunc = hooksecurefunc
 
 AB.MICRO_CLASSIC = {}
-AB.MICRO_BUTTONS = _G.MICRO_BUTTONS or {
+AB.MICRO_BUTTONS = {
 	'CharacterMicroButton',
 	'SpellbookMicroButton',
+	'ProfessionMicroButton',
 	'TalentMicroButton',
+	'PlayerSpellsMicroButton',
 	'AchievementMicroButton',
 	'QuestLogMicroButton',
 	'GuildMicroButton',
@@ -27,6 +29,7 @@ AB.MICRO_BUTTONS = _G.MICRO_BUTTONS or {
 	'MainMenuMicroButton',
 	'HelpMicroButton',
 	'StoreMicroButton',
+	'HousingMicroButton',
 	'PVPMicroButton'
 }
 
@@ -287,10 +290,9 @@ do
 	local unsorted = {}
 	local sorted = {}
 	local sorting = {
-		-- order this as a safe way to fix glyph taint on mists, warning: adjusting this can lead to
-		-- action failed because cannot anchor to a region dependent on it (Mists/MainMenuBarMicroButtons.lua:133)
-		MainMenuMicroButton = E.Retail and 11 or 12,	-- important for note above
-		StoreMicroButton = E.Retail and 10 or 11,		-- important for note above
+		MainMenuMicroButton = E.Retail and 12 or 13,
+		StoreMicroButton = E.Retail and 11 or 12,
+		HousingMicroButton = E.Retail and 10 or 11,
 		EJMicroButton = E.Retail and 9 or 10,
 		CollectionsMicroButton = E.Retail and 8 or 9,
 		PVPMicroButton = 7
