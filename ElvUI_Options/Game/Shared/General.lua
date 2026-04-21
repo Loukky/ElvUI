@@ -15,6 +15,7 @@ local ACH = E.Libs.ACH
 local _G = _G
 local tonumber, format = tonumber, format
 local wipe, next, ceil = wipe, next, ceil
+
 local IsMouseButtonDown = IsMouseButtonDown
 local FCF_GetNumActiveChatFrames = FCF_GetNumActiveChatFrames
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded

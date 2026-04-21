@@ -6,11 +6,10 @@ local _G = _G
 local next = next
 local hooksecurefunc = hooksecurefunc
 
-local GetItemInfo = C_Item.GetItemInfo
-
 local ITEMQUALITY_ARTIFACT = Enum.ItemQuality.Artifact
 local CurrencyContainerUtil_GetCurrencyContainerInfo = CurrencyContainerUtil.GetCurrencyContainerInfo
 local C_CurrencyInfo_GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
+local GetItemInfo = C_Item.GetItemInfo
 
 local categoryButtonIcons = {
 	236396, -- interface\icons\achievement_bg_winwsg
