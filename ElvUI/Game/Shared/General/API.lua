@@ -1157,7 +1157,7 @@ function E:PositionGameMenuButton()
 			GameMenuFrame.Header.Text:SetTextColor(unpack(E.media.rgbvaluecolor))
 		end
 
-		local offset = E.Retail and 35 or 20
+		local offset = (E.Retail and 35) or 20
 		for button in GameMenuFrame.buttonPool:EnumerateActive() do
 			local text = button:GetText()
 
