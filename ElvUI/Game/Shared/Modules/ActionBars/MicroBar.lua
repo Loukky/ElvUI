@@ -31,6 +31,7 @@ AB.MICRO_BUTTONS = {
 	'HelpMicroButton',
 	'StoreMicroButton',
 	'HousingMicroButton',
+	'WorldMapMicroButton',
 	'PVPMicroButton' -- no offset required
 }
 
