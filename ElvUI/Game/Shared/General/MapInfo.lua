@@ -78,18 +78,10 @@ function E:MapInfo_CoordsStop(event)
 end
 
 function E:MapInfo_CoordsUpdate()
-	if MapInfo.mapID then
-		MapInfo.x, MapInfo.y = E:GetPlayerMapPos(MapInfo.mapID)
-	else
-		MapInfo.x, MapInfo.y = nil, nil
-	end
+	MapInfo.x, MapInfo.y = E:GetPlayerMapPos(MapInfo.mapID)
 
-	if MapInfo.x and MapInfo.y then
-		MapInfo.xText = E:Round(100 * MapInfo.x, 2)
-		MapInfo.yText = E:Round(100 * MapInfo.y, 2)
-	else
-		MapInfo.xText, MapInfo.yText = nil, nil
-	end
+	MapInfo.xText = MapInfo.x and E:Round(100 * MapInfo.x, 2) or nil
+	MapInfo.yText = MapInfo.y and E:Round(100 * MapInfo.y, 2) or nil
 end
 
 function E:MapInfo_OnUpdate(elapsed)
@@ -104,6 +96,8 @@ end
 -- Fix stolen from NDui (and modified by Simpy). Credit: siweia.
 local mapRects, tempVec2D = {}, CreateVector2D(0, 0)
 function E:GetPlayerMapPos(mapID)
+	if not mapID then return end
+
 	tempVec2D.x, tempVec2D.y = UnitPosition('player')
 	if not tempVec2D.x then return end
 
@@ -117,6 +111,7 @@ function E:GetPlayerMapPos(mapID)
 		mapRect[2]:Subtract(mapRect[1])
 		mapRects[mapID] = mapRect
 	end
+
 	tempVec2D:Subtract(mapRect[1])
 
 	return (tempVec2D.y/mapRect[2].y), (tempVec2D.x/mapRect[2].x)
