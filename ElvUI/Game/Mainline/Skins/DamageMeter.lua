@@ -197,11 +197,17 @@ end
 do
 	local updating = false
 	function S:DamageMeter_ScrollBoxSetPoint(point)
-		if not updating and point == 'TOPLEFT' then
-			updating = true
-			self:NudgePoint(-15)
-			updating = false
+		if updating then return end
+
+		updating = true
+
+		if point == 'TOPLEFT' then
+			self:NudgePoint(-16, 0, nil, point)
+		elseif point == 'BOTTOMRIGHT' then
+			self:NudgePoint(-5, 0, nil, point)
 		end
+
+		updating = false
 	end
 end
 
@@ -250,6 +256,7 @@ function S:DamageMeter_HandleScrollBoxes(window)
 
 		S.DamageMeter_ScrollBoxUpdate(ScrollBox)
 		S.DamageMeter_ScrollBoxSetPoint(ScrollBox, 'TOPLEFT')
+		S.DamageMeter_ScrollBoxSetPoint(ScrollBox, 'BOTTOMRIGHT')
 
 		ScrollBox.IsSkinned = true
 	end
