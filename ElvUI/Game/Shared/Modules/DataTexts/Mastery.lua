@@ -8,10 +8,10 @@ local next = next
 local GetCombatRating = GetCombatRating
 local GetMasteryEffect = GetMasteryEffect
 local GetCombatRatingBonus = GetCombatRatingBonus
-local AbbreviateNumbers = AbbreviateNumbers
 local GetSpecialization = C_SpecializationInfo.GetSpecialization or GetSpecialization
 local GetSpecializationMasterySpells = C_SpecializationInfo.GetSpecializationMasterySpells or GetSpecializationMasterySpells
 local CreateBaseTooltipInfo = CreateBaseTooltipInfo
+local AbbreviateNumbers = AbbreviateNumbers
 
 local STAT_MASTERY = STAT_MASTERY
 local STAT_CATEGORY_ENHANCEMENTS = STAT_CATEGORY_ENHANCEMENTS
