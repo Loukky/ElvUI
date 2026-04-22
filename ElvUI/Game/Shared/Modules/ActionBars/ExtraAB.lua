@@ -13,11 +13,9 @@ local hooksecurefunc = hooksecurefunc
 local extraBtns, extraHooked = {}, {}
 
 local ExtraActionBarHolder = CreateFrame('Frame', 'ElvUI_ExtraActionBarHolder', E.UIParent)
-ExtraActionBarHolder:Point('BOTTOM', E.UIParent, 'BOTTOM', -150, 300)
 E.FrameLocks[ExtraActionBarHolder] = true
 
 local ZoneAbilityHolder = CreateFrame('Frame', 'ElvUI_ZoneAbilityHolder', E.UIParent)
-ZoneAbilityHolder:Point('BOTTOM', E.UIParent, 'BOTTOM', 150, 300)
 E.FrameLocks[ZoneAbilityHolder] = true
 
 function AB:ExtraButtons_AddFrame(frame)
@@ -281,10 +279,12 @@ end
 
 function AB:CreateExtraMovers()
 	if not ExtraActionBarHolder.mover then
+		ExtraActionBarHolder:Point('BOTTOM', E.UIParent, 'BOTTOM', -150, 300)
 		E:CreateMover(ExtraActionBarHolder, 'BossButton', L["Boss Button"], nil, nil, nil, 'ALL,ACTIONBARS', nil, 'actionbar,extraButtons,extraActionButton')
 	end
 
 	if not ZoneAbilityHolder.mover then
+		ZoneAbilityHolder:Point('BOTTOM', E.UIParent, 'BOTTOM', 150, 300)
 		E:CreateMover(ZoneAbilityHolder, 'ZoneAbility', L["Zone Ability"], nil, nil, nil, 'ALL,ACTIONBARS', nil, 'actionbar,extraButtons,extraActionButton')
 	end
 end
