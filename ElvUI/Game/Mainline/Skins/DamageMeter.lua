@@ -52,7 +52,7 @@ function S:DamageMeter_HandleResizeButton(button)
 end
 
 function S:DamageMeter_BackdropSetAlpha(alpha)
-	if self and self.backdrop then
+	if self.backdrop then
 		self.backdrop:SetAlpha(alpha)
 	end
 end
