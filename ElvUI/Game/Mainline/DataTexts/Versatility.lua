@@ -8,8 +8,12 @@ local BreakUpLargeNumbers = BreakUpLargeNumbers
 
 local CR_VERSATILITY_DAMAGE_DONE = CR_VERSATILITY_DAMAGE_DONE
 local CR_VERSATILITY_DAMAGE_TAKEN = CR_VERSATILITY_DAMAGE_TAKEN
+local CR_VERSATILITY_TOOLTIP = CR_VERSATILITY_TOOLTIP
+local FONT_COLOR_CODE_CLOSE = FONT_COLOR_CODE_CLOSE
+local HIGHLIGHT_FONT_COLOR_CODE = HIGHLIGHT_FONT_COLOR_CODE
 local STAT_CATEGORY_ENHANCEMENTS = STAT_CATEGORY_ENHANCEMENTS
 local STAT_VERSATILITY = STAT_VERSATILITY
+local VERSATILITY_TOOLTIP_FORMAT = VERSATILITY_TOOLTIP_FORMAT
 
 local displayString, db = ''
 
@@ -20,7 +24,10 @@ local function OnEnter()
 	local bonusDamage = GetCombatRatingBonus(CR_VERSATILITY_DAMAGE_DONE)
 	local bonusTaken = GetCombatRatingBonus(CR_VERSATILITY_DAMAGE_TAKEN)
 
-	local tooltip = format('%s: %s [%.2f%% / %.2f%%]', STAT_VERSATILITY, BreakUpLargeNumbers(versatility), bonusDamage, bonusTaken)
+	local text = HIGHLIGHT_FONT_COLOR_CODE..format(VERSATILITY_TOOLTIP_FORMAT, STAT_VERSATILITY, bonusDamage, bonusTaken)..FONT_COLOR_CODE_CLOSE
+	local tooltip = format(CR_VERSATILITY_TOOLTIP, bonusDamage, bonusTaken, BreakUpLargeNumbers(versatility), bonusDamage, bonusTaken)
+
+	DT.tooltip:AddDoubleLine(text, nil, 1, 1, 1)
 	DT.tooltip:AddLine(tooltip, nil, nil, nil, true)
 	DT.tooltip:Show()
 end
