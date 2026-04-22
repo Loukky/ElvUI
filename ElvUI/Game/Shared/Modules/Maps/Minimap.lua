@@ -321,10 +321,11 @@ do
 	end
 
 	local function SetupZoomReset()
-		if M.db.resetZoom.enable and not isResetting then
+		local db = M.db.resetZoom
+		if (db and db.enable) and not isResetting then
 			isResetting = true
 
-			E:Delay(M.db.resetZoom.time, ResetZoom)
+			E:Delay(db.time, ResetZoom)
 		end
 	end
 
