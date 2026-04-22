@@ -279,7 +279,7 @@ function AB:ExtraButtons_SetupAbility()
 	end
 end
 
-function AB:CreateExtraHolders()
+function AB:CreateExtraMovers()
 	if not ExtraActionBarHolder.mover then
 		E:CreateMover(ExtraActionBarHolder, 'BossButton', L["Boss Button"], nil, nil, nil, 'ALL,ACTIONBARS', nil, 'actionbar,extraButtons,extraActionButton')
 	end
@@ -290,7 +290,7 @@ function AB:CreateExtraHolders()
 end
 
 function AB:SetupExtraButtons()
-	AB:CreateExtraHolders()			-- make the holders
+	AB:CreateExtraMovers()			-- make the holders
 	AB:ExtraButtons_Reparent()		-- reparent to the holders (keep before setup)
 	AB:ExtraButtons_SetupBoss()		-- attach boss
 	AB:ExtraButtons_SetupZone()		-- attach zone
