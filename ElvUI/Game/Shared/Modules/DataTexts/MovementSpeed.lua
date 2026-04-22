@@ -14,9 +14,9 @@ local BASE_MOVEMENT_SPEED = BASE_MOVEMENT_SPEED
 
 local data = {
 	breakpoint = 0,
-	abbreviation = '%',
+	abbreviation = '',
 	fractionDivisor = 1,
-	significandDivisor = BASE_MOVEMENT_SPEED / 100, -- scaled = speed * 100 / BASE_MOVEMENT_SPEED
+	significandDivisor = BASE_MOVEMENT_SPEED * 0.01, -- scaled = speed * 100 / BASE_MOVEMENT_SPEED
 	abbreviationIsGlobal = false,
 }
 
@@ -76,9 +76,9 @@ local function ApplySettings(panel, hex)
 
 	if E.Retail then
 		data.fractionDivisor = 10 ^ (db.decimalLength or 0)
-		data.significandDivisor = (BASE_MOVEMENT_SPEED / 100) / data.fractionDivisor
+		data.significandDivisor = (BASE_MOVEMENT_SPEED * 0.01) / data.fractionDivisor
 
-		displayString = strjoin('', db.NoLabel and '' or '%s: ', hex, '%s|r')
+		displayString = strjoin('', db.NoLabel and '' or '%s: ', hex, '%s%%|r')
 	else
 		displayString = strjoin('', db.NoLabel and '' or '%s: ', hex, '%.'..db.decimalLength..'f%%|r')
 	end
