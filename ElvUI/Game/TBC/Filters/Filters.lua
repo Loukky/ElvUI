@@ -833,9 +833,9 @@ G.unitframe.aurawatch = {
 		[8185]	= Aura(8185, {10534, 10535, 25563}, true, 'TOPLEFT', {0.05, 1.00, 0.50}), -- Fire Resistance Totem
 		[8182]	= Aura(8182, {10476, 10477, 25560}, true, 'TOPLEFT', {0.54, 0.53, 0.79}), -- Frost Resistance Totem
 		[10596]	= Aura(10596, {10598, 10599, 25574}, true, 'TOPLEFT', {0.33, 1.00, 0.20}), -- Nature Resistance Totem
-		[5672]	= Aura(5672, {6371, 6372, 10460, 10461, 25567}, true, 'BOTTOM', {0.67, 1.00, 0.50}), -- Healing Stream Totem
+		[5672]	= Aura(5672, {6371, 6372, 10460, 10461, 25566, 25567}, true, 'BOTTOM', {0.67, 1.00, 0.50}), -- Healing Stream Totem
 		[16191]	= Aura(16191, {17355, 17360}, true, 'BOTTOMLEFT', {0.67, 1.00, 0.80}), -- Mana Tide Totem
-		[5677]	= Aura(5677, {10491, 10493, 10494, 25570}, true, 'LEFT', {0.67, 1.00, 0.80}), -- Mana Spring Totem
+		[5677]	= Aura(5677, {10491, 10493, 10494, 25569, 25570}, true, 'LEFT', {0.67, 1.00, 0.80}), -- Mana Spring Totem
 		[8072]	= Aura(8072, {8156, 8157, 10403, 10404, 10405, 25508, 25509}, true, 'BOTTOMRIGHT', {0.00, 0.00, 0.26}), -- Stoneskin Totem
 		[974]	= Aura(974, {32593, 32594}, true, 'TOP', {0.08, 0.21, 0.43}, true), -- Earth Shield
 	},
