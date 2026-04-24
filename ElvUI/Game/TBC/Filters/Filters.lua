@@ -839,7 +839,7 @@ G.unitframe.aurawatch = {
 		[5672]	= Aura(5672, {6371, 6372, 10460, 10461, 25566, 25567}, true, 'BOTTOM', {0.67, 1.00, 0.50}), -- Healing Stream Totem
 		[16191]	= Aura(16191, {17355, 17360}, true, 'BOTTOMLEFT', {0.67, 1.00, 0.80}), -- Mana Tide Totem
 		[5677]	= Aura(5677, {10491, 10493, 10494, 25569, 25570}, true, 'LEFT', {0.67, 1.00, 0.80}), -- Mana Spring Totem
-		[8072]	= Aura(8072, {8156, 8157, 10403, 10404, 10405, 25508, 25509}, true, 'BOTTOMRIGHT', {0.00, 0.00, 0.26}), -- Stoneskin Totem
+		[8072]	= Aura(8072, {8156, 8157, 10403, 10404, 10405, 25508, 25509}, true, 'BOTTOMRIGHT', {0.33, 1.00, 0.20}), -- Stoneskin Totem
 		[974]	= Aura(974, {32593, 32594}, true, 'TOP', {0.08, 0.21, 0.43}, true), -- Earth Shield
 	},
 	MAGE = {
