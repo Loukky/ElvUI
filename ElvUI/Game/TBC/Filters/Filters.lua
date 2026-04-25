@@ -850,7 +850,7 @@ G.unitframe.aurawatch = {
 		[2895] = Aura(2895, nil, true, 'RIGHT', {0.67, 1.00, 0.80}, nil, nil, nil, -20), -- Wrath of Air
 
 		-- Buffs, offset x -30
-		[8836] = Aura(8836, {10626, 25360}, true, 'TOPRIGHT', {0.67, 1.00, 0.50}, nil, nil, nil, -30), -- Grave of Air
+		[8836] = Aura(8836, {10626, 25360}, true, 'TOPRIGHT', {0.67, 1.00, 0.50}, nil, nil, nil, -30), -- Grace of Air
 		[15108] = Aura(15108, {15109, 15110, 25576}, true, 'BOTTOMRIGHT', {0.67, 1.00, 0.80}, nil, nil, nil, -30), -- Windwall
 		[8178] = Aura(8178, nil, true, 'BOTTOM', {0.33, 1.00, 0.20}, nil, nil, nil, -30), -- Grounding Totem (effect)
 	},
