@@ -1013,12 +1013,17 @@ G.unitframe.aurawatch = {
 
 		-- Fire
 		[8182]	= Aura(8182, {10476,10477,25560,58741,58745}, true, 'TOPLEFT', {0.58, 0.23, 0.10}), -- Frost Resistance
+		[30708] = Aura(30708, nil, false, 'TOPLEFT', {0.58, 0.23, 0.10}, nil, nil, nil, -20), -- Totem of Wrath (Crit/Hit increase)
 
 		-- Earth
 		[8072]	= Aura(8072, {8156,8157,10403,10404,10405,25506,25507,58752,58754}, true, 'LEFT', {0.23, 0.45, 0.13}), -- Stoneskin
+		[8076] = Aura(8076, {8162, 8163, 10441, 25362, 25527}, false, 'LEFT', {0.23, 0.45, 0.13}, nil, nil, nil, -20), -- Strength of Earth (Strength increase)
 
 		-- Air
+		[2895] = Aura(2895, nil, false, 'BOTTOMLEFT', {0.42, 0.18, 0.74}), -- Wrath of Air (Spellpower increase)
 		[10596]	= Aura(10596, {10598,10599,25574,58746,58749}, true, 'BOTTOMLEFT', {0.42, 0.18, 0.74}), -- Nature Resistance
+		[8178] = Aura(8178, nil, true, 'BOTTOMLEFT', {0.42, 0.18, 0.74}), -- Grounding Totem (spell redirection)
+		[6495] = Aura(6495, nil, true, 'BOTTOMLEFT', {0.42, 0.18, 0.74}), -- Sentry (vision totem)
 
 		-- Water
 		[16191]	= Aura(16191, nil, true, 'BOTTOM', {0.19, 0.48, 0.60}), -- Mana Tide
