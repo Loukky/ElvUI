@@ -844,15 +844,15 @@ G.unitframe.aurawatch = {
 		[10596]	= Aura(10596, {10598, 10599, 25573}, true, 'TOPLEFT', {0.33, 1.00, 0.20}), -- Nature
 
 		-- Buffs, offset x -20
-		[30708] = Aura(30708, nil, true, 'TOPRIGHT', {0.05, 1.00, 0.50}, nil, nil, nil, -20), -- Totem of Wrath
-		[25909] = Aura(25909, nil, true, 'BOTTOMRIGHT', {0.67, 1.00, 0.80}, nil, nil, nil, -20), -- Tranquil Air
-		[8076] = Aura(8076, {8162, 8163, 10441, 25362, 25527}, true, 'BOTTOM', {0.33, 1.00, 0.20}, nil, nil, nil, -20), -- Strength of Earth
-		[2895] = Aura(2895, nil, true, 'RIGHT', {0.67, 1.00, 0.80}, nil, nil, nil, -20), -- Wrath of Air
+		[25909] = Aura(25909, nil, true, 'BOTTOMRIGHT', {0.67, 1.00, 0.80}, nil, nil, nil, -20), -- Tranquil Air (Threat reduction)
+		[8076] = Aura(8076, {8162, 8163, 10441, 25362, 25527}, false, 'BOTTOM', {0.33, 1.00, 0.20}, nil, nil, nil, -20), -- Strength of Earth (Strength increase)
+		[30708] = Aura(30708, nil, false, 'TOPRIGHT', {0.05, 1.00, 0.50}, nil, nil, nil, -20), -- Totem of Wrath (Crit/Hit increase)
+		[2895] = Aura(2895, nil, false, 'RIGHT', {0.67, 1.00, 0.80}, nil, nil, nil, -20), -- Wrath of Air (Spellpower increase)
 
 		-- Buffs, offset x -30
-		[8836] = Aura(8836, {10626, 25360}, true, 'TOPRIGHT', {0.67, 1.00, 0.50}, nil, nil, nil, -30), -- Grace of Air
-		[15108] = Aura(15108, {15109, 15110, 25576}, true, 'BOTTOMRIGHT', {0.67, 1.00, 0.80}, nil, nil, nil, -30), -- Windwall
-		[8178] = Aura(8178, nil, true, 'BOTTOM', {0.33, 1.00, 0.20}, nil, nil, nil, -30), -- Grounding Totem (effect)
+		[15108] = Aura(15108, {15109, 15110, 25576}, true, 'BOTTOMRIGHT', {0.67, 1.00, 0.80}, nil, nil, nil, -30), -- Windwall (damage reduction)
+		[8178] = Aura(8178, nil, true, 'BOTTOM', {0.33, 1.00, 0.20}, nil, nil, nil, -30), -- Grounding Totem (spell redirection)
+		[8836] = Aura(8836, {10626, 25360}, false, 'TOPRIGHT', {0.67, 1.00, 0.50}, nil, nil, nil, -30), -- Grace of Air (agility)
 	},
 	MAGE = {
 		[1459]	= Aura(1459, {1460, 1461, 10156, 10157, 27126}, true, 'TOPLEFT', {0.89, 0.09, 0.05}, true), -- Arcane Intellect
