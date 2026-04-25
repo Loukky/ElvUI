@@ -828,7 +828,7 @@ G.unitframe.aurawatch = {
 		[32223]	= Aura(32223, nil, true, 'BOTTOMLEFT', {0.83, 1.00, 0.07}), -- Crusader Aura
 	},
 	SHAMAN = {
-		[29203]	= Aura(29203, nil, true, 'TOPRIGHT', {0.7, 0.3, 0.7}), -- Healing Way
+		[29203]	= Aura(29203, nil, true, 'LEFT', {0.7, 0.3, 0.7}), -- Healing Way
 		[16237]	= Aura(16237, nil, true, 'RIGHT', {0.2, 0.2, 1}), -- Ancestral Fortitude
 		[974]	= Aura(974, {32593, 32594}, true, 'TOP', {0.08, 0.21, 0.43}, true), -- Earth Shield
 
@@ -837,8 +837,8 @@ G.unitframe.aurawatch = {
 		[30708] = Aura(30708, nil, false, 'TOPLEFT', {0.58, 0.23, 0.10}, nil, nil, nil, -20), -- Totem of Wrath (Crit/Hit increase)
 
 		-- Earth
-		[8072]	= Aura(8072, {8156, 8157, 10403, 10404, 10405, 25506, 25507}, true, 'LEFT', {0.23, 0.45, 0.13}), -- Stoneskin
-		[8076] = Aura(8076, {8162, 8163, 10441, 25362, 25527}, false, 'LEFT', {0.23, 0.45, 0.13}, nil, nil, nil, -20), -- Strength of Earth (Strength increase)
+		[8072]	= Aura(8072, {8156, 8157, 10403, 10404, 10405, 25506, 25507}, true, 'TOPRIGHT', {0.23, 0.45, 0.13}), -- Stoneskin
+		[8076] = Aura(8076, {8162, 8163, 10441, 25362, 25527}, false, 'TOPRIGHT', {0.23, 0.45, 0.13}, nil, nil, nil, -20), -- Strength of Earth (Strength increase)
 
 		-- Air
 		[2895] = Aura(2895, nil, false, 'BOTTOMLEFT', {0.42, 0.18, 0.74}), -- Wrath of Air (Spellpower increase)
@@ -850,10 +850,10 @@ G.unitframe.aurawatch = {
 		[6495] = Aura(6495, nil, true, 'BOTTOMLEFT', {0.42, 0.18, 0.74}), -- Sentry (vision totem)
 
 		-- Water
-		[16191]	= Aura(16191, {17355, 17360}, true, 'BOTTOM', {0.19, 0.48, 0.60}), -- Mana Tide
-		[8185]	= Aura(8185, {10534, 10535, 25562}, true, 'BOTTOM', {0.19, 0.48, 0.60}), -- Fire Resistance
-		[5677]	= Aura(5677, {10491, 10493, 10494, 25569}, true, 'BOTTOM', {0.19, 0.48, 0.60}), -- Mana Spring
-		[5672]	= Aura(5672, {6371, 6372, 10460, 10461, 25566}, true, 'BOTTOM', {0.19, 0.48, 0.60}), -- Healing Stream
+		[16191]	= Aura(16191, {17355, 17360}, true, 'BOTTOMRIGHT', {0.19, 0.48, 0.60}), -- Mana Tide
+		[8185]	= Aura(8185, {10534, 10535, 25562}, true, 'BOTTOMRIGHT', {0.19, 0.48, 0.60}), -- Fire Resistance
+		[5677]	= Aura(5677, {10491, 10493, 10494, 25569}, true, 'BOTTOMRIGHT', {0.19, 0.48, 0.60}), -- Mana Spring
+		[5672]	= Aura(5672, {6371, 6372, 10460, 10461, 25566}, true, 'BOTTOMRIGHT', {0.19, 0.48, 0.60}), -- Healing Stream
 	},
 	MAGE = {
 		[1459]	= Aura(1459, {1460, 1461, 10156, 10157, 27126}, true, 'TOPLEFT', {0.89, 0.09, 0.05}, true), -- Arcane Intellect
