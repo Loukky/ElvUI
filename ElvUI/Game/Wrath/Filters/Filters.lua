@@ -1006,17 +1006,25 @@ G.unitframe.aurawatch = {
 		-- TODO: Tricks of the Trade
 	},
 	SHAMAN = {
-		[16177]	= Aura(16177, {16236,16237}, true, 'RIGHT', {0.2, 0.2, 1}), -- Ancestral Fortitude
-		[8185]	= Aura(8185, {10534,10535,25563,58737,58739}, true, 'TOPLEFT', {0.05, 1.00, 0.50}), -- Fire Resistance Totem
-		[8182]	= Aura(8182, {10476,10477,25560,58741,58745}, true, 'TOPLEFT', {0.54, 0.53, 0.79}), -- Frost Resistance Totem
-		[10596]	= Aura(10596, {10598,10599,25574,58746,58749}, true, 'TOPLEFT', {0.33, 1.00, 0.20}), -- Nature Resistance Totem
-		[5672]	= Aura(5672, {6371,6372,10460,10461,25567,58755,58756,58757}, true, 'BOTTOM', {0.67, 1.00, 0.50}), -- Healing Stream Totem
-		[16191]	= Aura(16191, nil, true, 'BOTTOMLEFT', {0.67, 1.00, 0.80}), -- Mana Tide Totem
-		[5677]	= Aura(5677, {10491,10493,10494,25569,58775,58776,58777}, true, 'LEFT', {0.67, 1.00, 0.80}), -- Mana Spring Totem
-		[8072]	= Aura(8072, {8156,8157,10403,10404,10405,25506,25507,58752,58754}, true, 'BOTTOMRIGHT', {0.00, 0.00, 0.26}), -- Stoneskin Totem
-		[974]	= Aura(974, {32593,32594,49283,49284}, true, 'TOP', {0.08, 0.21, 0.43}, true), -- Earth Shield
 		[61295] = Aura(61295, {61299,61300,61301}, true, 'TOPRIGHT', {0.7, 0.3, 0.7}), -- Riptide
-		[51945] = Aura(51945, {51990,51997,51998,51999,52000}, true, 'LEFT', {0.7, 0.3, 0.7}), -- Earthliving
+		[16177]	= Aura(16177, {16236,16237}, true, 'RIGHT', {0.2, 0.2, 1}), -- Ancestral Fortitude
+		[974]	= Aura(974, {32593,32594,49283,49284}, true, 'TOP', {0.08, 0.21, 0.43}, true), -- Earth Shield
+		[51945] = Aura(51945, {51990,51997,51998,51999,52000}, true, 'BOTTOMRIGHT', {0.7, 0.3, 0.7}), -- Earthliving
+
+		-- Fire
+		[8182]	= Aura(8182, {10476,10477,25560,58741,58745}, true, 'TOPLEFT', {0.58, 0.23, 0.10}), -- Frost Resistance
+
+		-- Earth
+		[8072]	= Aura(8072, {8156,8157,10403,10404,10405,25506,25507,58752,58754}, true, 'LEFT', {0.23, 0.45, 0.13}), -- Stoneskin
+
+		-- Air
+		[10596]	= Aura(10596, {10598,10599,25574,58746,58749}, true, 'BOTTOMLEFT', {0.42, 0.18, 0.74}), -- Nature Resistance
+
+		-- Water
+		[16191]	= Aura(16191, nil, true, 'BOTTOM', {0.19, 0.48, 0.60}), -- Mana Tide
+		[8185]	= Aura(8185, {10534,10535,25563,58737,58739}, true, 'BOTTOM', {0.19, 0.48, 0.60}), -- Fire Resistance
+		[5677]	= Aura(5677, {10491,10493,10494,25569,58775,58776,58777}, true, 'BOTTOM', {0.19, 0.48, 0.60}), -- Mana Spring
+		[5672]	= Aura(5672, {6371,6372,10460,10461,25567,58755,58756,58757}, true, 'BOTTOM', {0.19, 0.48, 0.60}), -- Healing Stream
 	},
 	WARLOCK = {
 		[5697]	= Aura(5697, nil, true, 'TOPLEFT', {0.89, 0.09, 0.05}, true), -- Unending Breath

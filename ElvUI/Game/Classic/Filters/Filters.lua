@@ -804,14 +804,22 @@ G.unitframe.aurawatch = {
 	SHAMAN = {
 		[29203]	= Aura(29203, nil, true, 'TOPRIGHT', {0.7, 0.3, 0.7}), -- Healing Way
 		[16237]	= Aura(16237, nil, true, 'RIGHT', {0.2, 0.2, 1}), -- Ancestral Fortitude
-		[25909]	= Aura(25909, nil, true, 'TOP', {0.00, 0.00, 0.50}), -- Tranquil Air
-		[8185]	= Aura(8185, {10534,10535}, true, 'TOPLEFT', {0.05, 1.00, 0.50}), -- Fire Resistance Totem
-		[8182]	= Aura(8182, {10476,10477}, true, 'TOPLEFT', {0.54, 0.53, 0.79}), -- Frost Resistance Totem
-		[10596]	= Aura(10596, {10598,10599}, true, 'TOPLEFT', {0.33, 1.00, 0.20}), -- Nature Resistance Totem
-		[5672]	= Aura(5672, {6371,6372,10460,10461}, true, 'BOTTOM', {0.67, 1.00, 0.50}), -- Healing Stream Totem
-		[16191]	= Aura(16191, {17355,17360}, true, 'BOTTOMLEFT', {0.67, 1.00, 0.80}), -- Mana Tide Totem
-		[5677]	= Aura(5677, {10491,10493,10494}, true, 'LEFT', {0.67, 1.00, 0.80}), -- Mana Spring Totem
-		[8072]	= Aura(8072, {8156,8157,10403,10404,10405}, true, 'BOTTOMRIGHT', {0.00, 0.00, 0.26}), -- Stoneskin Totem
+
+		-- Fire
+		[8182]	= Aura(8182, {10476,10477}, true, 'TOPLEFT', {0.58, 0.23, 0.10}), -- Frost Resistance
+
+		-- Earth
+		[8072]	= Aura(8072, {8156,8157,10403,10404,10405}, true, 'LEFT', {0.23, 0.45, 0.13}), -- Stoneskin
+
+		-- Air
+		[25909]	= Aura(25909, nil, true, 'BOTTOMLEFT', {0.42, 0.18, 0.74}), -- Tranquil Air (Threat reduction)
+		[10596]	= Aura(10596, {10598,10599}, true, 'BOTTOMLEFT', {0.42, 0.18, 0.74}), -- Nature Resistance
+
+		-- Water
+		[16191]	= Aura(16191, {17355,17360}, true, 'BOTTOM', {0.67, 1.00, 0.80}), -- Mana Tide
+		[8185]	= Aura(8185, {10534,10535}, true, 'BOTTOM', {0.05, 1.00, 0.50}), -- Fire Resistance
+		[5677]	= Aura(5677, {10491,10493,10494}, true, 'BOTTOM', {0.67, 1.00, 0.80}), -- Mana Spring
+		[5672]	= Aura(5672, {6371,6372,10460,10461}, true, 'BOTTOM', {0.67, 1.00, 0.50}), -- Healing Stream
 	},
 	WARLOCK = {
 		[5697]	= Aura(5697, nil, true, 'TOPLEFT', {0.89, 0.09, 0.05}, true), -- Unending Breath
